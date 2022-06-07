@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body{
+    font-family: 'montserrat', Times, serif;
+}
+
 #app_title:hover {
     color: #61DBFB;
+}
+
+.project-title{
+    color: #673ab7;
+    font-weight: 600;
+}
+
+.project-card-body {
+    background:rgb(244 242 244);
 }
