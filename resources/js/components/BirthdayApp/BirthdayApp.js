@@ -29,16 +29,35 @@ const BirthdayApp = () => {
                                         <hr />
                                     </Card.Text>
                                     <Stack>
-                                        <div className="px-2">
+                                        <div className="px-2 my-1">
                                             <Row>
                                                 <Col sm={3}>
                                                     <img
                                                       src={BirthdayCardImage} alt="" width={50} height={45}
                                                       style={onlineStyle} />
                                                 </Col>
-                                                <Col sm={9}>
+                                                <Col sm={7}>
                                                     <p style={{ margin:0 }}>Arif Faysal</p>
                                                     <small>28Yrs</small>
+                                                </Col>
+                                                <Col sm={2}>
+                                                    <Button variant="success" size="sm">&#127873;</Button>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                        <div className="px-2  my-1">
+                                            <Row>
+                                                <Col sm={3}>
+                                                    <img
+                                                      src={BirthdayCardImage} alt="" width={50} height={45}
+                                                      style={onlineStyle} />
+                                                </Col>
+                                                <Col sm={7}>
+                                                    <p style={{ margin:0 }}>Arif Faysal</p>
+                                                    <small>28Yrs</small>
+                                                </Col>
+                                                <Col sm={2}>
+                                                   <span className="p-2 mt-2"> &#9989;</span>
                                                 </Col>
                                             </Row>
                                         </div>
