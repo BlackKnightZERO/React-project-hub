@@ -18,13 +18,18 @@ class UserDetailFactory extends Factory
      */
     public function definition()
     {
+        $index = rand(1,5);
+        $online = rand(0,1);
+
         return [
-            'user_id' => User::factory(),
-            'username' => $this->faker->word().'_'.rand(1,99),
+            'user_id'       => User::factory(),
+            'username'      => $this->faker->word().'_'.rand(1,999),
             'date_of_birth' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'address' => $this->faker->city(),
-            'bio' => $this->faker->text($maxNbChars = 100),
-            'created_at' => now()
+            'address'       => $this->faker->city(),
+            'bio'           => $this->faker->text($maxNbChars = 100),
+            'image'         => $index.'.jpg',
+            'is_online'     => $online,
+            'created_at'    => now()
         ];
     }
 }

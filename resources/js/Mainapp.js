@@ -29,9 +29,9 @@ const rootElement = document.getElementById('app');
 const root = createRoot(rootElement);
 
 root.render(
-    <StrictMode>
+    // <StrictMode>                                                                 // useEffect runs twice problem
       <BrowserRouter>
         <Mainapp />
       </BrowserRouter>
-    </StrictMode>
+    // </StrictMode>
 );

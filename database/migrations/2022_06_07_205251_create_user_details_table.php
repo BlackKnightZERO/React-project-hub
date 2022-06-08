@@ -23,6 +23,8 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->text('address')->nullable();
             $table->text('bio')->nullable();
+            $table->string('image')->default('default.jpg');
+            $table->tinyInteger('is_online')->default(0);
             $table->timestamps();
         });
     }

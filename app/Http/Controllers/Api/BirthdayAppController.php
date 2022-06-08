@@ -14,8 +14,11 @@ use Carbon\Carbon;
 class BirthdayAppController extends Controller
 {
     public function getBirthday(){
-        return BirthdayAppResource::collection(UserDetail::whereMonth('date_of_birth', '=', Carbon::now()->format('m'))
-                                                ->whereDay('date_of_birth', '=', Carbon::now()->format('d'))
-                                                ->get());
+        $data = UserDetail::with('user')
+                ->whereMonth('date_of_birth', '=', Carbon::now()->format('m'))
+                ->whereDay('date_of_birth', '=', Carbon::now()->format('d'))
+                ->get();       
+
+        return BirthdayAppResource::collection($data);
     }
 }

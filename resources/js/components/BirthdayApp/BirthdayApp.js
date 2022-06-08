@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import { useEffect, useState } from 'react';
 import { Stack, Container, Row, Col, Card, Button } from 'react-bootstrap';
 import BirthdayCardImage from './birthday.jpg'
 
@@ -8,7 +10,30 @@ const onlineStyle = {
     padding: '1px'
 }
 
+const offlineStyle = {
+    borderRadius:'50%',
+    border: '2px dashed grey',
+    padding: '1px'
+}
+
 const BirthdayApp = () => {
+
+    const [birthdayData, setBirthdayData] = useState([])
+
+    const fetchData = async () => {
+        const url = `/api/birthday-app/get-birthday`
+        return await axios.get(url)
+                .then(res=>{
+                    setBirthdayData(res.data?.data)
+                }).catch(err=>{
+                    console.error(err)
+                })
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
         <>
             <div className="bg-info" style={{ minHeight: '80vh', overflow: 'hidden' }}>
@@ -23,37 +48,39 @@ const BirthdayApp = () => {
                                         <h5>Today's Birthdays</h5>
                                     </Card.Title>
                                     <Card.Text className="text-center">
-                                        <p>
-                                            { new Date().toDateString() }
-                                        </p>
-                                        <hr />
+                                        { new Date().toDateString() }
                                     </Card.Text>
+                                    <hr/>
                                     <Stack>
-                                        <div className="px-2 my-1">
+                                        { birthdayData && birthdayData.map((data) => (
+                                        <div className="px-2 my-1" key={data.id}>
                                             <Row>
                                                 <Col sm={3}>
                                                     <img
-                                                      src={BirthdayCardImage} alt="" width={50} height={45}
-                                                      style={onlineStyle} />
+                                                      src={ data.image } alt="" width={50} height={45}
+                                                      style={ data.is_online ? onlineStyle : offlineStyle } 
+                                                    />
                                                 </Col>
                                                 <Col sm={7}>
-                                                    <p style={{ margin:0 }}>Arif Faysal</p>
-                                                    <small>28Yrs</small>
+                                                    <p style={{ margin:'0' }}>{ data.name }</p>
+                                                    <small>{ data.age }Yrs</small>
                                                 </Col>
                                                 <Col sm={2}>
                                                     <Button variant="success" size="sm">&#127873;</Button>
                                                 </Col>
                                             </Row>
                                         </div>
+                                        ) ) }
                                         <div className="px-2  my-1">
                                             <Row>
                                                 <Col sm={3}>
                                                     <img
                                                       src={BirthdayCardImage} alt="" width={50} height={45}
-                                                      style={onlineStyle} />
+                                                      style={onlineStyle} 
+                                                    />
                                                 </Col>
                                                 <Col sm={7}>
-                                                    <p style={{ margin:0 }}>Arif Faysal</p>
+                                                    <p style={{ margin:'0' }}>Arif Faysal</p>
                                                     <small>28Yrs</small>
                                                 </Col>
                                                 <Col sm={2}>
