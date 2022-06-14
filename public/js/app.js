@@ -2580,6 +2580,41 @@ var BirthdayApp = function BirthdayApp() {
     };
   }();
 
+  var makeMagic = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var data, url;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              setLoading(true);
+              data = birthdayData.map(function (m) {
+                return m.id;
+              });
+              url = "/api/birthday-app/random-birthday-generate";
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
+                fetchData();
+              })["catch"](function (err) {
+                console.error(err);
+              });
+
+            case 5:
+              setLoading(false);
+
+            case 6:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function makeMagic() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     fetchData();
   }, []);
@@ -2650,42 +2685,17 @@ var BirthdayApp = function BirthdayApp() {
                         })
                       }, data.id);
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                      className: "px-2  my-1",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                          sm: 3,
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-                            src: _birthday_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
-                            alt: "",
-                            width: 50,
-                            height: 45,
-                            style: onlineStyle
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                          sm: 7,
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-                            style: {
-                              margin: '0'
-                            },
-                            children: "Arif Faysal"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("small", {
-                            children: "28Yrs"
-                          })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                          sm: 2,
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                            className: "p-2 mt-2",
-                            children: " \u2705"
-                          })
-                        })]
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                       className: "d-grid gap-2 mt-2",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                      children: birthdayData.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
                         variant: "primary",
                         size: "sm",
                         onClick: dismissAll,
                         children: "Dismiss"
+                      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                        variant: "success",
+                        size: "sm",
+                        onClick: makeMagic,
+                        children: "MAGIC"
                       })
                     })]
                   })]

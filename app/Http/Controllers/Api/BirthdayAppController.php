@@ -65,4 +65,39 @@ class BirthdayAppController extends Controller
         return $emptyArr;
     }
 
+    public function randomBirthdayGenerate() {
+
+        $userIdArr = [];
+
+        $users = User::whereHas('detail', function (Builder $query) {
+            $query->where('user_details.date_of_birth', '!=', null);
+        })
+        ->select('id')
+        ->get();
+        
+        foreach($users as $id) {
+            array_push($userIdArr, $id->id);
+        }
+
+        for( $i = 0 ; $i < 5; $i++ ) {
+
+            $randId = rand(0, sizeof($userIdArr)-1);
+
+            $current = Carbon::now()
+                        ->subYears( rand(15,50) )
+                        ->toDateString();
+
+            UserDetail::where('user_id', $userIdArr[$randId])->update([
+                'date_of_birth' => $current
+            ]);
+
+        }   
+
+        return response()->json([
+            'status' => 'done'
+        ]);
+
+        
+    }
+
 }

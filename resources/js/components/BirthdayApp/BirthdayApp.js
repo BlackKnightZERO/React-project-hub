@@ -62,6 +62,19 @@ const BirthdayApp = () => {
         setLoading(false)
     }
 
+    const makeMagic = async () => {
+        setLoading(true)
+        let data =  birthdayData.map((m) => m.id)
+        const url = `/api/birthday-app/random-birthday-generate`
+        await axios.get(url)
+                .then(res=>{
+                    fetchData()
+                }).catch(err=>{
+                    console.error(err)
+                })
+        setLoading(false)
+    }
+
     useEffect(() => {
         fetchData()
     }, [])
@@ -105,7 +118,7 @@ const BirthdayApp = () => {
                                             </Row>
                                         </div>
                                         ) ) }
-                                        <div className="px-2  my-1">
+                                        {/* <div className="px-2  my-1">
                                             <Row>
                                                 <Col sm={3}>
                                                     <img
@@ -121,9 +134,14 @@ const BirthdayApp = () => {
                                                    <span className="p-2 mt-2"> &#9989;</span>
                                                 </Col>
                                             </Row>
-                                        </div>
+                                        </div> */}
                                         <div className="d-grid gap-2 mt-2">
-                                            <Button variant="primary" size="sm" onClick={dismissAll}>Dismiss</Button>
+                                            { birthdayData.length > 0 ? (
+                                                <Button variant="primary" size="sm" onClick={dismissAll}>Dismiss</Button>
+                                            ) : (
+                                                <Button variant="success" size="sm" onClick={makeMagic}>MAGIC</Button>
+                                            )
+                                            }
                                         </div>
                                     </Stack>
                                     </>
