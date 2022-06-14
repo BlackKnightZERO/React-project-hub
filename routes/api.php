@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/birthday-app/get-birthday', [BirthdayAppController::class, 'getBirthday']);
+Route::post('/birthday-app/send-gift', [BirthdayAppController::class, 'sendGift']);
+Route::post('/birthday-app/send-gift-to-all', [BirthdayAppController::class, 'sendGiftAll']);

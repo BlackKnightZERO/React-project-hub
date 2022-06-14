@@ -46,4 +46,8 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    public function birthdayGift(){
+        return $this->hasMany(BirthdayGift::class);
+    }
+
 }

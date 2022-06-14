@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from 'react';
-import { Stack, Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Stack, Container, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import BirthdayCardImage from './birthday.jpg'
 
 const onlineStyle = {
@@ -19,15 +19,47 @@ const offlineStyle = {
 const BirthdayApp = () => {
 
     const [birthdayData, setBirthdayData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const fetchData = async () => {
+        setLoading(true)
         const url = `/api/birthday-app/get-birthday`
-        return await axios.get(url)
+        await axios.get(url)
                 .then(res=>{
                     setBirthdayData(res.data?.data)
                 }).catch(err=>{
                     console.error(err)
                 })
+        setLoading(false)
+    }
+
+    const sendGift = async (id, idx) => {
+        setLoading(true)
+        const url = `/api/birthday-app/send-gift`
+        await axios.post(url, {
+                    id: id
+                })
+                .then(res=>{
+                    setBirthdayData(birthdayData.filter(f => f.id !== id))
+                }).catch(err=>{
+                    console.error(err)
+                })
+        setLoading(false)
+    }
+
+    const dismissAll = async () => {
+        setLoading(true)
+        let data =  birthdayData.map((m) => m.id)
+        const url = `/api/birthday-app/send-gift-to-all`
+        await axios.post(url, {
+                    id: data
+                })
+                .then(res=>{
+                    setBirthdayData([])
+                }).catch(err=>{
+                    console.error(err)
+                })
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -44,6 +76,8 @@ const BirthdayApp = () => {
                             <Card style={{ width: '20rem' }}>
                                 <Card.Img variant="top" src={BirthdayCardImage} />
                                 <Card.Body>
+                                    { (!loading) ? (
+                                    <>
                                     <Card.Title className="text-center">
                                         <h5>Today's Birthdays</h5>
                                     </Card.Title>
@@ -52,7 +86,7 @@ const BirthdayApp = () => {
                                     </Card.Text>
                                     <hr/>
                                     <Stack>
-                                        { birthdayData && birthdayData.map((data) => (
+                                        { birthdayData && birthdayData.map((data, idx) => (
                                         <div className="px-2 my-1" key={data.id}>
                                             <Row>
                                                 <Col sm={3}>
@@ -66,7 +100,7 @@ const BirthdayApp = () => {
                                                     <small>{ data.age }Yrs</small>
                                                 </Col>
                                                 <Col sm={2}>
-                                                    <Button variant="success" size="sm">&#127873;</Button>
+                                                    <Button variant="success" size="sm" onClick={ ()=> sendGift(data.id, idx) }>&#127873;</Button>
                                                 </Col>
                                             </Row>
                                         </div>
@@ -89,9 +123,16 @@ const BirthdayApp = () => {
                                             </Row>
                                         </div>
                                         <div className="d-grid gap-2 mt-2">
-                                            <Button variant="primary" size="sm">Dismiss</Button>
+                                            <Button variant="primary" size="sm" onClick={dismissAll}>Dismiss</Button>
                                         </div>
                                     </Stack>
+                                    </>
+                                    ) : (
+                                        <>
+                                            <Spinner animation="border" style={{ display: 'block', margin:'0 auto' }} />
+                                        </>
+                                        )
+                                    }
                                 </Card.Body>
                             </Card>
                         </Col>
