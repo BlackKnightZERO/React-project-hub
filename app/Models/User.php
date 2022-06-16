@@ -50,4 +50,8 @@ class User extends Authenticatable
         return $this->hasMany(BirthdayGift::class);
     }
 
+    public function keeps() {
+        return $this->hasMany(Keep::class);
+    }
+
 }

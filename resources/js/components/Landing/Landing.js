@@ -26,10 +26,10 @@ const Landing = () => {
 
                         <Stack direction direction="horizontal" gap={4}>
                             <ProjectCard
-                                title="Birthday App"
-                                description="See who has birthdays"
-                                addons={ new Date().toDateString() }
-                                url="/birthday-app"
+                                title="Keep Notes"
+                                description="Google keep clone"
+                                addons="multi-purpose listed items"
+                                url="/keep-app"
                             />
                             <ProjectCard
                                     title="Tour App"
