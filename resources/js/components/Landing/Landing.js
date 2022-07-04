@@ -25,12 +25,12 @@ const Landing = () => {
                         </Stack>
 
                         <Stack direction direction="horizontal" gap={4}>
-                            <ProjectCard
-                                title="Keep Notes"
-                                description="Google keep clone"
-                                addons="multi-purpose listed items"
-                                url="/keep-app"
-                            />
+                                <ProjectCard
+                                    title="Keep Notes"
+                                    description="Google keep clone"
+                                    addons="multi-purpose listed items"
+                                    url="/keep-app"
+                                />
                             <ProjectCard
                                     title="Tour App"
                                     description="Find your next travel destination"

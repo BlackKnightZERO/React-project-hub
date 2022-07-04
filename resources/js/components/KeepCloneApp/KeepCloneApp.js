@@ -3,11 +3,16 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Stack, Container, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import KeepCard from './KeepCard'
+import KeepModal from './KeepModal'
+import { KeepProvider } from "./Context/KeepContext";
+// import { useKeep } from "./Context/KeepContext";
 
 const KeepCloneApp = () => {
 
     const [keepData, setKeepData] = useState([])
     const [loading, setLoading] = useState(false)
+
+    // const {modalShow} = useKeep()
 
     const fetchData = async () => {
         setLoading(true)
@@ -27,27 +32,22 @@ const KeepCloneApp = () => {
 
     return (
         <>
-            <div className="bg-white">
-                <Container>
-                    <Row className="m-3 col-md-9 mx-auto">
-                        <Col xs={12} sm={6} md={4}>
-                                <KeepCard 
-                                    title="first list"
-                                />
-                        </Col>
-                        <Col xs={12} sm={6} md={4}>
-                                <KeepCard 
-                                    title="first list"
-                                />
-                        </Col>
-                        <Col xs={12} sm={6} md={4}>
-                                <KeepCard 
-                                    title="first list"
-                                />
-                        </Col>
-                    </Row>
-                </Container>        
-            </div>     
+            <KeepProvider>
+                <div className="bg-white">
+                    <Container>
+                        <Row className="m-3 col-md-9 mx-auto">
+                            <Col xs={12} sm={6} md={4}>
+                                <div style={{ cursor: 'pointer' }} >
+                                    <KeepCard 
+                                        title="first list"
+                                    />
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>        
+                </div>     
+                <KeepModal/>
+            </KeepProvider>
         </>       
     )
 
