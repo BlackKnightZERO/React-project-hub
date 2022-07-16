@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\UserResource;
 
 class KeepCollection extends ResourceCollection
 {
@@ -14,6 +15,14 @@ class KeepCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'    => $this->id,
+            'title' => $this->title,
+            'slug'  => $this->slug,
+            'description' => $this->description,
+            'keeps' => $this->keeps,
+            // 'user' => UserResource::collection($this->user),
+            'user' => $this->user,
+        ];
     }
 }

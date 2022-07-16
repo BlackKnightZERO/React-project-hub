@@ -9,7 +9,7 @@ const Landing = () => {
                 <div className="bg-white">
                     <Stack gap={3} className="m-3 col-md-5 mx-auto">
                         
-                        <Stack direction direction="horizontal" gap={4}>
+                        <Stack direction direction="horizontal" gap={4} className="mx-auto">
                             <ProjectCard
                                 title="Birthday App"
                                 description="See who has birthdays"
@@ -24,7 +24,7 @@ const Landing = () => {
                                 />
                         </Stack>
 
-                        <Stack direction direction="horizontal" gap={4}>
+                        <Stack direction direction="horizontal" gap={4} className="mx-auto">
                                 <ProjectCard
                                     title="Keep Notes"
                                     description="Google keep clone"
