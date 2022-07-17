@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 
 import { useKeep } from "./Context/KeepContext";
 
-const KeepCard = ({ title }) => {
+const KeepCard = ({ title, keepItems }) => {
 
     const { handleModalShow } = useKeep()
 
@@ -14,9 +14,15 @@ const KeepCard = ({ title }) => {
                 <Card.Title className="text-center mb-2" style={{ color: '#996600' }}>{ title }</Card.Title>
                     <div className="mt-3">
                         <ul>
-                            <li style={{ color: '#201f1e' }}>item 1</li>
-                            <li style={{ color: '#201f1e' }}>item 1</li>
-                            <li style={{ color: '#201f1e' }}>item 1</li>
+                        {
+                            keepItems && keepItems.map(
+                                (item) => (
+                                        <li 
+                                            key={item.id} 
+                                            style={{ color: '#201f1e' }}
+                                        >{item.title}</li>
+                                    ))
+                        }
                         </ul>
                     </div>
                 </Card.Body>

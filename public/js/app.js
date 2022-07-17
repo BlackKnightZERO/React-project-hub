@@ -3745,7 +3745,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var KeepCard = function KeepCard(_ref) {
-  var title = _ref.title;
+  var title = _ref.title,
+      keepItems = _ref.keepItems;
 
   var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__.useKeep)(),
       handleModalShow = _useKeep.handleModalShow;
@@ -3772,23 +3773,15 @@ var KeepCard = function KeepCard(_ref) {
           children: title
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "mt-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-              style: {
-                color: '#201f1e'
-              },
-              children: "item 1"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-              style: {
-                color: '#201f1e'
-              },
-              children: "item 1"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-              style: {
-                color: '#201f1e'
-              },
-              children: "item 1"
-            })]
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+            children: keepItems && keepItems.map(function (item) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+                style: {
+                  color: '#201f1e'
+                },
+                children: item.title
+              }, item.id);
+            })
           })
         })]
       })
@@ -3856,7 +3849,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var KeepCloneApp = function KeepCloneApp() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       keepData = _useState2[0],
       setKeepData = _useState2[1];
@@ -3898,7 +3891,9 @@ var KeepCloneApp = function KeepCloneApp() {
               console.log(url);
               _context.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
-                // setAllUsers(res.data?.data)
+                var _res$data;
+
+                setKeepData((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data);
                 console.log(res);
               })["catch"](function (err) {
                 console.error(err);
@@ -3921,50 +3916,20 @@ var KeepCloneApp = function KeepCloneApp() {
   }(); // const {modalShow} = useKeep()
 
 
-  var fetchData = /*#__PURE__*/function () {
+  var fetchUsers = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var url;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              setLoading(true); // const url = `/api/keep-app/get-personalized-keeps`
-
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {// setAllUsers(res.data?.data)
-              })["catch"](function (err) {
-                console.error(err);
-              });
-
-            case 3:
-              setLoading(false);
-
-            case 4:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function fetchData() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  var fetchUsers = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      var url;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
               setLoading(true);
               url = "/api/users";
-              _context3.next = 4;
+              _context2.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
-                var _res$data;
+                var _res$data2;
 
-                setAllUsers((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data);
+                setAllUsers((_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.data);
               })["catch"](function (err) {
                 console.error(err);
               });
@@ -3974,14 +3939,14 @@ var KeepCloneApp = function KeepCloneApp() {
 
             case 5:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
-      }, _callee3);
+      }, _callee2);
     }));
 
     return function fetchUsers() {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -4008,69 +3973,27 @@ var KeepCloneApp = function KeepCloneApp() {
                 }, user.name);
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
             className: "m-3 col-md-9 mx-auto",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              xs: 12,
-              sm: 6,
-              md: 4,
-              className: "mb-4",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                style: {
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'center'
-                },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                  title: "first list"
+            children: keepData && keepData.map(function (keep) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                xs: 12,
+                sm: 6,
+                md: 4,
+                className: "mb-4",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  style: {
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'center'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                    title: keep.title,
+                    keepItems: keep.keepItems
+                  })
                 })
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              xs: 12,
-              sm: 6,
-              md: 4,
-              className: "mb-4",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                style: {
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'center'
-                },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                  title: "first list"
-                })
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              xs: 12,
-              sm: 6,
-              md: 4,
-              className: "mb-4",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                style: {
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'center'
-                },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                  title: "first list"
-                })
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              xs: 12,
-              sm: 6,
-              md: 4,
-              className: "mb-4",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                style: {
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'center'
-                },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                  title: "first list"
-                })
-              })
-            })]
+              }, keep.id);
+            })
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepModal__WEBPACK_IMPORTED_MODULE_3__["default"], {})]

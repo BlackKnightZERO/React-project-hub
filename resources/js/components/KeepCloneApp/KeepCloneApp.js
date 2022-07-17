@@ -9,7 +9,7 @@ import { KeepProvider } from "./Context/KeepContext";
 
 const KeepCloneApp = () => {
 
-    const [keepData, setKeepData] = useState([])
+    const [keepData, setKeepData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [allUsers, setAllUsers] = useState(null)
     const [selectedUser, setSelectedUser] = useState(null)
@@ -23,7 +23,7 @@ const KeepCloneApp = () => {
         console.log(url)
         await axios.get(url)
                 .then(res=>{
-                    // setAllUsers(res.data?.data)
+                    setKeepData(res.data?.data)
                     console.log(res)
                 }).catch(err=>{
                     console.error(err)
@@ -33,18 +33,6 @@ const KeepCloneApp = () => {
     }
 
     // const {modalShow} = useKeep()
-
-    const fetchData = async () => {
-        setLoading(true)
-        // const url = `/api/keep-app/get-personalized-keeps`
-        await axios.get(url)
-                .then(res=>{
-                    // setAllUsers(res.data?.data)
-                }).catch(err=>{
-                    console.error(err)
-                })
-        setLoading(false)
-    }
 
     const fetchUsers = async () => {
         setLoading(true)
@@ -78,34 +66,19 @@ const KeepCloneApp = () => {
                             </Form.Select>
                         </Row>
                         <Row className="m-3 col-md-9 mx-auto">
-                            <Col xs={12} sm={6} md={4} className="mb-4">
-                                <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
-                                    <KeepCard 
-                                        title="first list"
-                                    />
-                                </div>
-                            </Col>
-                            <Col xs={12} sm={6} md={4} className="mb-4">
-                                <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
-                                    <KeepCard 
-                                        title="first list"
-                                    />
-                                </div>
-                            </Col>
-                            <Col xs={12} sm={6} md={4} className="mb-4">
-                                <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
-                                    <KeepCard 
-                                        title="first list"
-                                    />
-                                </div>
-                            </Col>
-                            <Col xs={12} sm={6} md={4} className="mb-4">
-                                <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
-                                    <KeepCard 
-                                        title="first list"
-                                    />
-                                </div>
-                            </Col>
+                            {
+                                keepData && keepData.map(
+                                    (keep) => (
+                                        <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
+                                            <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
+                                                <KeepCard 
+                                                    title={keep.title}
+                                                    keepItems={keep.keepItems}
+                                                />
+                                            </div>
+                                        </Col>
+                                    ))
+                            }
                         </Row>
                     </Container>        
                 </div>     

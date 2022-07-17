@@ -16,6 +16,6 @@ class Keep extends Model
     }
 
     public function keepItems() {
-        return $this->hasMany(Keep::class);
+        return $this->hasMany(KeepItem::class);
     }
 }
