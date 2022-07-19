@@ -18,6 +18,7 @@ class KeepItemResource extends JsonResource
             'id'    => $this->id,
             'title' => $this->title,
             'slug'  => $this->slug,
+            'status'=>  $this->status    
         ];
     }
 }

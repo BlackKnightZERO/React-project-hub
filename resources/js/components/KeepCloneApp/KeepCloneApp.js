@@ -71,7 +71,8 @@ const KeepCloneApp = () => {
                                     (keep) => (
                                         <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
                                             <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
-                                                <KeepCard 
+                                                <KeepCard
+                                                    id={keep.id}
                                                     title={keep.title}
                                                     keepItems={keep.keepItems}
                                                 />

@@ -3700,12 +3700,33 @@ var KeepProvider = function KeepProvider(_ref) {
       modalShow = _useState2[0],
       setModalShow = _useState2[1];
 
-  var handleModalClose = function handleModalClose() {
-    return setModalShow(false);
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      modalId = _useState4[0],
+      setModalId = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      modalTitle = _useState6[0],
+      setModalTitle = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState8 = _slicedToArray(_useState7, 2),
+      modalItems = _useState8[0],
+      setModalItems = _useState8[1];
+
+  var handleModalShow = function handleModalShow(id, title, keepItems) {
+    setModalId(id);
+    setModalTitle(title);
+    setModalItems(keepItems);
+    setModalShow(true);
   };
 
-  var handleModalShow = function handleModalShow() {
-    return setModalShow(true);
+  var handleModalClose = function handleModalClose() {
+    setModalId(null);
+    setModalTitle('');
+    setModalItems(null);
+    setModalShow(false);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(KeepContext.Provider, {
@@ -3713,7 +3734,10 @@ var KeepProvider = function KeepProvider(_ref) {
       modalShow: modalShow,
       setModalShow: setModalShow,
       handleModalClose: handleModalClose,
-      handleModalShow: handleModalShow
+      handleModalShow: handleModalShow,
+      modalId: modalId,
+      modalTitle: modalTitle,
+      modalItems: modalItems
     },
     children: children
   });
@@ -3735,6 +3759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var _Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Context/KeepContext */ "./resources/js/components/KeepCloneApp/Context/KeepContext.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -3745,7 +3770,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var KeepCard = function KeepCard(_ref) {
-  var title = _ref.title,
+  var id = _ref.id,
+      title = _ref.title,
       keepItems = _ref.keepItems;
 
   var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__.useKeep)(),
@@ -3756,10 +3782,13 @@ var KeepCard = function KeepCard(_ref) {
       style: {
         minWidth: '16rem',
         minHeight: '16rem',
+        height: '16rem',
         overflow: 'hidden',
         background: '#F79000'
       },
-      onClick: handleModalShow,
+      onClick: function onClick() {
+        return handleModalShow(id, title, keepItems);
+      },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
         className: "project-card-body",
         style: {
@@ -3774,12 +3803,18 @@ var KeepCard = function KeepCard(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "mt-3",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+            className: "keep-app-ul",
             children: keepItems && keepItems.map(function (item) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
                 style: {
                   color: '#201f1e'
                 },
-                children: item.title
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Check, {
+                  type: "checkbox",
+                  className: "keep-app-checkbox",
+                  checked: item.status,
+                  disabled: true
+                }), item.title]
               }, item.id);
             })
           })
@@ -3988,6 +4023,7 @@ var KeepCloneApp = function KeepCloneApp() {
                     justifyContent: 'center'
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                    id: keep.id,
                     title: keep.title,
                     keepItems: keep.keepItems
                   })
@@ -4018,11 +4054,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Context/KeepContext */ "./resources/js/components/KeepCloneApp/Context/KeepContext.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
 
 
 
@@ -4033,25 +4069,45 @@ __webpack_require__.r(__webpack_exports__);
 var KeepModal = function KeepModal() {
   var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__.useKeep)(),
       modalShow = _useKeep.modalShow,
-      handleModalClose = _useKeep.handleModalClose;
+      handleModalClose = _useKeep.handleModalClose,
+      modalId = _useKeep.modalId,
+      modalTitle = _useKeep.modalTitle,
+      modalItems = _useKeep.modalItems;
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: modalShow,
       onHide: handleModalClose,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
         closeButton: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-          children: "Modal heading"
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+          children: modalTitle
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-        children: "Woohoo, you're reading this text in a modal!"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_3__["default"].Footer, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "mt-3",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+            className: "keep-app-ul",
+            children: modalItems && modalItems.map(function (item) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+                style: {
+                  color: '#201f1e'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Check, {
+                  type: "checkbox",
+                  className: "keep-app-checkbox",
+                  checked: item.status
+                }), item.title]
+              }, item.id);
+            })
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Footer, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
           variant: "secondary",
           onClick: handleModalClose,
           children: "Close"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
           variant: "primary",
           onClick: handleModalClose,
           children: "Save"
@@ -4393,7 +4449,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.project-card-body {\r\n    background:rgb(244 242 244);\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.project-card-body {\r\n    background:rgb(244 242 244);\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

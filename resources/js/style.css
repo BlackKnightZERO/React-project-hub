@@ -16,3 +16,24 @@ body{
 .project-card-body {
     background:rgb(244 242 244);
 }
+
+.keep-app-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.keep-app-checkbox{
+    display: inline;
+    margin: 5px;
+}
+
+.form-check-input {
+    background-color: #a96400;
+    border-color: #a96400;
+}
+
+.form-check-input:checked {
+    background-color: #a96400;
+    border-color: #a96400;
+}
