@@ -3772,7 +3772,8 @@ __webpack_require__.r(__webpack_exports__);
 var KeepCard = function KeepCard(_ref) {
   var id = _ref.id,
       title = _ref.title,
-      keepItems = _ref.keepItems;
+      keepItems = _ref.keepItems,
+      dismissed = _ref.dismissed;
 
   var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__.useKeep)(),
       handleModalShow = _useKeep.handleModalShow;
@@ -3787,7 +3788,7 @@ var KeepCard = function KeepCard(_ref) {
         background: '#F79000'
       },
       onClick: function onClick() {
-        return handleModalShow(id, title, keepItems);
+        return !dismissed && handleModalShow(id, title, keepItems);
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
         className: "project-card-body",
@@ -3904,6 +3905,60 @@ var KeepCloneApp = function KeepCloneApp() {
       selectedUser = _useState8[0],
       setSelectedUser = _useState8[1];
 
+  var placeHolderObj = [{
+    id: -1,
+    title: 'Keep',
+    keepItems: [{
+      id: -11,
+      title: 'Eggs',
+      status: 1
+    }, {
+      id: -12,
+      title: 'Onions',
+      status: 1
+    }, {
+      id: -13,
+      title: 'Suger',
+      status: 0
+    }, {
+      id: -14,
+      title: 'Salt',
+      status: 1
+    }]
+  }, {
+    id: -2,
+    title: 'Notes',
+    keepItems: [{
+      id: -15,
+      title: 'Pencil',
+      status: 1
+    }, {
+      id: -16,
+      title: 'Pen X 4',
+      status: 0
+    }, {
+      id: -17,
+      title: 'Paper',
+      status: 1
+    }]
+  }, {
+    id: -3,
+    title: 'Organized',
+    keepItems: [{
+      id: -18,
+      title: 'Learn French cooking',
+      status: 0
+    }, {
+      id: -19,
+      title: 'Meditation',
+      status: 1
+    }, {
+      id: -20,
+      title: 'Call a frield',
+      status: 1
+    }]
+  }];
+
   var handleSelectChange = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
       var id, url;
@@ -3914,17 +3969,18 @@ var KeepCloneApp = function KeepCloneApp() {
               id = e.target.value;
 
               if (!(id === '-1' || id === null || id === '')) {
-                _context.next = 3;
+                _context.next = 4;
                 break;
               }
 
+              setKeepData(null);
               return _context.abrupt("return");
 
-            case 3:
+            case 4:
               setLoading(true);
               url = "/api/keep-app/get-personalized-keeps/".concat(id);
               console.log(url);
-              _context.next = 8;
+              _context.next = 9;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
                 var _res$data;
 
@@ -3934,10 +3990,10 @@ var KeepCloneApp = function KeepCloneApp() {
                 console.error(err);
               });
 
-            case 8:
+            case 9:
               setLoading(false);
 
-            case 9:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -4000,7 +4056,7 @@ var KeepCloneApp = function KeepCloneApp() {
               onChange: handleSelectChange,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                 value: "-1",
-                children: "Select"
+                children: "Select User"
               }), allUsers && allUsers.map(function (user) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                   value: user.id,
@@ -4010,7 +4066,7 @@ var KeepCloneApp = function KeepCloneApp() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
             className: "m-3 col-md-9 mx-auto",
-            children: keepData && keepData.map(function (keep) {
+            children: keepData ? keepData && keepData.map(function (keep) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
                 xs: 12,
                 sm: 6,
@@ -4029,6 +4085,26 @@ var KeepCloneApp = function KeepCloneApp() {
                   })
                 })
               }, keep.id);
+            }) : placeHolderObj && placeHolderObj.map(function (placeholder) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                xs: 12,
+                sm: 6,
+                md: 4,
+                className: "mb-4",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  style: {
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'center'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                    id: placeholder.id,
+                    title: placeholder.title,
+                    keepItems: placeholder.keepItems,
+                    dismissed: true
+                  })
+                })
+              }, placeholder.id);
             })
           })]
         })
@@ -4059,6 +4135,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Context/KeepContext */ "./resources/js/components/KeepCloneApp/Context/KeepContext.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -4074,6 +4170,43 @@ var KeepModal = function KeepModal() {
       modalTitle = _useKeep.modalTitle,
       modalItems = _useKeep.modalItems;
 
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      newItem = _useState2[0],
+      setNewItem = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newCollection = _useState4[0],
+      setNewCollection = _useState4[1];
+
+  var inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+
+  var handleCheckBoxChange = function handleCheckBoxChange(id) {
+    console.log(id);
+  };
+
+  var handleInputChange = function handleInputChange(event) {
+    var value = event.target.value;
+    setNewItem(value);
+  };
+
+  var handleEnterKeyPress = function handleEnterKeyPress(event) {
+    if (event.key === 'Enter') {
+      var id = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
+      setNewCollection(function (prev) {
+        return [].concat(_toConsumableArray(prev), [{
+          id: id,
+          title: newItem,
+          status: 0,
+          "new": true
+        }]);
+      });
+      setNewItem(null);
+      inputRef.current.value = "";
+    }
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: modalShow,
@@ -4086,9 +4219,9 @@ var KeepModal = function KeepModal() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "mt-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
             className: "keep-app-ul",
-            children: modalItems && modalItems.map(function (item) {
+            children: [modalItems && modalItems.map(function (item) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
                 style: {
                   color: '#201f1e'
@@ -4096,10 +4229,42 @@ var KeepModal = function KeepModal() {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Check, {
                   type: "checkbox",
                   className: "keep-app-checkbox",
-                  checked: item.status
+                  checked: item.status,
+                  onChange: function onChange() {
+                    return handleCheckBoxChange(item.id);
+                  }
                 }), item.title]
               }, item.id);
-            })
+            }), newCollection && newCollection.map(function (item) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+                style: {
+                  color: '#201f1e'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Check, {
+                  type: "checkbox",
+                  className: "keep-app-checkbox",
+                  checked: item.status,
+                  onChange: function onChange() {
+                    return handleCheckBoxChange(item.id);
+                  }
+                }), item.title]
+              }, item.id);
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                ref: inputRef,
+                placeholder: "+ List item",
+                onChange: handleInputChange,
+                onKeyPress: handleEnterKeyPress,
+                style: {
+                  display: 'inline-block',
+                  width: '90%',
+                  outline: 'none',
+                  border: 'none',
+                  paddingLeft: '6%'
+                }
+              })
+            })]
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Footer, {
