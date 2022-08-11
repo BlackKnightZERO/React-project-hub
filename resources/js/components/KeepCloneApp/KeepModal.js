@@ -4,6 +4,10 @@ import { Button, Form, Modal } from 'react-bootstrap';
 
 import { useKeep } from "./Context/KeepContext";
 
+import { uuid } from 'uuidv4';
+
+import KeepItem from './KeepItem'
+
 const KeepModal = () => {
 
     const { modalShow, handleModalClose, modalId, modalTitle, modalItems } = useKeep()
@@ -24,7 +28,8 @@ const KeepModal = () => {
 
     const handleEnterKeyPress = (event) => {
         if(event.key === 'Enter'){
-            const id = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000
+            // const id = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000
+            const id = uuid();
             setNewCollection(prev => {
                 return [
                     ...prev,
@@ -50,7 +55,14 @@ const KeepModal = () => {
                 <Modal.Body>
                     <div className="mt-3">
                         <ul className="keep-app-ul">
-                        {
+                            {
+                                modalItems && modalItems.map(
+                                    (item) => (
+                                        <KeepItem item={item} key={item.id} />
+                                    )
+                                )
+                            }
+                        {/* {
                             modalItems && modalItems.map(
                                 (item) => (
                                     <li 
@@ -72,8 +84,8 @@ const KeepModal = () => {
                                             {item.title}</li>
                                 )
                             )
-                        }
-                            <li>
+                        } */}
+                            {/* <li>
                                 <input type="text" 
                                     ref={inputRef}
                                     placeholder='+ List item'
@@ -81,7 +93,7 @@ const KeepModal = () => {
                                     onKeyPress={handleEnterKeyPress}
                                     style={{ display:'inline-block', width: '90%', outline: 'none', border: 'none', paddingLeft:'6%' }} 
                                 />
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </Modal.Body>

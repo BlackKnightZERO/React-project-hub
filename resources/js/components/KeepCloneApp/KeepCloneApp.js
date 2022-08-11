@@ -10,6 +10,7 @@ import { KeepProvider } from "./Context/KeepContext";
 const KeepCloneApp = () => {
 
     const [keepData, setKeepData] = useState(null)
+    const [searchResults, setSearchResults] = useState(null)
     const [loading, setLoading] = useState(false)
     const [allUsers, setAllUsers] = useState(null)
     const [selectedUser, setSelectedUser] = useState(null)
@@ -49,20 +50,36 @@ const KeepCloneApp = () => {
         const id = e.target.value
         if(id === '-1' || id === null || id === '') {
             setKeepData(null)
+            setSearchResults(null)
             return
         }    
         setLoading(true)
         const url = `/api/keep-app/get-personalized-keeps/${id}`
         console.log(url)
         await axios.get(url)
-                .then(res=>{
+                .then(res => {
                     setKeepData(res.data?.data)
-                    console.log(res)
-                }).catch(err=>{
+                    return res
+                })
+                .then(res => {
+                    setSearchResults(res.data?.data)
+                })
+                .catch(err=>{
                     console.error(err)
                 })
         setLoading(false)
 
+    }
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value
+        if(!value) {
+            setSearchResults( keepData )
+        } else {
+            const filteredKeeps = keepData.filter((keep) => keep.title.includes(value) )
+            setSearchResults(filteredKeeps)
+        }
+        console.log(searchResults)
     }
 
     // const {modalShow} = useKeep()
@@ -98,10 +115,23 @@ const KeepCloneApp = () => {
                                 }
                             </Form.Select>
                         </Row>
+                        {
+                            keepData ? (
+                                <Row className="m-3 col-md-3 mx-auto">
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="Search..." 
+                                        onChange={ handleSearchChange }    
+                                    />
+                                </Row>
+                            ) : null
+                        }
+                        
                         <Row className="m-3 col-md-9 mx-auto">
                             {
                                 keepData ? 
-                                keepData && keepData.map(
+                                searchResults.length > 0 ? 
+                                searchResults && searchResults.map(
                                     (keep) => (
                                         <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
                                             <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
@@ -112,7 +142,7 @@ const KeepCloneApp = () => {
                                                 />
                                             </div>
                                         </Col>
-                                    )) : (
+                                    )) : <><h4>No Items Found</h4></> : (
                                         placeHolderObj && placeHolderObj.map(
                                             (placeholder) => (
                                                 <Col key={placeholder.id} xs={12} sm={6} md={4} className="mb-4">
@@ -128,6 +158,7 @@ const KeepCloneApp = () => {
                                             )
                                         )
                                     )
+
                             }
                         </Row>
                     </Container>        
