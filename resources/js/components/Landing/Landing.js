@@ -31,11 +31,11 @@ const Landing = () => {
                                     addons="multi-purpose listed items"
                                     url="/keep-app"
                                 />
-                            <ProjectCard
-                                    title="Tour App"
-                                    description="Find your next travel destination"
+                                <ProjectCard
+                                    title="To-do App"
+                                    description="Helps to get organized"
                                     addons=""
-                                    url="/birthday-app"
+                                    url="/todo-app"
                                 />
                         </Stack>
 

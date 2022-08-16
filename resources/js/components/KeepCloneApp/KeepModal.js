@@ -17,13 +17,14 @@ const KeepModal = () => {
 
     const inputRef = useRef(null);
 
-    const handleCheckBoxChange = (id) => {
-        console.log(id)
+    const handleCheckBoxChange = (e) => {
+        console.log(e)
     }
 
-    const handleInputChange = (event) => {
-        const value = event.target.value
-        setNewItem(value)
+    const handleInputChange = (e) => {
+        const value = e.target.value
+        // setNewItem(value)
+        console.log(e)
     }
 
     const handleEnterKeyPress = (event) => {
@@ -74,7 +75,12 @@ const KeepModal = () => {
                             {
                                 modalItems && modalItems.map(
                                     (item) => (
-                                        <KeepItem item={item} key={item.id} />
+                                        <KeepItem 
+                                            key={item.id} 
+                                            item={item}
+                                            handleCheckBoxChange={handleCheckBoxChange}
+                                            handleInputChange={handleInputChange}
+                                        />
                                     )
                                 )
                             }

@@ -7,6 +7,7 @@ import Landing from './components/Landing/Landing';
 import FirstComponent from './components/FirstComponent/FirstComponent';
 import BirthdayApp from './components/BirthdayApp/BirthdayApp'
 import KeepCloneApp from './components/KeepCloneApp/KeepCloneApp'
+import ToDoApp from './components/ToDoApp/ToDoApp'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
@@ -20,6 +21,7 @@ const Mainapp = () => {
                 <Route exact path="/first" element={<FirstComponent />} />
                 <Route exact path="/birthday-app" element={<BirthdayApp />} />
                 <Route exact path="/keep-app" element={<KeepCloneApp />} />
+                <Route exact path="/todo-app" element={<ToDoApp />} />
             </Routes>
         </>
     )
