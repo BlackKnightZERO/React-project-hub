@@ -3780,26 +3780,14 @@ var KeepCard = function KeepCard(_ref) {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      style: {
-        minWidth: '16rem',
-        minHeight: '16rem',
-        height: '16rem',
-        overflow: 'hidden',
-        background: '#F79000'
-      },
+      className: "keep-app-sticker-card",
       onClick: function onClick() {
         return !dismissed && handleModalShow(id, title, keepItems);
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
-        className: "project-card-body",
-        style: {
-          background: '#FCD134'
-        },
+        className: "keep-app-sticker-card-body",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
-          className: "text-center mb-2",
-          style: {
-            color: '#996600'
-          },
+          className: "text-center mb-2 keep-app-sticker-card-body-title",
           children: title
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "mt-3",
@@ -3807,9 +3795,7 @@ var KeepCard = function KeepCard(_ref) {
             className: "keep-app-ul",
             children: keepItems && keepItems.map(function (item) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-                style: {
-                  color: '#201f1e'
-                },
+                className: "keep-app-li",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Check, {
                   type: "checkbox",
                   className: "keep-app-checkbox",
@@ -4022,8 +4008,10 @@ var KeepCloneApp = function KeepCloneApp() {
     if (!value) {
       setSearchResults(keepData);
     } else {
-      var filteredKeeps = keepData.filter(function (keep) {
-        return keep.title.includes(value);
+      var filteredKeeps = keepData.filter(function (m) {
+        return m.title.includes(value) || m.keepItems.some(function (f) {
+          return f.title.includes(value);
+        });
       });
       setSearchResults(filteredKeeps);
     }
@@ -4105,11 +4093,7 @@ var KeepCloneApp = function KeepCloneApp() {
                 md: 4,
                 className: "mb-4",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  style: {
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'center'
-                  },
+                  className: "keep-app-sticker-div",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
                     id: keep.id,
                     title: keep.title,
@@ -4128,11 +4112,7 @@ var KeepCloneApp = function KeepCloneApp() {
                 md: 4,
                 className: "mb-4",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  style: {
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'center'
-                  },
+                  className: "keep-app-sticker-div",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_KeepCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
                     id: placeholder.id,
                     title: placeholder.title,
@@ -4166,7 +4146,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -4175,15 +4157,17 @@ __webpack_require__.r(__webpack_exports__);
 var KeepItem = function KeepItem(_ref) {
   var item = _ref.item;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-      style: {
-        color: '#201f1e'
-      },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Check, {
+        type: "checkbox",
+        className: "keep-app-checkbox",
+        checked: item.status
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "text",
         placeholder: "+ List item",
+        className: "keep-app-item-input",
         value: item.title
-      })
+      })]
     })
   });
 };
@@ -4286,18 +4270,29 @@ var KeepModal = function KeepModal() {
     }
   };
 
+  var handleCardTitleChange = function handleCardTitleChange(e) {};
+
+  var handleCardTitlePress = function handleCardTitlePress(e) {};
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: "keep-app-modal",
       show: modalShow,
       onHide: handleModalClose,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Header, {
         closeButton: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
-          children: modalTitle
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+            type: "text",
+            placeholder: "Title...",
+            className: "keep-app-modal-title-input",
+            onChange: handleCardTitleChange,
+            onKeyPress: handleCardTitlePress,
+            value: modalTitle
+          })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "mt-3",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
             className: "keep-app-ul",
             children: modalItems && modalItems.map(function (item) {
@@ -4314,6 +4309,7 @@ var KeepModal = function KeepModal() {
           children: "Close"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
           variant: "primary",
+          className: "keep-app-modal-save-btn",
           onClick: handleModalClose,
           children: "Save"
         })]
@@ -4654,7 +4650,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.project-card-body {\r\n    background:rgb(244 242 244);\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -10,10 +10,10 @@ const KeepCard = ({ id, title, keepItems, dismissed }) => {
     return (
         <>
             <Card 
-                style={{ minWidth: '16rem', minHeight: '16rem', height: '16rem', overflow: 'hidden', background:'#F79000' }} 
+                className="keep-app-sticker-card" 
                 onClick={ () => !dismissed && handleModalShow(id, title, keepItems) }>
-                <Card.Body className="project-card-body" style={{ background:'#FCD134' }}>
-                <Card.Title className="text-center mb-2" style={{ color: '#996600' }}>{ title }</Card.Title>
+                <Card.Body className="keep-app-sticker-card-body" >
+                <Card.Title className="text-center mb-2 keep-app-sticker-card-body-title">{ title }</Card.Title>
                     <div className="mt-3">
                         <ul className="keep-app-ul">
                         {
@@ -21,7 +21,7 @@ const KeepCard = ({ id, title, keepItems, dismissed }) => {
                                 (item) => (
                                         <li 
                                             key={item.id} 
-                                            style={{ color: '#201f1e' }}
+                                            className="keep-app-li"
                                         >
                                         <Form.Check type="checkbox" className="keep-app-checkbox" checked={item.status} disabled />
                                             {item.title}</li>

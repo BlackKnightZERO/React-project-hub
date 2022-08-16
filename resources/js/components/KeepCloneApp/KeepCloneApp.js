@@ -76,7 +76,7 @@ const KeepCloneApp = () => {
         if(!value) {
             setSearchResults( keepData )
         } else {
-            const filteredKeeps = keepData.filter((keep) => keep.title.includes(value) )
+            const filteredKeeps = keepData.filter((m) => m.title.includes(value) || m.keepItems.some((f) => f.title.includes(value)))
             setSearchResults(filteredKeeps)
         }
         console.log(searchResults)
@@ -134,7 +134,7 @@ const KeepCloneApp = () => {
                                 searchResults && searchResults.map(
                                     (keep) => (
                                         <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
-                                            <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
+                                            <div className="keep-app-sticker-div" >
                                                 <KeepCard
                                                     id={keep.id}
                                                     title={keep.title}
@@ -146,7 +146,7 @@ const KeepCloneApp = () => {
                                         placeHolderObj && placeHolderObj.map(
                                             (placeholder) => (
                                                 <Col key={placeholder.id} xs={12} sm={6} md={4} className="mb-4">
-                                                    <div style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }} >
+                                                    <div className="keep-app-sticker-div" >
                                                         <KeepCard
                                                             id={placeholder.id}
                                                             title={placeholder.title}

@@ -13,14 +13,35 @@ body{
     font-weight: 600;
 }
 
-.project-card-body {
-    background:rgb(244 242 244);
+.keep-app-sticker-div {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
-.keep-app-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.keep-app-sticker-card {
+    min-width: 16rem;
+    min-height: 16rem;
+    height: 16rem;
+    overflow: hidden;
+    background: #F79000;
+}
+
+.keep-app-sticker-card-body {
+    background:rgb(244 242 244);
+    background: #FCD134;
+}
+
+.keep-app-sticker-card-body-title {
+    color: #996600;
+}
+
+.keep-app-sticker-card {
+    min-width: 16rem;
+    min-height: 16rem;
+    height: 16rem;
+    overflow: hidden;
+    background: #F79000;
 }
 
 .keep-app-checkbox{
@@ -36,4 +57,54 @@ body{
 .form-check-input:checked {
     background-color: #a96400;
     border-color: #a96400;
+}
+
+.keep-app-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.keep-app-li {
+    color: #201f1e;
+}
+
+.keep-app-modal .modal-content {
+    background: #FCD134;
+    border-color: #a96400;
+}
+
+.keep-app-modal .modal-header {
+    border-bottom: none;
+}
+
+.keep-app-modal .modal-body {
+    padding: 0 1rem !important;
+}
+
+.keep-app-modal .modal-footer {
+    /* border-top: 1px dashed #a96400 !important; */
+    border-top: none;
+    margin-top: 1.1rem;
+}
+
+.keep-app-modal-title-input {
+    outline: none;
+    border: none;
+    background: #FCD134;
+    color: #a96400;
+}
+
+.keep-app-item-input {
+    display: inline-block;
+    width: 90%;
+    outline: none;
+    border: none;
+    padding-left: 1%;
+    background: #FCD134;
+    color: #a96400;
+}
+
+.keep-app-modal-save-btn {
+    background: #a96400;
 }

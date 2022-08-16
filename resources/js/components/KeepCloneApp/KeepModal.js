@@ -46,14 +46,30 @@ const KeepModal = () => {
         }
     }
 
+    const handleCardTitleChange = (e) => {
+        
+    }
+
+    const handleCardTitlePress = (e) => {
+        
+    }
+
     return (
         <>
-            <Modal show={modalShow} onHide={handleModalClose}>
+            <Modal className='keep-app-modal' show={modalShow} onHide={handleModalClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
+                    <Modal.Title>
+                        <input type="text" 
+                            placeholder='Title...'
+                            className='keep-app-modal-title-input'
+                            onChange={handleCardTitleChange}
+                            onKeyPress={handleCardTitlePress}
+                            value={modalTitle}
+                        />
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="mt-3">
+                    <div>
                         <ul className="keep-app-ul">
                             {
                                 modalItems && modalItems.map(
@@ -101,7 +117,7 @@ const KeepModal = () => {
                     <Button variant="secondary" onClick={handleModalClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleModalClose}>
+                    <Button variant="primary" className='keep-app-modal-save-btn' onClick={handleModalClose}>
                         Save
                     </Button>
                 </Modal.Footer>
