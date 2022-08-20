@@ -14,7 +14,9 @@ const KeepCloneApp = () => {
     const [loading, setLoading] = useState(false)
     const [allUsers, setAllUsers] = useState(null)
     const [selectedUser, setSelectedUser] = useState(null)
+    const [dummy, setDummy] = useState(null)
 
+    //currently-not-being-used
     const placeHolderObj = [
         {
             id: -1,
@@ -39,7 +41,7 @@ const KeepCloneApp = () => {
             id: -3,
             title: 'Organized',
             keepItems:[
-                {id:-18, title:'Learn French cooking', status: 0},
+                {id:-18, title:'Learn Italian cooking', status: 0},
                 {id:-19, title:'Meditation', status: 1},
                 {id:-20, title:'Call a frield', status: 1},
             ]
@@ -84,6 +86,18 @@ const KeepCloneApp = () => {
 
     // const {modalShow} = useKeep()
 
+    const fetchPlaceHolder = async () => {
+        setLoading(true)
+        const url = `/api/keep-app/get-placeholder`
+        await axios.get(url)
+                    .then(res=>{
+                        setDummy(res.data?.data)
+                    }).catch(err=>{
+                        console.error(err)
+                    })
+        setLoading(false)
+    }
+
     const fetchUsers = async () => {
         setLoading(true)
         const url = `/api/users`
@@ -97,6 +111,7 @@ const KeepCloneApp = () => {
     }
 
     useEffect(() => {
+        fetchPlaceHolder()
         fetchUsers()
     }, [])
 
@@ -143,7 +158,7 @@ const KeepCloneApp = () => {
                                             </div>
                                         </Col>
                                     )) : <><h4>No Items Found</h4></> : (
-                                        placeHolderObj && placeHolderObj.map(
+                                        dummy && dummy.map(
                                             (placeholder) => (
                                                 <Col key={placeholder.id} xs={12} sm={6} md={4} className="mb-4">
                                                     <div className="keep-app-sticker-div" >

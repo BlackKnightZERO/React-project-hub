@@ -3902,6 +3902,12 @@ var KeepCloneApp = function KeepCloneApp() {
       selectedUser = _useState10[0],
       setSelectedUser = _useState10[1];
 
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      dummy = _useState12[0],
+      setDummy = _useState12[1]; //currently-not-being-used
+
+
   var placeHolderObj = [{
     id: -1,
     title: 'Keep',
@@ -3943,7 +3949,7 @@ var KeepCloneApp = function KeepCloneApp() {
     title: 'Organized',
     keepItems: [{
       id: -18,
-      title: 'Learn French cooking',
+      title: 'Learn Italian cooking',
       status: 0
     }, {
       id: -19,
@@ -4026,7 +4032,7 @@ var KeepCloneApp = function KeepCloneApp() {
   }; // const {modalShow} = useKeep()
 
 
-  var fetchUsers = /*#__PURE__*/function () {
+  var fetchPlaceHolder = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var url;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -4034,12 +4040,12 @@ var KeepCloneApp = function KeepCloneApp() {
           switch (_context2.prev = _context2.next) {
             case 0:
               setLoading(true);
-              url = "/api/users";
+              url = "/api/keep-app/get-placeholder";
               _context2.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
                 var _res$data3;
 
-                setAllUsers((_res$data3 = res.data) === null || _res$data3 === void 0 ? void 0 : _res$data3.data);
+                setDummy((_res$data3 = res.data) === null || _res$data3 === void 0 ? void 0 : _res$data3.data);
               })["catch"](function (err) {
                 console.error(err);
               });
@@ -4055,12 +4061,47 @@ var KeepCloneApp = function KeepCloneApp() {
       }, _callee2);
     }));
 
-    return function fetchUsers() {
+    return function fetchPlaceHolder() {
       return _ref2.apply(this, arguments);
     };
   }();
 
+  var fetchUsers = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var url;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              setLoading(true);
+              url = "/api/users";
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
+                var _res$data4;
+
+                setAllUsers((_res$data4 = res.data) === null || _res$data4 === void 0 ? void 0 : _res$data4.data);
+              })["catch"](function (err) {
+                console.error(err);
+              });
+
+            case 4:
+              setLoading(false);
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function fetchUsers() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    fetchPlaceHolder();
     fetchUsers();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -4111,7 +4152,7 @@ var KeepCloneApp = function KeepCloneApp() {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
                 children: "No Items Found"
               })
-            }) : placeHolderObj && placeHolderObj.map(function (placeholder) {
+            }) : dummy && dummy.map(function (placeholder) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
                 xs: 12,
                 sm: 6,
