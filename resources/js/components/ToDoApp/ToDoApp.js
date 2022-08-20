@@ -2,6 +2,12 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from 'react';
 
+import Header from "./Header";
+import Content from "./Content"
+import Footer from "./Footer"
+
+// import { Stack } from 'react-bootstrap'
+
 const ToDoApp = () => {
 
     const fetchToDos = async () => {
@@ -21,7 +27,13 @@ const ToDoApp = () => {
     }, [])
 
     return (
-        <></>
+        <>
+            <div className="todo-app">
+                <Header />
+                <Content />
+                <Footer />
+            </div>
+        </>
     )
 
 }
