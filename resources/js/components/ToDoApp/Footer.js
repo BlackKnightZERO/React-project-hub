@@ -1,12 +1,13 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({length}) => {
 
-    const today = new Date()
+  // const today = new Date()
 
   return (
     <footer className='todo-app-footer'>
-        <p>copyright &copy; {today.getFullYear()}</p>
+      <p>{length} List { length === 1 ? "item" : "items"}</p>
+        {/* <p>copyright &copy; {today.getFullYear()}</p> */}
     </footer>
   )
 }
