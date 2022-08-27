@@ -4577,6 +4577,65 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ToDoApp/AddItem.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/ToDoApp/AddItem.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var AddItem = function AddItem(_ref) {
+  var newItem = _ref.newItem,
+      setNewItem = _ref.setNewItem,
+      handleSubmit = _ref.handleSubmit;
+  var inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+    className: "todo-app-addForm",
+    onSubmit: handleSubmit,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+      htmlFor: "addItem",
+      children: "Add Item"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      autoFocus: true,
+      ref: inputRef,
+      id: "addItem",
+      type: "text",
+      placeholder: "Add Item",
+      required: true,
+      value: newItem,
+      onChange: function onChange(e) {
+        return setNewItem(e.target.value);
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: "todo-app-addBtn",
+      type: "submit",
+      title: "Add Item",
+      "aria-label": "Add Item",
+      onClick: function onClick() {
+        return inputRef.current.focus();
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__.FaPlus, {})
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddItem);
+
+/***/ }),
+
 /***/ "./resources/js/components/ToDoApp/Content.js":
 /*!****************************************************!*\
   !*** ./resources/js/components/ToDoApp/Content.js ***!
@@ -4765,10 +4824,56 @@ var LineItem = function LineItem(_ref) {
       title: "Delete ".concat(item.item),
       "aria-label": "Delete ".concat(item.item)
     })]
-  }, item.id);
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LineItem);
+
+/***/ }),
+
+/***/ "./resources/js/components/ToDoApp/SearchItem.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ToDoApp/SearchItem.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var SearchItem = function SearchItem(_ref) {
+  var search = _ref.search,
+      setSearch = _ref.setSearch;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+    className: "todo-app-searchForm",
+    onSubmit: function onSubmit(e) {
+      return e.preventDefault();
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+      htmlFor: "search",
+      children: "Search"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      id: "search",
+      type: "text",
+      role: "searchbox",
+      placeholder: "Search Items . . ",
+      value: search,
+      onChange: function onChange(e) {
+        return setSearch(e.target.value);
+      }
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchItem);
 
 /***/ }),
 
@@ -4785,12 +4890,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./resources/js/components/ToDoApp/Header.js");
-/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Content */ "./resources/js/components/ToDoApp/Content.js");
-/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/ToDoApp/Footer.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _SearchItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SearchItem */ "./resources/js/components/ToDoApp/SearchItem.js");
+/* harmony import */ var _AddItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddItem */ "./resources/js/components/ToDoApp/AddItem.js");
+/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Content */ "./resources/js/components/ToDoApp/Content.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/ToDoApp/Footer.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -4804,6 +4912,14 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -4827,23 +4943,40 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
 var ToDoApp = function ToDoApp() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([{
-    id: 1,
-    checked: false,
-    item: "Suger"
-  }, {
-    id: 2,
-    checked: false,
-    item: "Eggs"
-  }, {
-    id: 3,
-    checked: false,
-    item: "Cheeze"
-  }]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(JSON.parse(localStorage.getItem('react-project-hub-to-do-app'))),
       _useState2 = _slicedToArray(_useState, 2),
       items = _useState2[0],
       setItems = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newItem = _useState4[0],
+      setNewItem = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      search = _useState6[0],
+      setSearch = _useState6[1];
+
+  var setAndSaveItems = function setAndSaveItems(updatedItems) {
+    setItems(updatedItems);
+    localStorage.setItem('react-project-hub-to-do-app', JSON.stringify(updatedItems));
+  };
+
+  var addItem = function addItem(item) {
+    var id = (0,uuid__WEBPACK_IMPORTED_MODULE_8__["default"])();
+    var currentNewItem = {
+      id: id,
+      checked: false,
+      item: item
+    };
+    var listItems = [].concat(_toConsumableArray(items), [currentNewItem]);
+    setAndSaveItems(listItems);
+  };
 
   var handleCheck = function handleCheck(id) {
     var listItems = items.map(function (item) {
@@ -4851,16 +4984,21 @@ var ToDoApp = function ToDoApp() {
         checked: !item.checked
       }) : item;
     });
-    setItems(listItems);
-    localStorage.setItem('react-project-hub-to-do-app', JSON.stringify(listItems));
+    setAndSaveItems(listItems);
   };
 
   var handleDelete = function handleDelete(id) {
     var listItems = items.filter(function (item) {
       return item.id !== id;
     });
-    setItems(listItems);
-    localStorage.setItem('react-project-hub-to-do-app', JSON.stringify(listItems));
+    setAndSaveItems(listItems);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    if (!newItem) return;
+    addItem(newItem);
+    setNewItem('');
   };
 
   var fetchToDos = /*#__PURE__*/function () {
@@ -4883,17 +5021,30 @@ var ToDoApp = function ToDoApp() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     fetchToDos();
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  }, []); // useEffect(() => {
+  //     const filteredItems = items.filter((item) => item.item.toLowerCase().includes(search))
+  //     console.log(filteredItems) 
+  // }, [search])
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "todo-app",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
         title: "To-Do List"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Content__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        items: items,
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SearchItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        search: search,
+        setSearch: setSearch
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_AddItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        newItem: newItem,
+        setNewItem: setNewItem,
+        handleSubmit: handleSubmit
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Content__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        items: items.filter(function (item) {
+          return item.item.toLowerCase().includes(search);
+        }),
         handleCheck: handleCheck,
         handleDelete: handleDelete
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_6__["default"], {
         length: items.length
       })]
     })
@@ -5037,7 +5188,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

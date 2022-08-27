@@ -2,7 +2,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 
 const LineItem = ({ item, handleCheck, handleDelete }) => {
   return (
-        <li className="todo-app-item" key={item.id}>
+        <li className="todo-app-item">
             <input type="checkbox"
                 checked={item.checked}
                 onChange={ () => handleCheck(item.id) }
