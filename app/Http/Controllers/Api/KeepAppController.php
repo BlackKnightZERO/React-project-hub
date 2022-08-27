@@ -35,7 +35,7 @@ class KeepAppController extends Controller
                     )),
                     array(
                         'id' => '-3',
-                        'title' => 'Notes',
+                        'title' => 'Organized',
                         'keepItems' => array(
                                         array('id' => -18, 'title' => 'Learn French cooking', 'status' =>  0),
                                         array('id' => -19, 'title' => 'Meditation', 'status' =>  1),

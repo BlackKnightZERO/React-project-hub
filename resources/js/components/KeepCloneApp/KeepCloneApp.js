@@ -1,9 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from 'react';
-import { Stack, Container, Row, Col, Card, Button, Spinner, Form } from 'react-bootstrap';
+import { Stack, Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import KeepCard from './KeepCard'
 import KeepModal from './KeepModal'
+import LoadingSpinner from "./LoadingSpinner";
+import SelectComponent from './SelectComponent'
+import SearchComponent from './SearchComponent'
+import KeepCardCollection from './KeepCardCollection'
+
 import { KeepProvider } from "./Context/KeepContext";
 // import { useKeep } from "./Context/KeepContext";
 
@@ -15,6 +20,9 @@ const KeepCloneApp = () => {
     const [allUsers, setAllUsers] = useState(null)
     const [selectedUser, setSelectedUser] = useState(null)
     const [dummy, setDummy] = useState(null)
+
+    const [ users, setUsers ] = useState([])
+    const [ currentUser, setCurrentUser ] = useState(null)
 
     //currently-not-being-used
     const placeHolderObj = [
@@ -50,6 +58,14 @@ const KeepCloneApp = () => {
 
     const handleSelectChange = async (e) => {
         const id = e.target.value
+        const name = e.target.selectedOptions[0].text
+
+        if(!id && !name) {
+            setCurrentUser(null)
+        } else {
+            setCurrentUser({id, name})
+        }
+
         if(id === '-1' || id === null || id === '') {
             setKeepData(null)
             setSearchResults(null)
@@ -104,6 +120,7 @@ const KeepCloneApp = () => {
         await axios.get(url)
                     .then(res=>{
                         setAllUsers(res.data?.data)
+                        setUsers(res.data?.data)
                     }).catch(err=>{
                         console.error(err)
                     })
@@ -119,64 +136,72 @@ const KeepCloneApp = () => {
         <>
             <KeepProvider>
                 <div className="bg-white">
-                    <Container>
-                        <Row className="m-3 col-md-3 mx-auto">
-                            <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
-                                <option value="-1">Select User</option>
-                                {
-                                    allUsers && allUsers.map(
-                                        (user) => (<option key={user.name} value={user.id}>{ user.name }</option>)
-                                    )
-                                }
-                            </Form.Select>
-                        </Row>
-                        {
-                            keepData ? (
+                    {
+                        loading ? (
+                            <Container>
+                                <Row className="m-3 d-flex justify-content-center">
+                                    <LoadingSpinner />
+                                </Row>
+                            </Container>
+                        ) : (
+                            <Container>
                                 <Row className="m-3 col-md-3 mx-auto">
-                                    <Form.Control 
-                                        type="text" 
-                                        placeholder="Search..." 
-                                        onChange={ handleSearchChange }    
+                                    <SelectComponent 
+                                        users={users}
+                                        handleSelectChange={handleSelectChange}
                                     />
                                 </Row>
-                            ) : null
-                        }
-                        
-                        <Row className="m-3 col-md-9 mx-auto">
-                            {
-                                keepData ? 
-                                searchResults.length > 0 ? 
-                                searchResults && searchResults.map(
-                                    (keep) => (
-                                        <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
-                                            <div className="keep-app-sticker-div" >
-                                                <KeepCard
-                                                    id={keep.id}
-                                                    title={keep.title}
-                                                    keepItems={keep.keepItems}
-                                                />
-                                            </div>
-                                        </Col>
-                                    )) : <><h4>No Items Found</h4></> : (
-                                        dummy && dummy.map(
-                                            (placeholder) => (
-                                                <Col key={placeholder.id} xs={12} sm={6} md={4} className="mb-4">
+                                {
+                                    keepData ? (
+                                        <Row className="m-3 col-md-3 mx-auto">
+                                            <SearchComponent 
+                                                handleSearchChange={handleSearchChange}
+                                            />
+                                        </Row>
+                                    ) : null
+                                }
+
+                                {/* <Row className="m-3 col-md-9 mx-auto">
+                                    <KeepCardCollection />
+                                </Row> */}
+                                
+                                <Row className="m-3 col-md-9 mx-auto">
+                                    {
+                                        keepData ? 
+                                        searchResults.length > 0 ? 
+                                        searchResults && searchResults.map(
+                                            (keep) => (
+                                                <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
                                                     <div className="keep-app-sticker-div" >
                                                         <KeepCard
-                                                            id={placeholder.id}
-                                                            title={placeholder.title}
-                                                            keepItems={placeholder.keepItems}
-                                                            dismissed
+                                                            id={keep.id}
+                                                            title={keep.title}
+                                                            keepItems={keep.keepItems}
                                                         />
                                                     </div>
                                                 </Col>
+                                            )) : <><h4>No Items Found</h4></> : (
+                                                dummy && dummy.map(
+                                                    (placeholder) => (
+                                                        <Col key={placeholder.id} xs={12} sm={6} md={4} className="mb-4">
+                                                            <div className="keep-app-sticker-div" >
+                                                                <KeepCard
+                                                                    id={placeholder.id}
+                                                                    title={placeholder.title}
+                                                                    keepItems={placeholder.keepItems}
+                                                                    dismissed
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    )
+                                                )
                                             )
-                                        )
-                                    )
 
-                            }
-                        </Row>
-                    </Container>        
+                                    }
+                                </Row>
+                            </Container> 
+                        )
+                    }       
                 </div>     
                 <KeepModal/>
             </KeepProvider>
