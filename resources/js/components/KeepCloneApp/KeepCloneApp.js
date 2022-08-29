@@ -14,78 +14,40 @@ import { KeepProvider } from "./Context/KeepContext";
 
 const KeepCloneApp = () => {
 
-    const [keepData, setKeepData] = useState(null)
-    const [searchResults, setSearchResults] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [allUsers, setAllUsers] = useState(null)
-    const [selectedUser, setSelectedUser] = useState(null)
-    const [dummy, setDummy] = useState(null)
-
+    const [ loading, setLoading ] = useState(false)
     const [ users, setUsers ] = useState([])
     const [ currentUser, setCurrentUser ] = useState(null)
-
-    //currently-not-being-used
-    const placeHolderObj = [
-        {
-            id: -1,
-            title: 'Keep',
-            keepItems:[
-                {id:-11, title:'Eggs', status: 1},
-                {id:-12, title:'Onions', status: 1},
-                {id:-13, title:'Suger', status: 0},
-                {id:-14, title:'Salt', status: 1},
-            ]
-        },
-        {
-            id: -2,
-            title: 'Notes',
-            keepItems:[
-                {id:-15, title:'Pencil', status: 1},
-                {id:-16, title:'Pen X 4', status: 0},
-                {id:-17, title:'Paper', status: 1},
-            ]
-        },
-        {
-            id: -3,
-            title: 'Organized',
-            keepItems:[
-                {id:-18, title:'Learn Italian cooking', status: 0},
-                {id:-19, title:'Meditation', status: 1},
-                {id:-20, title:'Call a frield', status: 1},
-            ]
-        },
-    ]
+    const [ keepData, setKeepData ] = useState([])
+    const [ placeHolder, setPlaceHolder ] = useState([])
+    const [ activePlaceHolder, setActivePlaceHolder ] = useState(true)
+    const [ search, setSearch ] = useState('')
 
     const handleSelectChange = async (e) => {
         const id = e.target.value
         const name = e.target.selectedOptions[0].text
 
-        if(!id && !name) {
-            setCurrentUser(null)
+        setSearch('')
+
+        if(!id || !name || id === '-1' || id === null || id === '') {
+            setCurrentUser([])
+            setKeepData([])
+            setActivePlaceHolder(true)
+            return
         } else {
             setCurrentUser({id, name})
-        }
+            setLoading(true)
+            setActivePlaceHolder(false)
 
-        if(id === '-1' || id === null || id === '') {
-            setKeepData(null)
-            setSearchResults(null)
-            return
-        }    
-        setLoading(true)
-        const url = `/api/keep-app/get-personalized-keeps/${id}`
-        console.log(url)
-        await axios.get(url)
-                .then(res => {
-                    setKeepData(res.data?.data)
-                    return res
-                })
-                .then(res => {
-                    setSearchResults(res.data?.data)
-                })
-                .catch(err=>{
-                    console.error(err)
-                })
-        setLoading(false)
+            const url = `/api/keep-app/get-personalized-keeps/${id}`
+            await axios.get(url)
+                    .then(res => {
+                        setKeepData(res.data?.data)
+                    })
+                    .catch(err=>{
+                        console.error(err)
+                    })
+            setLoading(false)
+        }   
 
     }
 
@@ -107,7 +69,7 @@ const KeepCloneApp = () => {
         const url = `/api/keep-app/get-placeholder`
         await axios.get(url)
                     .then(res=>{
-                        setDummy(res.data?.data)
+                        setPlaceHolder(res.data?.data)
                     }).catch(err=>{
                         console.error(err)
                     })
@@ -119,7 +81,6 @@ const KeepCloneApp = () => {
         const url = `/api/users`
         await axios.get(url)
                     .then(res=>{
-                        setAllUsers(res.data?.data)
                         setUsers(res.data?.data)
                     }).catch(err=>{
                         console.error(err)
@@ -149,55 +110,34 @@ const KeepCloneApp = () => {
                                     <SelectComponent 
                                         users={users}
                                         handleSelectChange={handleSelectChange}
+                                        currentUser={currentUser}
                                     />
                                 </Row>
                                 {
                                     keepData ? (
                                         <Row className="m-3 col-md-3 mx-auto">
                                             <SearchComponent 
-                                                handleSearchChange={handleSearchChange}
+                                                search={search}
+                                                setSearch={setSearch}
                                             />
                                         </Row>
                                     ) : null
                                 }
-
-                                {/* <Row className="m-3 col-md-9 mx-auto">
-                                    <KeepCardCollection />
-                                </Row> */}
-                                
+                                {
+                                    currentUser && !activePlaceHolder ? (
+                                        <>
+                                            <Row className="m-3 d-flex justify-content-center">
+                                                <h2 className="text-center text-primary fw-bold">{`${currentUser?.name}'s keeps`}</h2>
+                                            </Row>
+                                        </>
+                                    ) : null
+                                }
                                 <Row className="m-3 col-md-9 mx-auto">
-                                    {
-                                        keepData ? 
-                                        searchResults.length > 0 ? 
-                                        searchResults && searchResults.map(
-                                            (keep) => (
-                                                <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
-                                                    <div className="keep-app-sticker-div" >
-                                                        <KeepCard
-                                                            id={keep.id}
-                                                            title={keep.title}
-                                                            keepItems={keep.keepItems}
-                                                        />
-                                                    </div>
-                                                </Col>
-                                            )) : <><h4>No Items Found</h4></> : (
-                                                dummy && dummy.map(
-                                                    (placeholder) => (
-                                                        <Col key={placeholder.id} xs={12} sm={6} md={4} className="mb-4">
-                                                            <div className="keep-app-sticker-div" >
-                                                                <KeepCard
-                                                                    id={placeholder.id}
-                                                                    title={placeholder.title}
-                                                                    keepItems={placeholder.keepItems}
-                                                                    dismissed
-                                                                />
-                                                            </div>
-                                                        </Col>
-                                                    )
-                                                )
-                                            )
-
-                                    }
+                                    <KeepCardCollection 
+                                        keepData={ keepData.filter((keep) => keep.title.includes(search) || keep.keepItems.some((leastOne) => leastOne.title.includes(search))) }
+                                        placeHolder={placeHolder}
+                                        activePlaceHolder={activePlaceHolder}
+                                    />
                                 </Row>
                             </Container> 
                         )

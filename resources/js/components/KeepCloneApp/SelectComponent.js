@@ -3,7 +3,10 @@ import { Form } from 'react-bootstrap';
 const SelectComponent = ({ users, currentUser, handleSelectChange }) => {
   return (
     <Form onSubmit={ (e) => e.preventDefault() }>
-        <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
+        <Form.Select aria-label="Default select example"
+          value={currentUser?.id}
+          onChange={handleSelectChange}
+        >
             <option value="-1">Select User</option>
             {
                 users && users.map(
