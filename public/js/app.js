@@ -3720,7 +3720,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slugify */ "./node_modules/slugify/slugify.js");
+/* harmony import */ var slugify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(slugify__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3732,6 +3749,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -3762,10 +3781,39 @@ var KeepProvider = function KeepProvider(_ref) {
       modalItems = _useState8[0],
       setModalItems = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      newModalItem = _useState10[0],
+      setNewModalItem = _useState10[1];
+
+  var makeSlug = function makeSlug(title) {
+    return slugify__WEBPACK_IMPORTED_MODULE_1___default()(title, {
+      replacement: '-',
+      // replace spaces with replacement character, defaults to `-`
+      remove: /[*+~.()'"!:@]/g,
+      // remove characters that match regex, defaults to `undefined`
+      lower: true,
+      // convert to lower case, defaults to `false`
+      strict: false,
+      // strip special characters except replacement, defaults to `false`
+      locale: 'vi',
+      // language code of the locale to use
+      trim: true // trim leading and trailing replacement chars, defaults to `true`
+
+    });
+  };
+
   var handleModalShow = function handleModalShow(id, title, keepItems) {
     setModalId(id);
     setModalTitle(title);
-    setModalItems(keepItems);
+    var modifiedItems = keepItems.map(function (item) {
+      return item.status === 0 ? _objectSpread(_objectSpread({}, item), {}, {
+        status: false
+      }) : _objectSpread(_objectSpread({}, item), {}, {
+        status: true
+      });
+    });
+    setModalItems(modifiedItems);
     setModalShow(true);
   };
 
@@ -3776,15 +3824,75 @@ var KeepProvider = function KeepProvider(_ref) {
     setModalShow(false);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(KeepContext.Provider, {
+  var handleModalTitleChange = function handleModalTitleChange(e) {
+    var newTitle = e.target.value;
+
+    if (event.key === 'Enter') {}
+
+    if (!newTitle && modalItems.length) {
+      alert("Keep Title is requried!");
+    } else {
+      setModalTitle(newTitle);
+    }
+  };
+
+  var handleModalItemCheckBoxChange = function handleModalItemCheckBoxChange(e, id) {
+    var status = e.target.checked;
+    var newModalItems = modalItems.map(function (item) {
+      return item.id === id ? _objectSpread(_objectSpread({}, item), {}, {
+        status: status
+      }) : item;
+    });
+    setModalItems(newModalItems);
+  };
+
+  var handleModalItemInputChange = function handleModalItemInputChange(e, id) {
+    var input = e.target.value;
+
+    if (!input) {
+      alert("Item is requried!");
+    }
+
+    var newModalItems = modalItems.map(function (item) {
+      return item.id === id ? _objectSpread(_objectSpread({}, item), {}, {
+        title: input
+      }) : item;
+    });
+    setModalItems(newModalItems);
+  };
+
+  var handleAddNewModalItem = function handleAddNewModalItem(e) {
+    if (e.key === 'Enter' && newModalItem !== '') {
+      var id = (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])();
+      var title = e.target.value;
+      var status = 0;
+      var slug = makeSlug(title);
+      setModalItems(function (prev) {
+        return [].concat(_toConsumableArray(prev), [{
+          id: id,
+          title: title,
+          status: status,
+          slug: slug
+        }]);
+      });
+      setNewModalItem('');
+    } else {
+      setNewModalItem(e.target.value);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(KeepContext.Provider, {
     value: {
       modalShow: modalShow,
-      setModalShow: setModalShow,
-      handleModalClose: handleModalClose,
-      handleModalShow: handleModalShow,
-      modalId: modalId,
       modalTitle: modalTitle,
-      modalItems: modalItems
+      modalItems: modalItems,
+      newModalItem: newModalItem,
+      handleModalShow: handleModalShow,
+      handleModalClose: handleModalClose,
+      handleModalTitleChange: handleModalTitleChange,
+      handleModalItemCheckBoxChange: handleModalItemCheckBoxChange,
+      handleModalItemInputChange: handleModalItemInputChange,
+      handleAddNewModalItem: handleAddNewModalItem
     },
     children: children
   });
@@ -4294,9 +4402,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var _Context_KeepContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Context/KeepContext */ "./resources/js/components/KeepCloneApp/Context/KeepContext.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -4304,30 +4412,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var KeepItem = function KeepItem(_ref) {
-  var item = _ref.item,
-      handleCheckboxChange = _ref.handleCheckboxChange,
-      handleInputChange = _ref.handleInputChange;
-  // const handleCheckboxChange = (e) => {
-  //     console.log(e)
-  // }
-  // const handleInputChange = (e) => {
-  //     console.log(e)
-  // }
+  var item = _ref.item;
+
+  var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_0__.useKeep)(),
+      handleModalItemCheckBoxChange = _useKeep.handleModalItemCheckBoxChange,
+      handleModalItemInputChange = _useKeep.handleModalItemInputChange;
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Check, {
         type: "checkbox",
         className: "keep-app-checkbox",
         checked: item.status,
-        onChange: handleCheckboxChange
+        onChange: function onChange(e) {
+          return handleModalItemCheckBoxChange(e, item.id);
+        }
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "text",
         placeholder: "+ List item",
         className: "keep-app-item-input",
         value: item.title,
-        onChange: handleInputChange
-      })]
+        onChange: function onChange(e) {
+          return handleModalItemInputChange(e, item.id);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__.FaTrashAlt, {})]
     })
   });
 };
@@ -4355,14 +4465,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuidv4__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuidv4 */ "./node_modules/uuidv4/build/lib/uuidv4.js");
 /* harmony import */ var _KeepItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./KeepItem */ "./resources/js/components/KeepCloneApp/KeepItem.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4388,9 +4490,11 @@ var KeepModal = function KeepModal() {
   var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__.useKeep)(),
       modalShow = _useKeep.modalShow,
       handleModalClose = _useKeep.handleModalClose,
-      modalId = _useKeep.modalId,
       modalTitle = _useKeep.modalTitle,
-      modalItems = _useKeep.modalItems;
+      handleModalTitleChange = _useKeep.handleModalTitleChange,
+      modalItems = _useKeep.modalItems,
+      handleAddNewModalItem = _useKeep.handleAddNewModalItem,
+      newModalItem = _useKeep.newModalItem;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -4403,38 +4507,6 @@ var KeepModal = function KeepModal() {
       setNewCollection = _useState4[1];
 
   var inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-
-  var handleCheckBoxChange = function handleCheckBoxChange(e) {
-    console.log(e);
-  };
-
-  var handleInputChange = function handleInputChange(e) {
-    var value = e.target.value; // setNewItem(value)
-
-    console.log(e);
-  };
-
-  var handleEnterKeyPress = function handleEnterKeyPress(event) {
-    if (event.key === 'Enter') {
-      // const id = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000
-      var id = (0,uuidv4__WEBPACK_IMPORTED_MODULE_2__.uuid)();
-      setNewCollection(function (prev) {
-        return [].concat(_toConsumableArray(prev), [{
-          id: id,
-          title: newItem,
-          status: 0,
-          "new": true
-        }]);
-      });
-      setNewItem(null);
-      inputRef.current.value = "";
-    }
-  };
-
-  var handleCardTitleChange = function handleCardTitleChange(e) {};
-
-  var handleCardTitlePress = function handleCardTitlePress(e) {};
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "keep-app-modal",
@@ -4447,22 +4519,38 @@ var KeepModal = function KeepModal() {
             type: "text",
             placeholder: "Title...",
             className: "keep-app-modal-title-input",
-            onChange: handleCardTitleChange,
-            onKeyPress: handleCardTitlePress,
+            onChange: function onChange(e) {
+              return handleModalTitleChange(e);
+            },
+            onKeyPress: function onKeyPress(e) {
+              return handleModalTitleChange(e);
+            },
             value: modalTitle
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
             className: "keep-app-ul",
-            children: modalItems && modalItems.map(function (item) {
+            children: [modalItems && modalItems.map(function (item) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_KeepItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                item: item,
-                handleCheckBoxChange: handleCheckBoxChange,
-                handleInputChange: handleInputChange
+                item: item
               }, item.id);
-            })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "text",
+                ref: inputRef,
+                placeholder: "+ List item",
+                onChange: function onChange(e) {
+                  return handleAddNewModalItem(e);
+                },
+                onKeyPress: function onKeyPress(e) {
+                  return handleAddNewModalItem(e);
+                },
+                value: newModalItem,
+                className: "todo-app-modal-item-input"
+              })
+            })]
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Footer, {
@@ -5408,7 +5496,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -71524,6 +71612,80 @@ if (
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler.development.js */ "./node_modules/scheduler/cjs/scheduler.development.js");
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/slugify/slugify.js":
+/*!*****************************************!*\
+  !*** ./node_modules/slugify/slugify.js ***!
+  \*****************************************/
+/***/ (function(module) {
+
+
+;(function (name, root, factory) {
+  if (true) {
+    module.exports = factory()
+    module.exports["default"] = factory()
+  }
+  /* istanbul ignore next */
+  else {}
+}('slugify', this, function () {
+  var charMap = JSON.parse('{"$":"dollar","%":"percent","&":"and","<":"less",">":"greater","|":"or","¢":"cent","£":"pound","¤":"currency","¥":"yen","©":"(c)","ª":"a","®":"(r)","º":"o","À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","Æ":"AE","Ç":"C","È":"E","É":"E","Ê":"E","Ë":"E","Ì":"I","Í":"I","Î":"I","Ï":"I","Ð":"D","Ñ":"N","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ø":"O","Ù":"U","Ú":"U","Û":"U","Ü":"U","Ý":"Y","Þ":"TH","ß":"ss","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","æ":"ae","ç":"c","è":"e","é":"e","ê":"e","ë":"e","ì":"i","í":"i","î":"i","ï":"i","ð":"d","ñ":"n","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ø":"o","ù":"u","ú":"u","û":"u","ü":"u","ý":"y","þ":"th","ÿ":"y","Ā":"A","ā":"a","Ă":"A","ă":"a","Ą":"A","ą":"a","Ć":"C","ć":"c","Č":"C","č":"c","Ď":"D","ď":"d","Đ":"DJ","đ":"dj","Ē":"E","ē":"e","Ė":"E","ė":"e","Ę":"e","ę":"e","Ě":"E","ě":"e","Ğ":"G","ğ":"g","Ģ":"G","ģ":"g","Ĩ":"I","ĩ":"i","Ī":"i","ī":"i","Į":"I","į":"i","İ":"I","ı":"i","Ķ":"k","ķ":"k","Ļ":"L","ļ":"l","Ľ":"L","ľ":"l","Ł":"L","ł":"l","Ń":"N","ń":"n","Ņ":"N","ņ":"n","Ň":"N","ň":"n","Ō":"O","ō":"o","Ő":"O","ő":"o","Œ":"OE","œ":"oe","Ŕ":"R","ŕ":"r","Ř":"R","ř":"r","Ś":"S","ś":"s","Ş":"S","ş":"s","Š":"S","š":"s","Ţ":"T","ţ":"t","Ť":"T","ť":"t","Ũ":"U","ũ":"u","Ū":"u","ū":"u","Ů":"U","ů":"u","Ű":"U","ű":"u","Ų":"U","ų":"u","Ŵ":"W","ŵ":"w","Ŷ":"Y","ŷ":"y","Ÿ":"Y","Ź":"Z","ź":"z","Ż":"Z","ż":"z","Ž":"Z","ž":"z","Ə":"E","ƒ":"f","Ơ":"O","ơ":"o","Ư":"U","ư":"u","ǈ":"LJ","ǉ":"lj","ǋ":"NJ","ǌ":"nj","Ș":"S","ș":"s","Ț":"T","ț":"t","ə":"e","˚":"o","Ά":"A","Έ":"E","Ή":"H","Ί":"I","Ό":"O","Ύ":"Y","Ώ":"W","ΐ":"i","Α":"A","Β":"B","Γ":"G","Δ":"D","Ε":"E","Ζ":"Z","Η":"H","Θ":"8","Ι":"I","Κ":"K","Λ":"L","Μ":"M","Ν":"N","Ξ":"3","Ο":"O","Π":"P","Ρ":"R","Σ":"S","Τ":"T","Υ":"Y","Φ":"F","Χ":"X","Ψ":"PS","Ω":"W","Ϊ":"I","Ϋ":"Y","ά":"a","έ":"e","ή":"h","ί":"i","ΰ":"y","α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"h","θ":"8","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"3","ο":"o","π":"p","ρ":"r","ς":"s","σ":"s","τ":"t","υ":"y","φ":"f","χ":"x","ψ":"ps","ω":"w","ϊ":"i","ϋ":"y","ό":"o","ύ":"y","ώ":"w","Ё":"Yo","Ђ":"DJ","Є":"Ye","І":"I","Ї":"Yi","Ј":"J","Љ":"LJ","Њ":"NJ","Ћ":"C","Џ":"DZ","А":"A","Б":"B","В":"V","Г":"G","Д":"D","Е":"E","Ж":"Zh","З":"Z","И":"I","Й":"J","К":"K","Л":"L","М":"M","Н":"N","О":"O","П":"P","Р":"R","С":"S","Т":"T","У":"U","Ф":"F","Х":"H","Ц":"C","Ч":"Ch","Ш":"Sh","Щ":"Sh","Ъ":"U","Ы":"Y","Ь":"","Э":"E","Ю":"Yu","Я":"Ya","а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ж":"zh","з":"z","и":"i","й":"j","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f","х":"h","ц":"c","ч":"ch","ш":"sh","щ":"sh","ъ":"u","ы":"y","ь":"","э":"e","ю":"yu","я":"ya","ё":"yo","ђ":"dj","є":"ye","і":"i","ї":"yi","ј":"j","љ":"lj","њ":"nj","ћ":"c","ѝ":"u","џ":"dz","Ґ":"G","ґ":"g","Ғ":"GH","ғ":"gh","Қ":"KH","қ":"kh","Ң":"NG","ң":"ng","Ү":"UE","ү":"ue","Ұ":"U","ұ":"u","Һ":"H","һ":"h","Ә":"AE","ә":"ae","Ө":"OE","ө":"oe","Ա":"A","Բ":"B","Գ":"G","Դ":"D","Ե":"E","Զ":"Z","Է":"E\'","Ը":"Y\'","Թ":"T\'","Ժ":"JH","Ի":"I","Լ":"L","Խ":"X","Ծ":"C\'","Կ":"K","Հ":"H","Ձ":"D\'","Ղ":"GH","Ճ":"TW","Մ":"M","Յ":"Y","Ն":"N","Շ":"SH","Չ":"CH","Պ":"P","Ջ":"J","Ռ":"R\'","Ս":"S","Վ":"V","Տ":"T","Ր":"R","Ց":"C","Փ":"P\'","Ք":"Q\'","Օ":"O\'\'","Ֆ":"F","և":"EV","ء":"a","آ":"aa","أ":"a","ؤ":"u","إ":"i","ئ":"e","ا":"a","ب":"b","ة":"h","ت":"t","ث":"th","ج":"j","ح":"h","خ":"kh","د":"d","ذ":"th","ر":"r","ز":"z","س":"s","ش":"sh","ص":"s","ض":"dh","ط":"t","ظ":"z","ع":"a","غ":"gh","ف":"f","ق":"q","ك":"k","ل":"l","م":"m","ن":"n","ه":"h","و":"w","ى":"a","ي":"y","ً":"an","ٌ":"on","ٍ":"en","َ":"a","ُ":"u","ِ":"e","ْ":"","٠":"0","١":"1","٢":"2","٣":"3","٤":"4","٥":"5","٦":"6","٧":"7","٨":"8","٩":"9","پ":"p","چ":"ch","ژ":"zh","ک":"k","گ":"g","ی":"y","۰":"0","۱":"1","۲":"2","۳":"3","۴":"4","۵":"5","۶":"6","۷":"7","۸":"8","۹":"9","฿":"baht","ა":"a","ბ":"b","გ":"g","დ":"d","ე":"e","ვ":"v","ზ":"z","თ":"t","ი":"i","კ":"k","ლ":"l","მ":"m","ნ":"n","ო":"o","პ":"p","ჟ":"zh","რ":"r","ს":"s","ტ":"t","უ":"u","ფ":"f","ქ":"k","ღ":"gh","ყ":"q","შ":"sh","ჩ":"ch","ც":"ts","ძ":"dz","წ":"ts","ჭ":"ch","ხ":"kh","ჯ":"j","ჰ":"h","Ṣ":"S","ṣ":"s","Ẁ":"W","ẁ":"w","Ẃ":"W","ẃ":"w","Ẅ":"W","ẅ":"w","ẞ":"SS","Ạ":"A","ạ":"a","Ả":"A","ả":"a","Ấ":"A","ấ":"a","Ầ":"A","ầ":"a","Ẩ":"A","ẩ":"a","Ẫ":"A","ẫ":"a","Ậ":"A","ậ":"a","Ắ":"A","ắ":"a","Ằ":"A","ằ":"a","Ẳ":"A","ẳ":"a","Ẵ":"A","ẵ":"a","Ặ":"A","ặ":"a","Ẹ":"E","ẹ":"e","Ẻ":"E","ẻ":"e","Ẽ":"E","ẽ":"e","Ế":"E","ế":"e","Ề":"E","ề":"e","Ể":"E","ể":"e","Ễ":"E","ễ":"e","Ệ":"E","ệ":"e","Ỉ":"I","ỉ":"i","Ị":"I","ị":"i","Ọ":"O","ọ":"o","Ỏ":"O","ỏ":"o","Ố":"O","ố":"o","Ồ":"O","ồ":"o","Ổ":"O","ổ":"o","Ỗ":"O","ỗ":"o","Ộ":"O","ộ":"o","Ớ":"O","ớ":"o","Ờ":"O","ờ":"o","Ở":"O","ở":"o","Ỡ":"O","ỡ":"o","Ợ":"O","ợ":"o","Ụ":"U","ụ":"u","Ủ":"U","ủ":"u","Ứ":"U","ứ":"u","Ừ":"U","ừ":"u","Ử":"U","ử":"u","Ữ":"U","ữ":"u","Ự":"U","ự":"u","Ỳ":"Y","ỳ":"y","Ỵ":"Y","ỵ":"y","Ỷ":"Y","ỷ":"y","Ỹ":"Y","ỹ":"y","–":"-","‘":"\'","’":"\'","“":"\\\"","”":"\\\"","„":"\\\"","†":"+","•":"*","…":"...","₠":"ecu","₢":"cruzeiro","₣":"french franc","₤":"lira","₥":"mill","₦":"naira","₧":"peseta","₨":"rupee","₩":"won","₪":"new shequel","₫":"dong","€":"euro","₭":"kip","₮":"tugrik","₯":"drachma","₰":"penny","₱":"peso","₲":"guarani","₳":"austral","₴":"hryvnia","₵":"cedi","₸":"kazakhstani tenge","₹":"indian rupee","₺":"turkish lira","₽":"russian ruble","₿":"bitcoin","℠":"sm","™":"tm","∂":"d","∆":"delta","∑":"sum","∞":"infinity","♥":"love","元":"yuan","円":"yen","﷼":"rial","ﻵ":"laa","ﻷ":"laa","ﻹ":"lai","ﻻ":"la"}')
+  var locales = JSON.parse('{"bg":{"Й":"Y","Ц":"Ts","Щ":"Sht","Ъ":"A","Ь":"Y","й":"y","ц":"ts","щ":"sht","ъ":"a","ь":"y"},"de":{"Ä":"AE","ä":"ae","Ö":"OE","ö":"oe","Ü":"UE","ü":"ue","ß":"ss","%":"prozent","&":"und","|":"oder","∑":"summe","∞":"unendlich","♥":"liebe"},"es":{"%":"por ciento","&":"y","<":"menor que",">":"mayor que","|":"o","¢":"centavos","£":"libras","¤":"moneda","₣":"francos","∑":"suma","∞":"infinito","♥":"amor"},"fr":{"%":"pourcent","&":"et","<":"plus petit",">":"plus grand","|":"ou","¢":"centime","£":"livre","¤":"devise","₣":"franc","∑":"somme","∞":"infini","♥":"amour"},"pt":{"%":"porcento","&":"e","<":"menor",">":"maior","|":"ou","¢":"centavo","∑":"soma","£":"libra","∞":"infinito","♥":"amor"},"uk":{"И":"Y","и":"y","Й":"Y","й":"y","Ц":"Ts","ц":"ts","Х":"Kh","х":"kh","Щ":"Shch","щ":"shch","Г":"H","г":"h"},"vi":{"Đ":"D","đ":"d"},"da":{"Ø":"OE","ø":"oe","Å":"AA","å":"aa","%":"procent","&":"og","|":"eller","$":"dollar","<":"mindre end",">":"større end"},"nb":{"&":"og","Å":"AA","Æ":"AE","Ø":"OE","å":"aa","æ":"ae","ø":"oe"},"it":{"&":"e"},"nl":{"&":"en"},"sv":{"&":"och","Å":"AA","Ä":"AE","Ö":"OE","å":"aa","ä":"ae","ö":"oe"}}')
+
+  function replace (string, options) {
+    if (typeof string !== 'string') {
+      throw new Error('slugify: string argument expected')
+    }
+
+    options = (typeof options === 'string')
+      ? {replacement: options}
+      : options || {}
+
+    var locale = locales[options.locale] || {}
+
+    var replacement = options.replacement === undefined ? '-' : options.replacement
+
+    var trim = options.trim === undefined ? true : options.trim
+
+    var slug = string.normalize().split('')
+      // replace characters based on charMap
+      .reduce(function (result, ch) {
+        var appendChar = locale[ch] || charMap[ch] || ch;
+        if (appendChar === replacement) {
+          appendChar = ' ';
+        }
+        return result + appendChar
+          // remove not allowed characters
+          .replace(options.remove || /[^\w\s$*_+~.()'"!\-:@]+/g, '')
+      }, '');
+
+    if (options.strict) {
+      slug = slug.replace(/[^A-Za-z0-9\s]/g, '');
+    }
+
+    if (trim) {
+      slug = slug.trim()
+    }
+
+    // Replace spaces with replacement character, treating multiple consecutive
+    // spaces as a single space.
+    slug = slug.replace(/\s+/g, replacement);
+
+    if (options.lower) {
+      slug = slug.toLowerCase()
+    }
+
+    return slug
+  }
+
+  replace.extend = function (customMap) {
+    Object.assign(charMap, customMap)
+  }
+
+  return replace
+}))
 
 
 /***/ }),
