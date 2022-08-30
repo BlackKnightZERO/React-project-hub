@@ -1,13 +1,12 @@
 import axios from "axios";
-import React from "react";
 import { useEffect, useState } from 'react';
 import { Stack, Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import KeepCard from './KeepCard'
-import KeepModal from './KeepModal'
 import LoadingSpinner from "./LoadingSpinner";
+import AddButton from "./AddButton";
 import SelectComponent from './SelectComponent'
 import SearchComponent from './SearchComponent'
 import KeepCardCollection from './KeepCardCollection'
+import KeepModal from './KeepModal'
 
 import { KeepProvider } from "./Context/KeepContext";
 // import { useKeep } from "./Context/KeepContext";
@@ -114,7 +113,7 @@ const KeepCloneApp = () => {
                                     />
                                 </Row>
                                 {
-                                    keepData ? (
+                                    keepData.length ? (
                                         <Row className="m-3 col-md-3 mx-auto">
                                             <SearchComponent 
                                                 search={search}
@@ -124,7 +123,7 @@ const KeepCloneApp = () => {
                                     ) : null
                                 }
                                 {
-                                    currentUser && !activePlaceHolder ? (
+                                    !activePlaceHolder ? (
                                         <>
                                             <Row className="m-3 d-flex justify-content-center">
                                                 <h2 className="text-center text-primary fw-bold">{`${currentUser?.name}'s keeps`}</h2>
@@ -142,8 +141,13 @@ const KeepCloneApp = () => {
                             </Container> 
                         )
                     }       
-                </div>     
-                <KeepModal/>
+                </div> 
+                {
+                    !activePlaceHolder ? (
+                        <AddButton />    
+                    ) : null
+                }
+                <KeepModal />
             </KeepProvider>
         </>       
     )

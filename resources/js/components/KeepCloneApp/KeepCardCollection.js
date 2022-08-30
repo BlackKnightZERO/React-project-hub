@@ -2,6 +2,7 @@ import KeepCard from './KeepCard'
 import { Col } from 'react-bootstrap';
 
 const KeepCardCollection = ({ keepData, placeHolder, activePlaceHolder }) => {
+
   return (
     <>
       {
@@ -17,6 +18,7 @@ const KeepCardCollection = ({ keepData, placeHolder, activePlaceHolder }) => {
                                 id={keep.id}
                                 title={keep.title}
                                 keepItems={keep.keepItems}
+                                dismissed
                             />
                         </div>
                     </Col>

@@ -8,6 +8,7 @@ const SearchComponent = ({ search, setSearch }) => {
             placeholder="Search..."
             value={search}
             onChange={ (e) => setSearch(e.target.value) }    
+            tabIndex="2"
         />
     </Form>
   )

@@ -283,3 +283,22 @@ body{
     border-radius: 0.25rem;
     outline: none;
   }
+
+  .todo-app-addNewKeepBtn {
+    position: fixed;
+    bottom: 5%;
+    right: 5%; 
+    padding: 1.8rem 2rem;
+    border: 3px solid #996600;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color:#f5b941;
+    background: #373737;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #dd1818, #373737);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    cursor: pointer;
+  }
+
+  .todo-app-addNewKeepBtn:hover {
+    box-shadow: 0px 5px 5px #373737;
+  }

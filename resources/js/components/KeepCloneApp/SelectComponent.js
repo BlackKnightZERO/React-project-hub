@@ -6,6 +6,7 @@ const SelectComponent = ({ users, currentUser, handleSelectChange }) => {
         <Form.Select aria-label="Default select example"
           value={currentUser?.id}
           onChange={handleSelectChange}
+          tabIndex="1"
         >
             <option value="-1">Select User</option>
             {
