@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import slugify from 'slugify';
+import axios from 'axios';
 
 const KeepContext = React.createContext()
 
@@ -15,9 +16,10 @@ export const KeepProvider = ({ children }) => {
     const [ modalTitle, setModalTitle ] = useState('')
     const [ modalItems, setModalItems ] = useState(null)
     const [ newModalItem, setNewModalItem ] = useState('')
+    const [ mainData, setMainData ] = useState(null)
 
     const makeSlug = (title) => {
-        return slugify(title, {
+        let slug =  slugify(title, {
             replacement: '-',  // replace spaces with replacement character, defaults to `-`
             remove: /[*+~.()'"!:@]/g, // remove characters that match regex, defaults to `undefined`
             lower: true,      // convert to lower case, defaults to `false`
@@ -25,6 +27,7 @@ export const KeepProvider = ({ children }) => {
             locale: 'vi',       // language code of the locale to use
             trim: true         // trim leading and trailing replacement chars, defaults to `true`
         })
+        return `${slug}-${Math.floor(Math.random() * (10000 - 1000) - 1000)}`
     }
 
     const handleModalShow = (id, title, keepItems) => {
@@ -35,9 +38,36 @@ export const KeepProvider = ({ children }) => {
         setModalShow(true)
     }
 
-    const handleModalClose = () => {
+    const handleModalClose = async () => {
+
+        if(modalTitle) {
+            // if( newModalItem !== '' ) {
+            //     setModalItems(prev => [...prev, 
+            //         {
+            //             id : uuidv4(), 
+            //             title : newModalItem, 
+            //             status : 0, 
+            //             slug : makeSlug(newModalItem)
+            //         }])
+            // }
+            const url = `api/keep-app/store`
+            const storeData = {
+                id: modalId,
+                title: modalTitle,
+                slug: makeSlug(modalTitle),
+                keeps: modalItems
+            }
+            await axios.post(url, storeData)
+                        .then(res=>{
+                            console.log(res)
+                            // setUsers(res.data?.data)
+                        }).catch(err=>{
+                            console.error(err)
+                        })
+        }
         setModalId(null)
         setModalTitle('')
+        setNewModalItem('')
         setModalItems(null)
         setModalShow(false)
     }
@@ -76,7 +106,7 @@ export const KeepProvider = ({ children }) => {
             const title = e.target.value
             const status = 0
             const slug = makeSlug(title)
-            setModalItems(prev => [...prev, {id,title,status, slug}])
+            setModalItems(prev => [...prev, {id, title, status, slug}])
             setNewModalItem('')
         } else {
             setNewModalItem(e.target.value)
@@ -93,7 +123,8 @@ export const KeepProvider = ({ children }) => {
         handleModalTitleChange,
         handleModalItemCheckBoxChange,
         handleModalItemInputChange,
-        handleAddNewModalItem
+        handleAddNewModalItem,
+        mainData
     }}>{children}</KeepContext.Provider>
 
 }

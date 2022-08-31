@@ -9,11 +9,12 @@ use App\Models\User;
 use App\Models\Keep;
 use App\Models\KeepItem;
 
-use App\Http\Resources\KeepCollection;
 use App\Http\Resources\KeepResource;
+use Illuminate\Support\Facades\DB;
 
 class KeepAppController extends Controller
 {
+
     public function getPlaceHolderData() {
         $myarray = array( 
                     array(
@@ -48,5 +49,53 @@ class KeepAppController extends Controller
     public function getKeepsById($id) {
         return KeepResource::collection(Keep::with(['keepItems', 'user'])->latest()->where('user_id', $id)->get());
 
+    }
+
+    public function store(Request $request) {
+        $validated = $request->validate([
+            'id'    => 'required',
+            'title' => 'required|unique:keeps,title,'.$request->id,
+            'slug'  => 'required|unique:keeps,slug,'.$request->id,
+            'keeps.*.id'    => 'required',
+            'keeps.*.title' => 'required',
+            'keeps.*.slug' => 'required',
+        ]);
+        DB::beginTransaction();
+        try{
+            Keep::updateOrCreate(['id' => $request->id], [
+                'title' => $request->title,
+                'slug' => $request->slug,
+            ]);
+            foreach($request->keeps as $item) {
+                if(is_string($item['id'])){
+                    KeepItem::create([
+                        'keep_id' => $request->id,
+                        'title' => $item['title'],
+                        'slug' => $item['slug'],
+                    ]);
+                } else {
+                    KeepItem::where('id', $item['id'])
+                            ->update([
+                                'keep_id'   => $request->id,
+                                'title'     => $item['title'],
+                                'slug'      => $item['slug'],
+                                'status'    => $item['status'] == true ? 1 : 0
+                            ]);
+                }
+            }
+            DB::commit();
+
+            return response()->json([
+                'status' => 200,
+                'msg'  => 'success'
+            ]);
+
+        } catch(\Exception $e){
+            DB::rollBack();
+            return response()->json([
+                'status' => 400,
+                'error'  => $e->getMessage()
+            ]);
+        }
     }
 }

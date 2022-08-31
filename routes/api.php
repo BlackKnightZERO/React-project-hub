@@ -31,4 +31,5 @@ Route::post('/birthday-app/send-gift-to-all', [BirthdayAppController::class, 'se
 Route::get('/birthday-app/random-birthday-generate', [BirthdayAppController::class, 'randomBirthdayGenerate']);
 
 Route::get('/keep-app/get-placeholder', [KeepAppController::class, 'getPlaceHolderData']);
-Route::get('/keep-app/get-personalized-keeps/{id}',[KeepAppController::class, 'getKeepsById']);
+Route::get('/keep-app/get-personalized-keeps/{id}', [KeepAppController::class, 'getKeepsById']);
+Route::post('/keep-app/store', [KeepAppController::class, 'store']);
