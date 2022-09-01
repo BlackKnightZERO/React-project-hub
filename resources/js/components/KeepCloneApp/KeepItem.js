@@ -4,7 +4,7 @@ import { useKeep } from './Context/KeepContext'
 
 const KeepItem = ({ item }) => {
 
-    const { handleModalItemCheckBoxChange, handleModalItemInputChange } = useKeep()
+    const { handleModalItemCheckBoxChange, handleModalItemInputChange, handleModalItemDelete } = useKeep()
 
     return (
         <>
@@ -21,7 +21,10 @@ const KeepItem = ({ item }) => {
                     value={ item.title }
                     onChange={ (e) => handleModalItemInputChange(e, item.id) }
                 />
-                <FaTrashAlt />
+                <FaTrashAlt 
+                    role='button'
+                    onClick={ () => handleModalItemDelete(item.id) }
+                />
             </li>
         </>
     )

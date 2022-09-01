@@ -12,9 +12,6 @@ const KeepModal = () => {
 
     const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleAddNewModalItem, newModalItem } = useKeep()
 
-    const [newItem, setNewItem] = useState(null)
-    const [newCollection, setNewCollection] = useState([])
-
     const inputRef = useRef(null);
 
     return (

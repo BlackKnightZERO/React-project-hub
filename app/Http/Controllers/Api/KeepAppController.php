@@ -52,6 +52,7 @@ class KeepAppController extends Controller
     }
 
     public function store(Request $request) {
+        // $arrayMaps = [];
         $validated = $request->validate([
             'id'    => 'required',
             'title' => 'required|unique:keeps,title,'.$request->id,
@@ -68,11 +69,12 @@ class KeepAppController extends Controller
             ]);
             foreach($request->keeps as $item) {
                 if(is_string($item['id'])){
-                    KeepItem::create([
+                    $new = KeepItem::create([
                         'keep_id' => $request->id,
                         'title' => $item['title'],
                         'slug' => $item['slug'],
                     ]);
+                    // array_push($arrayMaps,[$item['id'] => $new->id]);
                 } else {
                     KeepItem::where('id', $item['id'])
                             ->update([
@@ -83,11 +85,17 @@ class KeepAppController extends Controller
                             ]);
                 }
             }
+            if( sizeof($request->deleteIds) > 0 ) {
+                KeepItem::destroy($request->deleteIds);
+            }
+            
             DB::commit();
 
             return response()->json([
                 'status' => 200,
-                'msg'  => 'success'
+                'msg'  => 'success',
+                'data' => KeepResource::collection(Keep::with(['keepItems'])->latest()->where('id', $request->id)->get()),
+                // 'data' => $arrayMaps
             ]);
 
         } catch(\Exception $e){

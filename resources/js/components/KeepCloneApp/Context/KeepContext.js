@@ -11,12 +11,73 @@ export const useKeep = () => {
 
 export const KeepProvider = ({ children }) => {
 
+    const [ loading, setLoading ] = useState(false)
+    const [ users, setUsers ] = useState([])
+    const [ currentUser, setCurrentUser ] = useState(null)
+    const [ keepData, setKeepData ] = useState([])
+    const [ placeHolder, setPlaceHolder ] = useState([])
+    const [ activePlaceHolder, setActivePlaceHolder ] = useState(true)
+    const [ search, setSearch ] = useState('')
+    const [ deleteKeepItemId, setDeleteKeepItemId ] = useState([])
+
     const [ modalShow, setModalShow ] = useState(false)
     const [ modalId, setModalId ] = useState(null)
     const [ modalTitle, setModalTitle ] = useState('')
     const [ modalItems, setModalItems ] = useState(null)
     const [ newModalItem, setNewModalItem ] = useState('')
-    const [ mainData, setMainData ] = useState(null)
+
+    const handleSelectChange = async (e) => {
+        const id = e.target.value
+        const name = e.target.selectedOptions[0].text
+
+        setSearch('')
+
+        if(!id || !name || id === '-1' || id === null || id === '') {
+            setCurrentUser([])
+            setKeepData([])
+            setActivePlaceHolder(true)
+            return
+        } else {
+            setCurrentUser({id, name})
+            setLoading(true)
+            setActivePlaceHolder(false)
+
+            const url = `/api/keep-app/get-personalized-keeps/${id}`
+            await axios.get(url)
+                    .then(res => {
+                        setKeepData(res.data?.data)
+                    })
+                    .catch(err=>{
+                        console.error(err)
+                    })
+            setLoading(false)
+        }   
+
+    }
+
+    const fetchPlaceHolder = async () => {
+        setLoading(true)
+        const url = `/api/keep-app/get-placeholder`
+        await axios.get(url)
+                    .then(res=>{
+                        setPlaceHolder(res.data?.data)
+                    }).catch(err=>{
+                        console.error(err)
+                    })
+        setLoading(false)
+    }
+
+    const fetchUsers = async () => {
+        setLoading(true)
+        const url = `/api/users`
+        await axios.get(url)
+                    .then(res=>{
+                        setUsers(res.data?.data)
+                    }).catch(err=>{
+                        console.error(err)
+                    })
+        setLoading(false)
+    }
 
     const makeSlug = (title) => {
         let slug =  slugify(title, {
@@ -40,36 +101,32 @@ export const KeepProvider = ({ children }) => {
 
     const handleModalClose = async () => {
 
-        if(modalTitle) {
-            // if( newModalItem !== '' ) {
-            //     setModalItems(prev => [...prev, 
-            //         {
-            //             id : uuidv4(), 
-            //             title : newModalItem, 
-            //             status : 0, 
-            //             slug : makeSlug(newModalItem)
-            //         }])
-            // }
+        if(!modalTitle) {
+            alert('Keep Title Required') 
+        } else  {
+            setModalShow(false)
             const url = `api/keep-app/store`
             const storeData = {
+                user_id: currentUser.id,
                 id: modalId,
                 title: modalTitle,
                 slug: makeSlug(modalTitle),
-                keeps: modalItems
+                keeps: modalItems,
+                deleteIds: deleteKeepItemId
             }
             await axios.post(url, storeData)
                         .then(res=>{
-                            console.log(res)
-                            // setUsers(res.data?.data)
+                            const newKeep = keepData.map( (keep) => keep.id === modalId ? {...keep, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
+                            setKeepData(newKeep)
                         }).catch(err=>{
                             console.error(err)
                         })
+            setModalId(null)
+            setModalTitle('')
+            setNewModalItem('')
+            setModalItems(null)
+            setDeleteKeepItemId([])        
         }
-        setModalId(null)
-        setModalTitle('')
-        setNewModalItem('')
-        setModalItems(null)
-        setModalShow(false)
     }
 
     const handleModalTitleChange = (e) => {
@@ -77,12 +134,7 @@ export const KeepProvider = ({ children }) => {
         if(event.key === 'Enter'){
 
         }
-        if(!newTitle && modalItems.length){
-            alert(`Keep Title is requried!`)
-        } else {
-            setModalTitle(newTitle)
-        }
-
+        setModalTitle(newTitle)
     }
 
     const handleModalItemCheckBoxChange = (e, id) => {
@@ -96,7 +148,7 @@ export const KeepProvider = ({ children }) => {
         if(!input){
             alert(`Item is requried!`)
         }
-        const newModalItems = modalItems.map((item) => item.id === id ? {...item, title: input} : item)
+        const newModalItems = modalItems.map((item) => item.id === id ? {...item, title: input, slug: makeSlug(input)} : item)
         setModalItems(newModalItems)
     }
 
@@ -113,18 +165,35 @@ export const KeepProvider = ({ children }) => {
         }
     }
 
+    const handleModalItemDelete = (id) => {
+        setDeleteKeepItemId(prev => [...prev, id])
+        const newModalItems = modalItems.filter(oldItem => oldItem.id !== id )
+        setModalItems(newModalItems)
+    }
+
     return <KeepContext.Provider value={{
+        loading,
+        users,
+        currentUser,
+        keepData,
+        placeHolder,
+        activePlaceHolder,
+        search,
         modalShow,
         modalTitle,
         modalItems,
         newModalItem,
+        fetchUsers,
+        fetchPlaceHolder,
+        setSearch,
+        handleSelectChange,
         handleModalShow,
         handleModalClose,
         handleModalTitleChange,
         handleModalItemCheckBoxChange,
         handleModalItemInputChange,
         handleAddNewModalItem,
-        mainData
+        handleModalItemDelete
     }}>{children}</KeepContext.Provider>
 
 }
