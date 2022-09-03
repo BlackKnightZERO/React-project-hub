@@ -4024,10 +4024,14 @@ var KeepProvider = function KeepProvider(_ref) {
                   description: res === null || res === void 0 ? void 0 : (_res$data7 = res.data) === null || _res$data7 === void 0 ? void 0 : (_res$data7$data$ = _res$data7.data[0]) === null || _res$data7$data$ === void 0 ? void 0 : _res$data7$data$.description,
                   keepItems: res === null || res === void 0 ? void 0 : (_res$data8 = res.data) === null || _res$data8 === void 0 ? void 0 : (_res$data8$data$ = _res$data8.data[0]) === null || _res$data8$data$ === void 0 ? void 0 : _res$data8$data$.keepItems
                 }].concat(_toConsumableArray(keepData)) : keepData.map(function (keep) {
-                  var _res$data9, _res$data9$data$;
+                  var _res$data9, _res$data9$data$, _res$data10, _res$data10$data$, _res$data11, _res$data11$data$, _res$data12, _res$data12$data$, _res$data13, _res$data13$data$;
 
                   return keep.id === modalId ? _objectSpread(_objectSpread({}, keep), {}, {
-                    keepItems: res === null || res === void 0 ? void 0 : (_res$data9 = res.data) === null || _res$data9 === void 0 ? void 0 : (_res$data9$data$ = _res$data9.data[0]) === null || _res$data9$data$ === void 0 ? void 0 : _res$data9$data$.keepItems
+                    id: res === null || res === void 0 ? void 0 : (_res$data9 = res.data) === null || _res$data9 === void 0 ? void 0 : (_res$data9$data$ = _res$data9.data[0]) === null || _res$data9$data$ === void 0 ? void 0 : _res$data9$data$.id,
+                    title: res === null || res === void 0 ? void 0 : (_res$data10 = res.data) === null || _res$data10 === void 0 ? void 0 : (_res$data10$data$ = _res$data10.data[0]) === null || _res$data10$data$ === void 0 ? void 0 : _res$data10$data$.title,
+                    slug: res === null || res === void 0 ? void 0 : (_res$data11 = res.data) === null || _res$data11 === void 0 ? void 0 : (_res$data11$data$ = _res$data11.data[0]) === null || _res$data11$data$ === void 0 ? void 0 : _res$data11$data$.slug,
+                    description: res === null || res === void 0 ? void 0 : (_res$data12 = res.data) === null || _res$data12 === void 0 ? void 0 : (_res$data12$data$ = _res$data12.data[0]) === null || _res$data12$data$ === void 0 ? void 0 : _res$data12$data$.description,
+                    keepItems: res === null || res === void 0 ? void 0 : (_res$data13 = res.data) === null || _res$data13 === void 0 ? void 0 : (_res$data13$data$ = _res$data13.data[0]) === null || _res$data13$data$ === void 0 ? void 0 : _res$data13$data$.keepItems
                   }) : keep;
                 });
                 setKeepData(newKeep);

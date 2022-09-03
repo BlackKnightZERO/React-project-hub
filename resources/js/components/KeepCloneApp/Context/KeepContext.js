@@ -122,7 +122,7 @@ export const KeepProvider = ({ children }) => {
                                             keepItems: res?.data?.data[0]?.keepItems 
                                         }, ...keepData]
                                         :
-                                        keepData.map( (keep) => keep.id === modalId ? {...keep, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
+                                        keepData.map( (keep) => keep.id === modalId ? {...keep, id: res?.data?.data[0]?.id, title: res?.data?.data[0]?.title, slug: res?.data?.data[0]?.slug, description: res?.data?.data[0]?.description, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
                         setKeepData(newKeep)
                     }).catch(err=>{
                         console.error(err)
