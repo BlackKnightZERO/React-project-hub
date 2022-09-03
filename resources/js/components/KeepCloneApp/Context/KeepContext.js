@@ -25,6 +25,7 @@ export const KeepProvider = ({ children }) => {
     const [ modalTitle, setModalTitle ] = useState('')
     const [ modalItems, setModalItems ] = useState(null)
     const [ newModalItem, setNewModalItem ] = useState('')
+    const [ isNewKeep, setIsNewKeep ] = useState(false)
 
     const handleSelectChange = async (e) => {
         const id = e.target.value
@@ -91,7 +92,8 @@ export const KeepProvider = ({ children }) => {
         return `${slug}-${Math.floor(Math.random() * (10000 - 1000) - 1000)}`
     }
 
-    const handleModalShow = (id, title, keepItems) => {
+    const handleModalShow = (id, title, keepItems, newKeep) => {
+        setIsNewKeep( newKeep ? true : false)
         setModalId(id)
         setModalTitle(title)
         const modifiedItems = keepItems.map((item) => item.status === 0 ? {...item, status: false} : {...item, status: true})
@@ -99,33 +101,62 @@ export const KeepProvider = ({ children }) => {
         setModalShow(true)
     }
 
+    const storeData = async () => {
+        const url = `api/keep-app/store`
+        const storeData = {
+            user_id: currentUser.id,
+            id: modalId,
+            title: modalTitle,
+            slug: makeSlug(modalTitle),
+            keeps: modalItems,
+            deleteIds: deleteKeepItemId
+        }
+        await axios.post(url, storeData)
+                    .then(res=>{
+                        const newKeep = isNewKeep ? 
+                                        [{
+                                            id: res?.data?.data[0]?.id, 
+                                            title: res?.data?.data[0]?.title, 
+                                            slug: res?.data?.data[0]?.slug, 
+                                            description: res?.data?.data[0]?.description, 
+                                            keepItems: res?.data?.data[0]?.keepItems 
+                                        }, ...keepData]
+                                        :
+                                        keepData.map( (keep) => keep.id === modalId ? {...keep, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
+                        setKeepData(newKeep)
+                    }).catch(err=>{
+                        console.error(err)
+                    })
+    }
+
+    const resetModal = () => {
+        setIsNewKeep(false)
+        setModalShow(false)
+        setModalId(null)
+        setModalTitle('')
+        setNewModalItem('')
+        setModalItems(null)
+        setDeleteKeepItemId([])   
+    }
+
     const handleModalClose = async () => {
 
         if(!modalTitle) {
-            alert('Keep Title Required') 
-        } else  {
-            setModalShow(false)
-            const url = `api/keep-app/store`
-            const storeData = {
-                user_id: currentUser.id,
-                id: modalId,
-                title: modalTitle,
-                slug: makeSlug(modalTitle),
-                keeps: modalItems,
-                deleteIds: deleteKeepItemId
+            if(isNewKeep) {
+                if(modalItems.length > 0) {
+                    if (confirm(`Do you want to save this Keep? A Title is required`)) {
+                    } else {
+                        resetModal()   
+                    }
+                } else {
+                    resetModal()   
+                }
+            } else {
+                alert('Keep Title Required')
             }
-            await axios.post(url, storeData)
-                        .then(res=>{
-                            const newKeep = keepData.map( (keep) => keep.id === modalId ? {...keep, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
-                            setKeepData(newKeep)
-                        }).catch(err=>{
-                            console.error(err)
-                        })
-            setModalId(null)
-            setModalTitle('')
-            setNewModalItem('')
-            setModalItems(null)
-            setDeleteKeepItemId([])        
+        } else {    
+            await storeData()
+            resetModal()
         }
     }
 
@@ -171,6 +202,21 @@ export const KeepProvider = ({ children }) => {
         setModalItems(newModalItems)
     }
 
+    const handleDestroyKeep = async () => {
+        if(confirm(`The current action will destroy the keep with all the items, Are you sure?`)) {
+            const url = `api/keep-app/destory`
+            const data = { id : modalId }
+            await axios.post(url, data)
+                    .then(res=>{
+                        const newKeep = keepData.filter((keep) => keep.id !== modalId)
+                        setKeepData(newKeep)
+                        resetModal()
+                    }).catch(err=>{
+                        console.error(err)
+                    })
+        }
+    }
+
     return <KeepContext.Provider value={{
         loading,
         users,
@@ -193,7 +239,8 @@ export const KeepProvider = ({ children }) => {
         handleModalItemCheckBoxChange,
         handleModalItemInputChange,
         handleAddNewModalItem,
-        handleModalItemDelete
+        handleModalItemDelete,
+        handleDestroyKeep
     }}>{children}</KeepContext.Provider>
 
 }

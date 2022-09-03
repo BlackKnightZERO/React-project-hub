@@ -12,7 +12,7 @@ const AddButton = () => {
       tabIndex="3"
       title="Add New Keep"
       aria-label="Add New Keep"
-      onClick={ () => handleModalShow(uuidv4(), '', [])}  
+      onClick={ () => handleModalShow(uuidv4(), '', [], true)}  
     >
         <FaPlus 
         />

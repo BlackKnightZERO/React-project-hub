@@ -11,7 +11,7 @@ const KeepCard = ({ id, title, keepItems, dismissed }) => {
         <>
             <Card 
                 className="keep-app-sticker-card" 
-                onClick={ () => !dismissed && handleModalShow(id, title, keepItems) }>
+                onClick={ () => !dismissed && handleModalShow(id, title, keepItems, false) }>
                 <Card.Body className="keep-app-sticker-card-body" >
                 <Card.Title className="text-center mb-2 keep-app-sticker-card-body-title">{ title }</Card.Title>
                     <div className="mt-3">

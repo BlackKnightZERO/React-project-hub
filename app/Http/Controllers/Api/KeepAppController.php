@@ -47,34 +47,46 @@ class KeepAppController extends Controller
     }
 
     public function getKeepsById($id) {
-        return KeepResource::collection(Keep::with(['keepItems', 'user'])->latest()->where('user_id', $id)->get());
 
+        return KeepResource::collection(Keep::with(['keepItems', 'user'])->latest()->where('user_id', $id)->get());
+    
     }
 
     public function store(Request $request) {
-        // $arrayMaps = [];
+        $isNewKeep = false;
         $validated = $request->validate([
-            'id'    => 'required',
-            'title' => 'required|unique:keeps,title,'.$request->id,
-            'slug'  => 'required|unique:keeps,slug,'.$request->id,
+            'id'        => 'required',
+            'user_id'   => 'required',
+            'title'     => 'required|unique:keeps,title,'.$request->id,
+            'slug'      => 'required|unique:keeps,slug,'.$request->id,
             'keeps.*.id'    => 'required',
             'keeps.*.title' => 'required',
-            'keeps.*.slug' => 'required',
+            'keeps.*.slug'  => 'required',
         ]);
         DB::beginTransaction();
         try{
-            Keep::updateOrCreate(['id' => $request->id], [
-                'title' => $request->title,
-                'slug' => $request->slug,
-            ]);
+            if(is_string($request->id)) {
+                $newKeep = Keep::create([
+                    'title' => $request->title,
+                    'slug' => $request->slug,
+                    'user_id' => $request->user_id
+                ]);
+                $isNewKeep = true;
+            } else {
+                Keep::where('id', $request->id)
+                    ->update([
+                        'title' => $request->title,
+                        'slug' => $request->slug,
+                        'user_id' => $request->user_id
+                    ]);
+            }
             foreach($request->keeps as $item) {
                 if(is_string($item['id'])){
                     $new = KeepItem::create([
-                        'keep_id' => $request->id,
+                        'keep_id' => $isNewKeep ? $newKeep->id : $request->id,
                         'title' => $item['title'],
                         'slug' => $item['slug'],
                     ]);
-                    // array_push($arrayMaps,[$item['id'] => $new->id]);
                 } else {
                     KeepItem::where('id', $item['id'])
                             ->update([
@@ -94,8 +106,7 @@ class KeepAppController extends Controller
             return response()->json([
                 'status' => 200,
                 'msg'  => 'success',
-                'data' => KeepResource::collection(Keep::with(['keepItems'])->latest()->where('id', $request->id)->get()),
-                // 'data' => $arrayMaps
+                'data' => KeepResource::collection(Keep::with(['keepItems'])->latest()->where('id', $isNewKeep ? $newKeep->id : $request->id)->get()),
             ]);
 
         } catch(\Exception $e){
@@ -106,4 +117,22 @@ class KeepAppController extends Controller
             ]);
         }
     }
+
+    public function destory(Request $request) {
+
+        $validated = $request->validate([
+            'id'    => 'required'
+        ]);
+
+        $keep = Keep::find($request->id);
+        $keep->keepItems()->delete();
+        $keep->delete();
+
+        return response()->json([
+            'status' => 200,
+            'msg'    => 'success',
+        ]); 
+
+    }
+
 }

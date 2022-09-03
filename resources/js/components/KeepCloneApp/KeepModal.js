@@ -1,16 +1,16 @@
-import { useState, useRef } from 'react';
+import { FaTrashAlt } from "react-icons/fa";
+
+import {  useRef } from 'react';
 
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import { useKeep } from "./Context/KeepContext";
 
-import { uuid } from 'uuidv4';
-
 import KeepItem from './KeepItem'
 
 const KeepModal = () => {
 
-    const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleAddNewModalItem, newModalItem } = useKeep()
+    const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleAddNewModalItem, newModalItem, handleDestroyKeep } = useKeep()
 
     const inputRef = useRef(null);
 
@@ -54,9 +54,9 @@ const KeepModal = () => {
                         </ul>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalClose}>
-                        Close
+                <Modal.Footer className='justify-content-between mt-2'>
+                    <Button variant="danger" onClick={handleDestroyKeep}>
+                        <FaTrashAlt /> Delete Keep
                     </Button>
                     <Button variant="primary" className='keep-app-modal-save-btn' onClick={handleModalClose}>
                         Save
