@@ -113,16 +113,16 @@ export const KeepProvider = ({ children }) => {
         }
         await axios.post(url, storeData)
                     .then(res=>{
-                        const newKeep = isNewKeep ? 
-                                        [{
-                                            id: res?.data?.data[0]?.id, 
-                                            title: res?.data?.data[0]?.title, 
-                                            slug: res?.data?.data[0]?.slug, 
-                                            description: res?.data?.data[0]?.description, 
-                                            keepItems: res?.data?.data[0]?.keepItems 
-                                        }, ...keepData]
-                                        :
-                                        keepData.map( (keep) => keep.id === modalId ? {...keep, id: res?.data?.data[0]?.id, title: res?.data?.data[0]?.title, slug: res?.data?.data[0]?.slug, description: res?.data?.data[0]?.description, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
+                        const updatedData = {
+                            id: res?.data?.data[0]?.id, 
+                            title: res?.data?.data[0]?.title, 
+                            slug: res?.data?.data[0]?.slug, 
+                            description: res?.data?.data[0]?.description, 
+                            keepItems: res?.data?.data[0]?.keepItems 
+                        }
+                        const newKeep = isNewKeep 
+                                        ? [updatedData, ...keepData] 
+                                        : keepData.map( (keep) => keep.id === modalId ? {...keep, id: res?.data?.data[0]?.id, title: res?.data?.data[0]?.title, slug: res?.data?.data[0]?.slug, description: res?.data?.data[0]?.description, keepItems: res?.data?.data[0]?.keepItems} : keep ) 
                         setKeepData(newKeep)
                     }).catch(err=>{
                         console.error(err)
@@ -144,9 +144,8 @@ export const KeepProvider = ({ children }) => {
         if(!modalTitle) {
             if(isNewKeep) {
                 if(modalItems.length > 0) {
-                    if (confirm(`Do you want to save this Keep? A Title is required`)) {
-                    } else {
-                        resetModal()   
+                    if (!confirm(`Do you want to save this Keep? A Title is required`)) {
+                        resetModal() 
                     }
                 } else {
                     resetModal()   
@@ -183,7 +182,7 @@ export const KeepProvider = ({ children }) => {
         setModalItems(newModalItems)
     }
 
-    const handleAddNewModalItem = (e) => {
+    const handleNewModalItemChange = (e) => {
         if( e.key === 'Enter' && newModalItem !== '' ){
             const id = uuidv4()
             const title = e.target.value
@@ -229,6 +228,7 @@ export const KeepProvider = ({ children }) => {
         modalTitle,
         modalItems,
         newModalItem,
+        isNewKeep,
         fetchUsers,
         fetchPlaceHolder,
         setSearch,
@@ -238,7 +238,7 @@ export const KeepProvider = ({ children }) => {
         handleModalTitleChange,
         handleModalItemCheckBoxChange,
         handleModalItemInputChange,
-        handleAddNewModalItem,
+        handleNewModalItemChange,
         handleModalItemDelete,
         handleDestroyKeep
     }}>{children}</KeepContext.Provider>

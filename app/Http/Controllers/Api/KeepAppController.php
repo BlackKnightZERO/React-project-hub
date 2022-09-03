@@ -23,7 +23,7 @@ class KeepAppController extends Controller
                         'keepItems' => array(
                                         array('id' => -11, 'title' => 'Eggs', 'status' =>  1),
                                         array('id' => -12, 'title' => 'Onions', 'status' =>  1),
-                                        array('id' => -13, 'title' => 'Suger', 'status' =>  0),
+                                        array('id' => -13, 'title' => 'Suger', 'status' =>  1),
                                         array('id' => -14, 'title' => 'Salt', 'status' =>  1),
                     )),
                     array(

@@ -4017,13 +4017,14 @@ var KeepProvider = function KeepProvider(_ref) {
               return axios__WEBPACK_IMPORTED_MODULE_2___default().post(url, storeData).then(function (res) {
                 var _res$data4, _res$data4$data$, _res$data5, _res$data5$data$, _res$data6, _res$data6$data$, _res$data7, _res$data7$data$, _res$data8, _res$data8$data$;
 
-                var newKeep = isNewKeep ? [{
+                var updatedData = {
                   id: res === null || res === void 0 ? void 0 : (_res$data4 = res.data) === null || _res$data4 === void 0 ? void 0 : (_res$data4$data$ = _res$data4.data[0]) === null || _res$data4$data$ === void 0 ? void 0 : _res$data4$data$.id,
                   title: res === null || res === void 0 ? void 0 : (_res$data5 = res.data) === null || _res$data5 === void 0 ? void 0 : (_res$data5$data$ = _res$data5.data[0]) === null || _res$data5$data$ === void 0 ? void 0 : _res$data5$data$.title,
                   slug: res === null || res === void 0 ? void 0 : (_res$data6 = res.data) === null || _res$data6 === void 0 ? void 0 : (_res$data6$data$ = _res$data6.data[0]) === null || _res$data6$data$ === void 0 ? void 0 : _res$data6$data$.slug,
                   description: res === null || res === void 0 ? void 0 : (_res$data7 = res.data) === null || _res$data7 === void 0 ? void 0 : (_res$data7$data$ = _res$data7.data[0]) === null || _res$data7$data$ === void 0 ? void 0 : _res$data7$data$.description,
                   keepItems: res === null || res === void 0 ? void 0 : (_res$data8 = res.data) === null || _res$data8 === void 0 ? void 0 : (_res$data8$data$ = _res$data8.data[0]) === null || _res$data8$data$ === void 0 ? void 0 : _res$data8$data$.keepItems
-                }].concat(_toConsumableArray(keepData)) : keepData.map(function (keep) {
+                };
+                var newKeep = isNewKeep ? [updatedData].concat(_toConsumableArray(keepData)) : keepData.map(function (keep) {
                   var _res$data9, _res$data9$data$, _res$data10, _res$data10$data$, _res$data11, _res$data11$data$, _res$data12, _res$data12$data$, _res$data13, _res$data13$data$;
 
                   return keep.id === modalId ? _objectSpread(_objectSpread({}, keep), {}, {
@@ -4075,7 +4076,7 @@ var KeepProvider = function KeepProvider(_ref) {
 
               if (isNewKeep) {
                 if (modalItems.length > 0) {
-                  if (confirm("Do you want to save this Keep? A Title is required")) {} else {
+                  if (!confirm("Do you want to save this Keep? A Title is required")) {
                     resetModal();
                   }
                 } else {
@@ -4142,7 +4143,7 @@ var KeepProvider = function KeepProvider(_ref) {
     setModalItems(newModalItems);
   };
 
-  var handleAddNewModalItem = function handleAddNewModalItem(e) {
+  var handleNewModalItemChange = function handleNewModalItemChange(e) {
     if (e.key === 'Enter' && newModalItem !== '') {
       var id = (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])();
       var title = e.target.value;
@@ -4225,6 +4226,7 @@ var KeepProvider = function KeepProvider(_ref) {
       modalTitle: modalTitle,
       modalItems: modalItems,
       newModalItem: newModalItem,
+      isNewKeep: isNewKeep,
       fetchUsers: fetchUsers,
       fetchPlaceHolder: fetchPlaceHolder,
       setSearch: setSearch,
@@ -4234,7 +4236,7 @@ var KeepProvider = function KeepProvider(_ref) {
       handleModalTitleChange: handleModalTitleChange,
       handleModalItemCheckBoxChange: handleModalItemCheckBoxChange,
       handleModalItemInputChange: handleModalItemInputChange,
-      handleAddNewModalItem: handleAddNewModalItem,
+      handleNewModalItemChange: handleNewModalItemChange,
       handleModalItemDelete: handleModalItemDelete,
       handleDestroyKeep: handleDestroyKeep
     },
@@ -4675,9 +4677,10 @@ var KeepModal = function KeepModal() {
       modalTitle = _useKeep.modalTitle,
       handleModalTitleChange = _useKeep.handleModalTitleChange,
       modalItems = _useKeep.modalItems,
-      handleAddNewModalItem = _useKeep.handleAddNewModalItem,
+      handleNewModalItemChange = _useKeep.handleNewModalItemChange,
       newModalItem = _useKeep.newModalItem,
-      handleDestroyKeep = _useKeep.handleDestroyKeep;
+      handleDestroyKeep = _useKeep.handleDestroyKeep,
+      isNewKeep = _useKeep.isNewKeep;
 
   var inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -4715,10 +4718,10 @@ var KeepModal = function KeepModal() {
                 ref: inputRef,
                 placeholder: "+ List item",
                 onChange: function onChange(e) {
-                  return handleAddNewModalItem(e);
+                  return handleNewModalItemChange(e);
                 },
                 onKeyPress: function onKeyPress(e) {
-                  return handleAddNewModalItem(e);
+                  return handleNewModalItemChange(e);
                 },
                 value: newModalItem,
                 className: "todo-app-modal-item-input"
@@ -4727,16 +4730,16 @@ var KeepModal = function KeepModal() {
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Footer, {
-        className: "justify-content-between mt-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        className: "justify-content-between flex-row-reverse mt-2",
+        children: [!isNewKeep ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
           variant: "danger",
           onClick: handleDestroyKeep,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_6__.FaTrashAlt, {}), " Delete Keep"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
           variant: "primary",
           className: "keep-app-modal-save-btn",
           onClick: handleModalClose,
-          children: "Save"
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_6__.FaCloudDownloadAlt, {}), " Save"]
         })]
       })]
     })

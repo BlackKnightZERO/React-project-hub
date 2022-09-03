@@ -1,8 +1,8 @@
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaCloudDownloadAlt } from "react-icons/fa";
 
 import {  useRef } from 'react';
 
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 import { useKeep } from "./Context/KeepContext";
 
@@ -10,7 +10,7 @@ import KeepItem from './KeepItem'
 
 const KeepModal = () => {
 
-    const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleAddNewModalItem, newModalItem, handleDestroyKeep } = useKeep()
+    const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleNewModalItemChange, newModalItem, handleDestroyKeep, isNewKeep } = useKeep()
 
     const inputRef = useRef(null);
 
@@ -45,8 +45,8 @@ const KeepModal = () => {
                                 <input type="text" 
                                     ref={inputRef}
                                     placeholder='+ List item'
-                                    onChange={ (e) => handleAddNewModalItem(e) }
-                                    onKeyPress={ (e) => handleAddNewModalItem(e) }
+                                    onChange={ (e) => handleNewModalItemChange(e) }
+                                    onKeyPress={ (e) => handleNewModalItemChange(e) }
                                     value={newModalItem}
                                     className='todo-app-modal-item-input' 
                                 />
@@ -54,12 +54,14 @@ const KeepModal = () => {
                         </ul>
                     </div>
                 </Modal.Body>
-                <Modal.Footer className='justify-content-between mt-2'>
+                <Modal.Footer className='justify-content-between flex-row-reverse mt-2'>
+                    { !isNewKeep ? (
                     <Button variant="danger" onClick={handleDestroyKeep}>
                         <FaTrashAlt /> Delete Keep
                     </Button>
+                    ) : null }
                     <Button variant="primary" className='keep-app-modal-save-btn' onClick={handleModalClose}>
-                        Save
+                        <FaCloudDownloadAlt /> Save
                     </Button>
                 </Modal.Footer>
             </Modal>
