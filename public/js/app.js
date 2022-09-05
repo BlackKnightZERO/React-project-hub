@@ -3771,6 +3771,8 @@ var useKeep = function useKeep() {
 };
 var KeepProvider = function KeepProvider(_ref) {
   var children = _ref.children;
+  var newTitleInputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var newItemInputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3995,6 +3997,13 @@ var KeepProvider = function KeepProvider(_ref) {
     });
     setModalItems(modifiedItems);
     setModalShow(true);
+    setTimeout(function () {
+      if (newKeep) {
+        newTitleInputRef.current.focus();
+      } else {
+        newItemInputRef.current.focus();
+      }
+    }, 500);
   };
 
   var storeData = /*#__PURE__*/function () {
@@ -4112,7 +4121,9 @@ var KeepProvider = function KeepProvider(_ref) {
   var handleModalTitleChange = function handleModalTitleChange(e) {
     var newTitle = e.target.value;
 
-    if (event.key === 'Enter') {}
+    if (event.key === 'Enter') {
+      newItemInputRef.current.focus();
+    }
 
     setModalTitle(newTitle);
   };
@@ -4238,7 +4249,9 @@ var KeepProvider = function KeepProvider(_ref) {
       handleModalItemInputChange: handleModalItemInputChange,
       handleNewModalItemChange: handleNewModalItemChange,
       handleModalItemDelete: handleModalItemDelete,
-      handleDestroyKeep: handleDestroyKeep
+      handleDestroyKeep: handleDestroyKeep,
+      newTitleInputRef: newTitleInputRef,
+      newItemInputRef: newItemInputRef
     },
     children: children
   });
@@ -4345,7 +4358,7 @@ var KeepCardCollection = function KeepCardCollection(_ref) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
           xs: 12,
           sm: 6,
-          md: 4,
+          lg: 4,
           className: "mb-4",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "keep-app-sticker-div",
@@ -4364,7 +4377,7 @@ var KeepCardCollection = function KeepCardCollection(_ref) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
             xs: 12,
             sm: 6,
-            md: 4,
+            lg: 4,
             className: "mb-4",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "keep-app-sticker-div",
@@ -4653,15 +4666,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Context/KeepContext */ "./resources/js/components/KeepCloneApp/Context/KeepContext.js");
-/* harmony import */ var _KeepItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./KeepItem */ "./resources/js/components/KeepCloneApp/KeepItem.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _Context_KeepContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Context/KeepContext */ "./resources/js/components/KeepCloneApp/Context/KeepContext.js");
+/* harmony import */ var _KeepItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KeepItem */ "./resources/js/components/KeepCloneApp/KeepItem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -4671,7 +4681,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var KeepModal = function KeepModal() {
-  var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_1__.useKeep)(),
+  var _useKeep = (0,_Context_KeepContext__WEBPACK_IMPORTED_MODULE_0__.useKeep)(),
       modalShow = _useKeep.modalShow,
       handleModalClose = _useKeep.handleModalClose,
       modalTitle = _useKeep.modalTitle,
@@ -4680,19 +4690,21 @@ var KeepModal = function KeepModal() {
       handleNewModalItemChange = _useKeep.handleNewModalItemChange,
       newModalItem = _useKeep.newModalItem,
       handleDestroyKeep = _useKeep.handleDestroyKeep,
-      isNewKeep = _useKeep.isNewKeep;
+      isNewKeep = _useKeep.isNewKeep,
+      newTitleInputRef = _useKeep.newTitleInputRef,
+      newItemInputRef = _useKeep.newItemInputRef;
 
-  var inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       className: "keep-app-modal",
       show: modalShow,
       onHide: handleModalClose,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Header, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Header, {
         closeButton: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Title, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "text",
+            ref: newTitleInputRef,
             placeholder: "Title...",
             className: "keep-app-modal-title-input",
             onChange: function onChange(e) {
@@ -4704,18 +4716,18 @@ var KeepModal = function KeepModal() {
             value: modalTitle
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Body, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Body, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
             className: "keep-app-ul",
             children: [modalItems && modalItems.map(function (item) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_KeepItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_KeepItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
                 item: item
               }, item.id);
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                 type: "text",
-                ref: inputRef,
+                ref: newItemInputRef,
                 placeholder: "+ List item",
                 onChange: function onChange(e) {
                   return handleNewModalItemChange(e);
@@ -4729,17 +4741,17 @@ var KeepModal = function KeepModal() {
             })]
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Footer, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Footer, {
         className: "justify-content-between flex-row-reverse mt-2",
-        children: [!isNewKeep ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        children: [!isNewKeep ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
           variant: "danger",
           onClick: handleDestroyKeep,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_6__.FaTrashAlt, {}), " Delete Keep"]
-        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_5__.FaTrashAlt, {}), " Delete Keep"]
+        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
           variant: "primary",
           className: "keep-app-modal-save-btn",
           onClick: handleModalClose,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_6__.FaCloudDownloadAlt, {}), " Save"]
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_5__.FaCloudDownloadAlt, {}), " Save"]
         })]
       })]
     })
@@ -4970,7 +4982,7 @@ var ProjectCard = function ProjectCard(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
       style: {
-        width: '18rem'
+        width: '17.5rem'
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Img, {
         variant: "top",
@@ -5673,7 +5685,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -7,7 +7,7 @@ import Logo from "../../logo.svg"
 const ProjectCard = ({ title, description, addons, url }) => {
     return (
         <>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '17.5rem' }}>
                 <Card.Img variant="top" src={Logo} className="project-logo" alt="logo" />
                 <Card.Body className="project-card-body">
                     <Card.Title className="text-center project-title">{ title }</Card.Title>

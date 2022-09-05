@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import slugify from 'slugify';
 import axios from 'axios';
@@ -10,6 +10,9 @@ export const useKeep = () => {
 }
 
 export const KeepProvider = ({ children }) => {
+
+    const newTitleInputRef = useRef(null);
+    const newItemInputRef = useRef(null);
 
     const [ loading, setLoading ] = useState(false)
     const [ users, setUsers ] = useState([])
@@ -99,6 +102,13 @@ export const KeepProvider = ({ children }) => {
         const modifiedItems = keepItems.map((item) => item.status === 0 ? {...item, status: false} : {...item, status: true})
         setModalItems(modifiedItems)
         setModalShow(true)
+        setTimeout(() => {
+            if(newKeep) {
+                newTitleInputRef.current.focus()
+            } else {
+                newItemInputRef.current.focus()
+            }
+        }, 500)
     }
 
     const storeData = async () => {
@@ -162,7 +172,7 @@ export const KeepProvider = ({ children }) => {
     const handleModalTitleChange = (e) => {
         const newTitle = e.target.value
         if(event.key === 'Enter'){
-
+            newItemInputRef.current.focus()
         }
         setModalTitle(newTitle)
     }
@@ -240,7 +250,9 @@ export const KeepProvider = ({ children }) => {
         handleModalItemInputChange,
         handleNewModalItemChange,
         handleModalItemDelete,
-        handleDestroyKeep
+        handleDestroyKeep,
+        newTitleInputRef,
+        newItemInputRef
     }}>{children}</KeepContext.Provider>
 
 }

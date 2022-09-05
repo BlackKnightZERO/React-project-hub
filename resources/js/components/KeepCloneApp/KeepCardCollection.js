@@ -12,7 +12,7 @@ const KeepCardCollection = ({ keepData, placeHolder, activePlaceHolder }) => {
               {
                 placeHolder.map( 
                   (keep) => (
-                    <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
+                    <Col key={keep.id} xs={12} sm={6} lg={4} className="mb-4">
                         <div className="keep-app-sticker-div" >
                             <KeepCard
                                 id={keep.id}
@@ -34,7 +34,7 @@ const KeepCardCollection = ({ keepData, placeHolder, activePlaceHolder }) => {
                   {
                     keepData.map( 
                       (keep) => (
-                        <Col key={keep.id} xs={12} sm={6} md={4} className="mb-4">
+                        <Col key={keep.id} xs={12} sm={6} lg={4} className="mb-4">
                             <div className="keep-app-sticker-div" >
                                 <KeepCard
                                     id={keep.id}

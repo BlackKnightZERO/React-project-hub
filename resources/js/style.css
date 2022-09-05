@@ -36,14 +36,6 @@ body{
     color: #996600;
 }
 
-.keep-app-sticker-card {
-    min-width: 16rem;
-    min-height: 16rem;
-    height: 16rem;
-    overflow: hidden;
-    background: #F79000;
-}
-
 .keep-app-checkbox{
     display: inline;
     margin: 5px;

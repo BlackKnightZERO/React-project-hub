@@ -1,7 +1,5 @@
 import { FaTrashAlt, FaCloudDownloadAlt } from "react-icons/fa";
 
-import {  useRef } from 'react';
-
 import { Button, Modal } from 'react-bootstrap';
 
 import { useKeep } from "./Context/KeepContext";
@@ -10,9 +8,7 @@ import KeepItem from './KeepItem'
 
 const KeepModal = () => {
 
-    const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleNewModalItemChange, newModalItem, handleDestroyKeep, isNewKeep } = useKeep()
-
-    const inputRef = useRef(null);
+    const { modalShow, handleModalClose, modalTitle, handleModalTitleChange, modalItems, handleNewModalItemChange, newModalItem, handleDestroyKeep, isNewKeep, newTitleInputRef, newItemInputRef } = useKeep()
 
     return (
         <>
@@ -20,6 +16,7 @@ const KeepModal = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>
                         <input type="text" 
+                            ref={newTitleInputRef}
                             placeholder='Title...'
                             className='keep-app-modal-title-input'
                             onChange={ (e) => handleModalTitleChange(e) }
@@ -43,7 +40,7 @@ const KeepModal = () => {
                             }
                             <li>
                                 <input type="text" 
-                                    ref={inputRef}
+                                    ref={newItemInputRef}
                                     placeholder='+ List item'
                                     onChange={ (e) => handleNewModalItemChange(e) }
                                     onKeyPress={ (e) => handleNewModalItemChange(e) }
