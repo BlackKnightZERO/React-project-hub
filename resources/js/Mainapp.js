@@ -4,10 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from './components/Layout/Header';
 import Landing from './components/Landing/Landing';
-import FirstComponent from './components/FirstComponent/FirstComponent';
 import BirthdayApp from './components/BirthdayApp/BirthdayApp'
 import KeepCloneApp from './components/KeepCloneApp/KeepCloneApp'
 import ToDoApp from './components/ToDoApp/ToDoApp'
+import ColorApp from './components/ColorApp/ColorApp'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
@@ -18,10 +18,10 @@ const Mainapp = () => {
             <Header />
             <Routes>
                 <Route exact path="/" element={<Landing />} />
-                <Route exact path="/first" element={<FirstComponent />} />
                 <Route exact path="/birthday-app" element={<BirthdayApp />} />
                 <Route exact path="/keep-app" element={<KeepCloneApp />} />
                 <Route exact path="/todo-app" element={<ToDoApp />} />
+                <Route exact path="/color-app" element={<ColorApp />} />
             </Routes>
         </>
     )

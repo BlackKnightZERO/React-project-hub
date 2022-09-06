@@ -39,6 +39,21 @@ const Landing = () => {
                                 />
                         </Stack>
 
+                        <Stack direction direction="horizontal" gap={4} className="mx-auto">
+                                <ProjectCard
+                                    title="Color App"
+                                    description="Color App"
+                                    addons="play with colors"
+                                    url="/color-app"
+                                />
+                                {/* <ProjectCard
+                                    title="To-do App"
+                                    description="Helps to get organized"
+                                    addons=""
+                                    url="/todo-app"
+                                /> */}
+                        </Stack>
+
                     </Stack>
                 </div>
             {/* </Stack> */}
