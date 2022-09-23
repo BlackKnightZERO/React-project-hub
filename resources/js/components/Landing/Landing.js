@@ -27,8 +27,8 @@ const Landing = () => {
                         <Stack direction direction="horizontal" gap={4} className="mx-auto">
                                 <ProjectCard
                                     title="Keep Notes"
-                                    description="Google keep clone"
-                                    addons="multi-purpose listed items"
+                                    description="Effective Note Taking"
+                                    addons="Google-Keep clone"
                                     url="/keep-app"
                                 />
                                 <ProjectCard
@@ -46,12 +46,12 @@ const Landing = () => {
                                     addons="play with colors"
                                     url="/color-app"
                                 />
-                                {/* <ProjectCard
-                                    title="To-do App"
-                                    description="Helps to get organized"
-                                    addons=""
-                                    url="/todo-app"
-                                /> */}
+                                <ProjectCard
+                                    title="Crypto App"
+                                    description="Crypto Currency Rates"
+                                    addons="coincap.io clone"
+                                    url="/crypto-app"
+                                />
                         </Stack>
 
                     </Stack>

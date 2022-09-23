@@ -3169,17 +3169,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _components_Layout_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Layout/Header */ "./resources/js/components/Layout/Header.js");
 /* harmony import */ var _components_Landing_Landing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Landing/Landing */ "./resources/js/components/Landing/Landing.js");
 /* harmony import */ var _components_BirthdayApp_BirthdayApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/BirthdayApp/BirthdayApp */ "./resources/js/components/BirthdayApp/BirthdayApp.js");
 /* harmony import */ var _components_KeepCloneApp_KeepCloneApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/KeepCloneApp/KeepCloneApp */ "./resources/js/components/KeepCloneApp/KeepCloneApp.js");
 /* harmony import */ var _components_ToDoApp_ToDoApp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ToDoApp/ToDoApp */ "./resources/js/components/ToDoApp/ToDoApp.js");
 /* harmony import */ var _components_ColorApp_ColorApp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/ColorApp/ColorApp */ "./resources/js/components/ColorApp/ColorApp.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./style.css */ "./resources/js/style.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_CryptoApp_CryptoApp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/CryptoApp/CryptoApp */ "./resources/js/components/CryptoApp/CryptoApp.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./style.css */ "./resources/js/style.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -3196,28 +3198,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Mainapp = function Mainapp() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Layout_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_Layout_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Landing_Landing__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_Landing_Landing__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/birthday-app",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_BirthdayApp_BirthdayApp__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_BirthdayApp_BirthdayApp__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/keep-app",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_KeepCloneApp_KeepCloneApp__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_KeepCloneApp_KeepCloneApp__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/todo-app",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_ToDoApp_ToDoApp__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_ToDoApp_ToDoApp__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/color-app",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_ColorApp_ColorApp__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_ColorApp_ColorApp__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+        exact: true,
+        path: "/crypto-app",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_CryptoApp_CryptoApp__WEBPACK_IMPORTED_MODULE_8__["default"], {})
       })]
     })]
   });
@@ -3229,8 +3235,8 @@ var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(rootElem
 root.render(
 /*#__PURE__*/
 // <StrictMode>                                                                 // useEffect runs twice problem
-(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.BrowserRouter, {
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Mainapp, {})
+(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.BrowserRouter, {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Mainapp, {})
 }) // </StrictMode>
 );
 
@@ -3776,6 +3782,255 @@ Square.defaultProps = {
   colorValue: 'Empty Color Value'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Square);
+
+/***/ }),
+
+/***/ "./resources/js/components/CryptoApp/CryptoApp.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/CryptoApp/CryptoApp.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navigation */ "./resources/js/components/CryptoApp/Navigation.js");
+/* harmony import */ var _MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainContainer */ "./resources/js/components/CryptoApp/MainContainer.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/CryptoApp/Footer.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+var CryptoApp = function CryptoApp() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MainContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CryptoApp);
+
+/***/ }),
+
+/***/ "./resources/js/components/CryptoApp/Footer.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/CryptoApp/Footer.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+var Footer = function Footer() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: "Footer"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
+
+/***/ }),
+
+/***/ "./resources/js/components/CryptoApp/Header.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/CryptoApp/Header.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Collapse.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var Header = function Header() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      headerCollapse = _useState2[0],
+      setHeaderCollapse = _useState2[1];
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      className: "crypto-app-header-mobile-screen",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        variant: "secondary",
+        onClick: function onClick() {
+          return setHeaderCollapse(!headerCollapse);
+        },
+        "aria-controls": "example-collapse-text",
+        "aria-expanded": headerCollapse,
+        style: {
+          width: '100%',
+          borderRadius: '0px',
+          textAlign: 'left',
+          padding: '.5rem',
+          margin: '0px',
+          backgroundColor: '#424242'
+        },
+        className: "crypto-app-header-mobile-screen-collapse-btn",
+        children: "Market Snapshot"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        "in": headerCollapse,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          id: "example-collapse-text",
+          className: "crypto-app-header-mobile-screen-collapse-field",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "crypto-app-header-mobile-screen-collapse-field-children",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Left"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Right"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "crypto-app-header-mobile-screen-collapse-field-children",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Left"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Right"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "crypto-app-header-mobile-screen-collapse-field-children",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Left"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Right"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "crypto-app-header-mobile-screen-collapse-field-children",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Left"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Right"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "crypto-app-header-mobile-screen-collapse-field-children",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Left"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Right"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "crypto-app-header-mobile-screen-collapse-field-children",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Left"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: "Right"
+            })]
+          })]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      className: "crypto-app-header",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "1"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "2"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "3"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "4"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "5"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "6"
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/components/CryptoApp/MainContainer.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/CryptoApp/MainContainer.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header */ "./resources/js/components/CryptoApp/Header.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var MainContainer = function MainContainer() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: "MainContainer"
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainContainer);
+
+/***/ }),
+
+/***/ "./resources/js/components/CryptoApp/Navigation.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/CryptoApp/Navigation.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+var Navigation = function Navigation() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: "Navigation"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navigation);
 
 /***/ }),
 
@@ -5019,7 +5274,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var Landing = function Landing() {
-  var _jsxs2, _jsxs3, _jsx2;
+  var _jsxs2, _jsxs3, _jsxs4;
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -5043,22 +5298,27 @@ var Landing = function Landing() {
           direction: true
         }, _defineProperty(_jsxs3, "direction", "horizontal"), _defineProperty(_jsxs3, "gap", 4), _defineProperty(_jsxs3, "className", "mx-auto"), _defineProperty(_jsxs3, "children", [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
           title: "Keep Notes",
-          description: "Google keep clone",
-          addons: "multi-purpose listed items",
+          description: "Effective Note Taking",
+          addons: "Google-Keep clone",
           url: "/keep-app"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
           title: "To-do App",
           description: "Helps to get organized",
           addons: "",
           url: "/todo-app"
-        })]), _jsxs3)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], (_jsx2 = {
+        })]), _jsxs3)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], (_jsxs4 = {
           direction: true
-        }, _defineProperty(_jsx2, "direction", "horizontal"), _defineProperty(_jsx2, "gap", 4), _defineProperty(_jsx2, "className", "mx-auto"), _defineProperty(_jsx2, "children", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        }, _defineProperty(_jsxs4, "direction", "horizontal"), _defineProperty(_jsxs4, "gap", 4), _defineProperty(_jsxs4, "className", "mx-auto"), _defineProperty(_jsxs4, "children", [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
           title: "Color App",
           description: "Color App",
           addons: "play with colors",
           url: "/color-app"
-        })), _jsx2))]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProjectCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          title: "Crypto App",
+          description: "Crypto Currency Rates",
+          addons: "coincap.io clone",
+          url: "/crypto-app"
+        })]), _jsxs4))]
       })
     })
   });
@@ -8416,7 +8676,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }\r\n\r\n  .color-app {\r\n    min-height: 72vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-size: 33px;\r\n  }\r\n  \r\n  .color-app-square {\r\n    width: 400px;\r\n    height: 400px;\r\n    border: 2px solid #000;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    display: grid;\r\n    place-content: center;\r\n  }\r\n  \r\n  .color-app-square p {\r\n    text-align: center;\r\n  }\r\n  \r\n  .color-app-form {\r\n    width: 400px;\r\n  }\r\n  \r\n  .color-app-label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .color-app input[type=\"text\"] {\r\n    margin-top: 0.5rem;\r\n    padding: 0.25rem;\r\n    width: 100%;\r\n    font-size: 1rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .color-app button {\r\n    width: 100%;\r\n    min-height: 48px;\r\n    margin-top: 0.5rem;\r\n    font-size: 1rem;\r\n    border-radius: 0.25rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    padding: 0.25rem;\r\n  }", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }\r\n\r\n  .color-app {\r\n    min-height: 72vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-size: 33px;\r\n  }\r\n  \r\n  .color-app-square {\r\n    width: 400px;\r\n    height: 400px;\r\n    border: 2px solid #000;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    display: grid;\r\n    place-content: center;\r\n  }\r\n  \r\n  .color-app-square p {\r\n    text-align: center;\r\n  }\r\n  \r\n  .color-app-form {\r\n    width: 400px;\r\n  }\r\n  \r\n  .color-app-label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .color-app input[type=\"text\"] {\r\n    margin-top: 0.5rem;\r\n    padding: 0.25rem;\r\n    width: 100%;\r\n    font-size: 1rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .color-app button {\r\n    width: 100%;\r\n    min-height: 48px;\r\n    margin-top: 0.5rem;\r\n    font-size: 1rem;\r\n    border-radius: 0.25rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    padding: 0.25rem;\r\n  }\r\n\r\n  .crypto-app-header {\r\n    background-color: #424242;\r\n    width: 100%;\r\n    height: 30vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n  }\r\n\r\n  .crypto-app-header > div {\r\n    border: 1px solid red;\r\n    width: 2rem;\r\n  }\r\n\r\n  @media only screen and (max-width: 768px) {\r\n    .crypto-app-header {\r\n      display: none;\r\n    }\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-btn:focus {\r\n    border:none;\r\n    outline: 0;\r\n    box-shadow: none;\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-field {\r\n    background-color: #424242;\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-field-children {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: .8rem 2rem;\r\n    color: #fff;\r\n    border-bottom: 2px solid #3E3F3F;\r\n  }\r\n\r\n  @media only screen and (min-width: 768px) {\r\n    .crypto-app-header-mobile-screen {\r\n      display: none;\r\n    }\r\n  }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28843,6 +29103,123 @@ Col.displayName = 'Col';
 
 /***/ }),
 
+/***/ "./node_modules/react-bootstrap/esm/Collapse.js":
+/*!******************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/Collapse.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dom-helpers/css */ "./node_modules/dom-helpers/esm/css.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-transition-group/Transition */ "./node_modules/react-transition-group/esm/Transition.js");
+/* harmony import */ var _transitionEndListener__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./transitionEndListener */ "./node_modules/react-bootstrap/esm/transitionEndListener.js");
+/* harmony import */ var _createChainedFunction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createChainedFunction */ "./node_modules/react-bootstrap/esm/createChainedFunction.js");
+/* harmony import */ var _triggerBrowserReflow__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./triggerBrowserReflow */ "./node_modules/react-bootstrap/esm/triggerBrowserReflow.js");
+/* harmony import */ var _TransitionWrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./TransitionWrapper */ "./node_modules/react-bootstrap/esm/TransitionWrapper.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+const MARGINS = {
+  height: ['marginTop', 'marginBottom'],
+  width: ['marginLeft', 'marginRight']
+};
+
+function getDefaultDimensionValue(dimension, elem) {
+  const offset = `offset${dimension[0].toUpperCase()}${dimension.slice(1)}`;
+  const value = elem[offset];
+  const margins = MARGINS[dimension];
+  return value + // @ts-ignore
+  parseInt((0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__["default"])(elem, margins[0]), 10) + // @ts-ignore
+  parseInt((0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__["default"])(elem, margins[1]), 10);
+}
+
+const collapseStyles = {
+  [react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_4__.EXITED]: 'collapse',
+  [react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_4__.EXITING]: 'collapsing',
+  [react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_4__.ENTERING]: 'collapsing',
+  [react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_4__.ENTERED]: 'collapse show'
+};
+const defaultProps = {
+  in: false,
+  timeout: 300,
+  mountOnEnter: false,
+  unmountOnExit: false,
+  appear: false,
+  getDimensionValue: getDefaultDimensionValue
+};
+const Collapse = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().forwardRef(({
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  className,
+  children,
+  dimension = 'height',
+  getDimensionValue = getDefaultDimensionValue,
+  ...props
+}, ref) => {
+  /* Compute dimension */
+  const computedDimension = typeof dimension === 'function' ? dimension() : dimension;
+  /* -- Expanding -- */
+
+  const handleEnter = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => (0,_createChainedFunction__WEBPACK_IMPORTED_MODULE_5__["default"])(elem => {
+    elem.style[computedDimension] = '0';
+  }, onEnter), [computedDimension, onEnter]);
+  const handleEntering = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => (0,_createChainedFunction__WEBPACK_IMPORTED_MODULE_5__["default"])(elem => {
+    const scroll = `scroll${computedDimension[0].toUpperCase()}${computedDimension.slice(1)}`;
+    elem.style[computedDimension] = `${elem[scroll]}px`;
+  }, onEntering), [computedDimension, onEntering]);
+  const handleEntered = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => (0,_createChainedFunction__WEBPACK_IMPORTED_MODULE_5__["default"])(elem => {
+    elem.style[computedDimension] = null;
+  }, onEntered), [computedDimension, onEntered]);
+  /* -- Collapsing -- */
+
+  const handleExit = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => (0,_createChainedFunction__WEBPACK_IMPORTED_MODULE_5__["default"])(elem => {
+    elem.style[computedDimension] = `${getDimensionValue(computedDimension, elem)}px`;
+    (0,_triggerBrowserReflow__WEBPACK_IMPORTED_MODULE_6__["default"])(elem);
+  }, onExit), [onExit, getDimensionValue, computedDimension]);
+  const handleExiting = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => (0,_createChainedFunction__WEBPACK_IMPORTED_MODULE_5__["default"])(elem => {
+    elem.style[computedDimension] = null;
+  }, onExiting), [computedDimension, onExiting]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_TransitionWrapper__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    ref: ref,
+    addEndListener: _transitionEndListener__WEBPACK_IMPORTED_MODULE_8__["default"],
+    ...props,
+    "aria-expanded": props.role ? props.in : null,
+    onEnter: handleEnter,
+    onEntering: handleEntering,
+    onEntered: handleEntered,
+    onExit: handleExit,
+    onExiting: handleExiting,
+    childRef: children.ref,
+    children: (state, innerProps) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().cloneElement(children, { ...innerProps,
+      className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, children.props.className, collapseStyles[state], computedDimension === 'width' && 'collapse-horizontal')
+    })
+  });
+}); // @ts-ignore
+
+// @ts-ignore
+Collapse.defaultProps = defaultProps;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Collapse);
+
+/***/ }),
+
 /***/ "./node_modules/react-bootstrap/esm/Container.js":
 /*!*******************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/Container.js ***!
@@ -30604,6 +30981,46 @@ const TransitionWrapper = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defaul
   });
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TransitionWrapper);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/createChainedFunction.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/createChainedFunction.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * Safe chained function
+ *
+ * Will only create a new function if needed,
+ * otherwise will pass back existing functions or null.
+ *
+ * @param {function} functions to chain
+ * @returns {function|null}
+ */
+function createChainedFunction(...funcs) {
+  return funcs.filter(f => f != null).reduce((acc, f) => {
+    if (typeof f !== 'function') {
+      throw new Error('Invalid Argument Type, must only provide functions, undefined, or null.');
+    }
+
+    if (acc === null) return f;
+    return function chainedFunction(...args) {
+      // @ts-ignore
+      acc.apply(this, args); // @ts-ignore
+
+      f.apply(this, args);
+    };
+  }, null);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createChainedFunction);
 
 /***/ }),
 
