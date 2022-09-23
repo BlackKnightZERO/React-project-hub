@@ -71,12 +71,30 @@ const Header = () => {
         </Collapse>
         </section>
         <section className='crypto-app-header'>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
+            <div>
+                <h6>MARCET CAP</h6>
+                <h4>$1.13T</h4>
+            </div>
+            <div>
+                <h6>EXCHANGE VOL</h6>
+                <h4>$68.88B</h4>
+            </div>
+            <div>
+                <h6>ASSETS</h6>
+                <h4>2,296</h4>
+            </div>
+            <div>
+                <h6>EXCHANGES</h6>
+                <h4>73</h4>
+            </div>
+            <div>
+                <h6>MARKETS</h6>
+                <h4>14,064</h4>
+            </div>
+            <div>
+                <h6>BTC DOM INDEX</h6>
+                <h4>31.0%</h4>
+            </div>
         </section>
     </>
   )

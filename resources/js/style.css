@@ -359,23 +359,42 @@ body{
     padding: 0.25rem;
   }
 
+  .crypto-app-header-extended-grey-box {
+    
+  }
+
   .crypto-app-header {
     background-color: #424242;
     width: 100%;
     height: 30vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    flex-wrap: wrap;
+    padding-top: 2rem;
   }
 
   .crypto-app-header > div {
-    border: 1px solid red;
-    width: 2rem;
+    /* border: 1px solid red; */
+    width: 12rem;
+    height : 4.5rem;
+    color: #fff;
+    text-align: center;
   }
 
   @media only screen and (max-width: 768px) {
     .crypto-app-header {
       display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) and (min-width: 769px) {
+    .crypto-app-header {
+      height: 33vh;
+      /* padding-top: 2rem; */
+    }
+    .crypto-app-header > div {
+      flex: 33%;
     }
   }
 
