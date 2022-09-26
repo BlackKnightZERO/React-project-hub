@@ -360,43 +360,34 @@ body{
   }
 
   .crypto-app-header-extended-grey-box {
-    
+    background-color: #424242;
+    width: 100%;
+    height: 10vh;
   }
 
   .crypto-app-header {
     background-color: #424242;
     width: 100%;
-    height: 30vh;
+    height: 15vh;
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     flex-wrap: wrap;
-    padding-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  .crypto-app-header h6 {
+    font-weight: 600;
   }
 
   .crypto-app-header > div {
-    /* border: 1px solid red; */
     width: 12rem;
     height : 4.5rem;
     color: #fff;
     text-align: center;
   }
 
-  @media only screen and (max-width: 768px) {
-    .crypto-app-header {
-      display: none;
-    }
-  }
-
-  @media only screen and (max-width: 1400px) and (min-width: 769px) {
-    .crypto-app-header {
-      height: 33vh;
-      /* padding-top: 2rem; */
-    }
-    .crypto-app-header > div {
-      flex: 33%;
-    }
-  }
+  
 
   .crypto-app-header-mobile-screen-collapse-btn:focus {
     border:none;
@@ -419,8 +410,114 @@ body{
     border-bottom: 2px solid #3E3F3F;
   }
 
+  
+
+  .crypto-app-body-container {
+    width: 100%;
+    height: 60vh;
+    background-color: #252525;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+  }
+
+  .crypto-app-body-table {
+    width: 73%;
+    color: #fff;
+    position: absolute;
+    top: -5rem;
+    border-radius: 5px;
+    background: #363636;
+    padding: 0 !important;
+  }
+
+  .crypto-app-body-table th:nth-child(1){
+    border-radius: 5px 0 0 0;
+  }
+  .crypto-app-body-table th:nth-child(6){
+    border-radius: 0 5px 0 0;
+  }
+
+  .crypto-app-body-table th {
+    padding: 1rem;
+  }
+
+  .crypto-app-body-table thead{
+    background: #000;
+  }
+
+  .crypto-app-body-table thead th:nth-child(3), 
+  .crypto-app-body-table tbody td:nth-child(3){
+    width: 40%;
+    text-align: left;
+  }
+
+  .crypto-app-body-table-row-logo {
+    width: 2.6rem;
+    /* margin-right: .2rem; */
+  }
+
+  .crypto-app-body-table-top-row {
+    text-align: left;
+    padding-top: .65rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .crypto-app-body-table-bottom-row {
+    text-align: left;
+    padding-bottom: .65rem;
+    font-size: .9rem;
+    color: #767676;
+    font-weight: 800;
+  }
+
+  .crypto-app-body-table-row-span-element {
+    vertical-align : middle;
+  }
+
+  .crypto-app-hourly-change-rate{
+    color: #2BBB83;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .crypto-app-header {
+      display: none;
+    }
+    .crypto-app-header-extended-grey-box {
+      display: none;
+    }
+    /* .crypto-app-body-table {
+      display: none;
+    } */
+    .crypto-app-body-table {
+      width: 100%;
+      top: 0rem;
+    }
+    .mobile-fild-hide {
+      display: none;
+    }
+  }
+
   @media only screen and (min-width: 768px) {
     .crypto-app-header-mobile-screen {
       display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) and (min-width: 769px) {
+    .crypto-app-header {
+      height: 20vh;
+    }
+    .crypto-app-header > div {
+      flex: 33%;
+    }
+    .crypto-app-header-extended-grey-box {
+      height: 15vh;
+    }
+    .crypto-app-body-table {
+      width: 80%;
     }
   }
