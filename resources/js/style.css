@@ -510,14 +510,25 @@ body{
   @media only screen and (max-width: 1400px) and (min-width: 769px) {
     .crypto-app-header {
       height: 20vh;
+      padding: 1rem 10%;
+    }
+    .crypto-app-header h6 {
+      font-weight: 500;
+    }
+    .crypto-app-header h3 {
+      font-size: 1.5rem;
     }
     .crypto-app-header > div {
       flex: 33%;
     }
     .crypto-app-header-extended-grey-box {
-      height: 15vh;
+      height: 18vh;
     }
     .crypto-app-body-table {
       width: 80%;
+    }
+    /* START HERE  */
+    .crypto-app-body-table {
+      top: -7rem;
     }
   }
