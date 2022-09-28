@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { Button, Collapse } from 'react-bootstrap'
 
+import { FaCaretDown } from "react-icons/fa"
+
 const Header = () => {
     const [headerCollapse, setHeaderCollapse] = useState(false);
   return (
@@ -15,7 +17,7 @@ const Header = () => {
             style={{ width: '100%', borderRadius: '0px', textAlign: 'left', padding: '.5rem', margin: '0px', backgroundColor: '#424242' }}
             className='crypto-app-header-mobile-screen-collapse-btn'
         >
-            Market Snapshot
+            Market Snapshot <FaCaretDown />
         </Button>
         <Collapse in={headerCollapse}>
             <div id="example-collapse-text" className='crypto-app-header-mobile-screen-collapse-field'>

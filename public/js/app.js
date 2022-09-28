@@ -3785,6 +3785,114 @@ Square.defaultProps = {
 
 /***/ }),
 
+/***/ "./resources/js/components/CryptoApp/Context/CryptoContext.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/CryptoApp/Context/CryptoContext.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CryptoProvider": () => (/* binding */ CryptoProvider),
+/* harmony export */   "useCrypto": () => (/* binding */ useCrypto)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var CryptoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext();
+var useCrypto = function useCrypto() {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(CryptoContext);
+};
+var CryptoProvider = function CryptoProvider(_ref) {
+  var children = _ref.children;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      assets = _useState4[0],
+      setAssets = _useState4[1];
+
+  var fetchAssets = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var url;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              setLoading(true);
+              url = "https://api.coincap.io/v2/assets";
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: 'get',
+                url: url,
+                responseType: 'json'
+              }).then(function (res) {
+                var _res$data, _res$data2;
+
+                console.log((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data);
+                setAssets((_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.data);
+              })["catch"](function (err) {
+                console.error(err);
+              });
+
+            case 4:
+              setLoading(false);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function fetchAssets() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CryptoContext.Provider, {
+    value: {
+      loading: loading,
+      assets: assets,
+      fetchAssets: fetchAssets
+    },
+    children: children
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/CryptoApp/CryptoApp.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/CryptoApp/CryptoApp.js ***!
@@ -3796,10 +3904,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navigation */ "./resources/js/components/CryptoApp/Navigation.js");
-/* harmony import */ var _MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainContainer */ "./resources/js/components/CryptoApp/MainContainer.js");
-/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/CryptoApp/Footer.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Context_CryptoContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Context/CryptoContext */ "./resources/js/components/CryptoApp/Context/CryptoContext.js");
+/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Navigation */ "./resources/js/components/CryptoApp/Navigation.js");
+/* harmony import */ var _MainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MainContainer */ "./resources/js/components/CryptoApp/MainContainer.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/CryptoApp/Footer.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -3808,8 +3918,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CryptoApp = function CryptoApp() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MainContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Context_CryptoContext__WEBPACK_IMPORTED_MODULE_0__.CryptoProvider, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MainContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+    })
   });
 };
 
@@ -3858,7 +3970,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Collapse.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Collapse.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -3878,6 +3991,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Header = function Header() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3887,7 +4001,7 @@ var Header = function Header() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
       className: "crypto-app-header-mobile-screen",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
         variant: "secondary",
         onClick: function onClick() {
           return setHeaderCollapse(!headerCollapse);
@@ -3903,8 +4017,8 @@ var Header = function Header() {
           backgroundColor: '#424242'
         },
         className: "crypto-app-header-mobile-screen-collapse-btn",
-        children: "Market Snapshot"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        children: ["Market Snapshot ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__.FaCaretDown, {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         "in": headerCollapse,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           id: "example-collapse-text",
@@ -4012,68 +4126,101 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header */ "./resources/js/components/CryptoApp/Header.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Context_CryptoContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Context/CryptoContext */ "./resources/js/components/CryptoApp/Context/CryptoContext.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./resources/js/components/CryptoApp/Header.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
 
 
 var MainContainer = function MainContainer() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  var _useCrypto = (0,_Context_CryptoContext__WEBPACK_IMPORTED_MODULE_1__.useCrypto)(),
+      assets = _useCrypto.assets,
+      fetchAssets = _useCrypto.fetchAssets;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchAssets();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "crypto-app-header-extended-grey-box"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-      "class": "crypto-app-body-container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+      className: "crypto-app-body-container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
         className: "crypto-app-body-table",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
               className: "mobile-fild-hide",
               children: "Rank"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
               children: "Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
               children: "Price"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+              className: "mobile-fild-hide",
+              children: "Market Cap"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+              className: "mobile-fild-hide tablet-fild-hide",
+              children: "VWAP(24Hr)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+              className: "mobile-fild-hide tablet-fild-hide",
+              children: "Supply"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
               className: "mobile-fild-hide",
               children: "Volume (24Hr)"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
               children: "Change (24Hr)"
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tbody", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tbody", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               rowSpan: 2,
               className: "crypto-app-body-table-row-span-element mobile-fild-hide",
               children: "1"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               rowSpan: 2,
               className: "crypto-app-body-table-row-span-element",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
                 className: "crypto-app-body-table-row-logo",
                 src: "https://assets.coincap.io/assets/icons/btc@2x.png"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               className: "crypto-app-body-table-top-row",
               children: "Bitcoin"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+              rowSpan: 2,
+              className: "crypto-app-body-table-row-span-element",
+              children: "Price"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               rowSpan: 2,
               className: "crypto-app-body-table-row-span-element mobile-fild-hide",
-              children: "DATA"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              children: "Market Cap"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+              rowSpan: 2,
+              className: "crypto-app-body-table-row-span-element mobile-fild-hide tablet-fild-hide",
+              children: "VWAP(24Hr)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+              rowSpan: 2,
+              className: "crypto-app-body-table-row-span-element mobile-fild-hide tablet-fild-hide",
+              children: "Supply"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               rowSpan: 2,
               className: "crypto-app-body-table-row-span-element mobile-fild-hide",
-              children: "DATA"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              children: "Volume (24Hr)"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               rowSpan: 2,
               className: "crypto-app-body-table-row-span-element crypto-app-hourly-change-rate",
               children: "0.73%"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
               className: "crypto-app-body-table-bottom-row",
               children: "BTX"
             })
@@ -8757,7 +8904,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }\r\n\r\n  .color-app {\r\n    min-height: 72vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-size: 33px;\r\n  }\r\n  \r\n  .color-app-square {\r\n    width: 400px;\r\n    height: 400px;\r\n    border: 2px solid #000;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    display: grid;\r\n    place-content: center;\r\n  }\r\n  \r\n  .color-app-square p {\r\n    text-align: center;\r\n  }\r\n  \r\n  .color-app-form {\r\n    width: 400px;\r\n  }\r\n  \r\n  .color-app-label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .color-app input[type=\"text\"] {\r\n    margin-top: 0.5rem;\r\n    padding: 0.25rem;\r\n    width: 100%;\r\n    font-size: 1rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .color-app button {\r\n    width: 100%;\r\n    min-height: 48px;\r\n    margin-top: 0.5rem;\r\n    font-size: 1rem;\r\n    border-radius: 0.25rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    padding: 0.25rem;\r\n  }\r\n\r\n  .crypto-app-header-extended-grey-box {\r\n    background-color: #424242;\r\n    width: 100%;\r\n    height: 10vh;\r\n  }\r\n\r\n  .crypto-app-header {\r\n    background-color: #424242;\r\n    width: 100%;\r\n    height: 15vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    padding-top: 1rem;\r\n  }\r\n\r\n  .crypto-app-header h6 {\r\n    font-weight: 600;\r\n  }\r\n\r\n  .crypto-app-header > div {\r\n    width: 12rem;\r\n    height : 4.5rem;\r\n    color: #fff;\r\n    text-align: center;\r\n  }\r\n\r\n  \r\n\r\n  .crypto-app-header-mobile-screen-collapse-btn:focus {\r\n    border:none;\r\n    outline: 0;\r\n    box-shadow: none;\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-field {\r\n    background-color: #424242;\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-field-children {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: .8rem 2rem;\r\n    color: #fff;\r\n    border-bottom: 2px solid #3E3F3F;\r\n  }\r\n\r\n  \r\n\r\n  .crypto-app-body-container {\r\n    width: 100%;\r\n    height: 60vh;\r\n    background-color: #252525;\r\n    text-align: center;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: start;\r\n    position: relative;\r\n  }\r\n\r\n  .crypto-app-body-table {\r\n    width: 73%;\r\n    color: #fff;\r\n    position: absolute;\r\n    top: -5rem;\r\n    border-radius: 5px;\r\n    background: #363636;\r\n    padding: 0 !important;\r\n  }\r\n\r\n  .crypto-app-body-table th:nth-child(1){\r\n    border-radius: 5px 0 0 0;\r\n  }\r\n  .crypto-app-body-table th:nth-child(6){\r\n    border-radius: 0 5px 0 0;\r\n  }\r\n\r\n  .crypto-app-body-table th {\r\n    padding: 1rem;\r\n  }\r\n\r\n  .crypto-app-body-table thead{\r\n    background: #000;\r\n  }\r\n\r\n  .crypto-app-body-table thead th:nth-child(3), \r\n  .crypto-app-body-table tbody td:nth-child(3){\r\n    width: 40%;\r\n    text-align: left;\r\n  }\r\n\r\n  .crypto-app-body-table-row-logo {\r\n    width: 2.6rem;\r\n    /* margin-right: .2rem; */\r\n  }\r\n\r\n  .crypto-app-body-table-top-row {\r\n    text-align: left;\r\n    padding-top: .65rem;\r\n    font-size: 1.1rem;\r\n    font-weight: 500;\r\n  }\r\n\r\n  .crypto-app-body-table-bottom-row {\r\n    text-align: left;\r\n    padding-bottom: .65rem;\r\n    font-size: .9rem;\r\n    color: #767676;\r\n    font-weight: 800;\r\n  }\r\n\r\n  .crypto-app-body-table-row-span-element {\r\n    vertical-align : middle;\r\n  }\r\n\r\n  .crypto-app-hourly-change-rate{\r\n    color: #2BBB83;\r\n  }\r\n\r\n  @media only screen and (max-width: 768px) {\r\n    .crypto-app-header {\r\n      display: none;\r\n    }\r\n    .crypto-app-header-extended-grey-box {\r\n      display: none;\r\n    }\r\n    /* .crypto-app-body-table {\r\n      display: none;\r\n    } */\r\n    .crypto-app-body-table {\r\n      width: 100%;\r\n      top: 0rem;\r\n    }\r\n    .mobile-fild-hide {\r\n      display: none;\r\n    }\r\n  }\r\n\r\n  @media only screen and (min-width: 768px) {\r\n    .crypto-app-header-mobile-screen {\r\n      display: none;\r\n    }\r\n  }\r\n\r\n  @media only screen and (max-width: 1400px) and (min-width: 769px) {\r\n    .crypto-app-header {\r\n      height: 20vh;\r\n      padding: 1rem 10%;\r\n    }\r\n    .crypto-app-header h6 {\r\n      font-weight: 500;\r\n    }\r\n    .crypto-app-header h3 {\r\n      font-size: 1.5rem;\r\n    }\r\n    .crypto-app-header > div {\r\n      flex: 33%;\r\n    }\r\n    .crypto-app-header-extended-grey-box {\r\n      height: 18vh;\r\n    }\r\n    .crypto-app-body-table {\r\n      width: 80%;\r\n    }\r\n    /* START HERE  */\r\n    .crypto-app-body-table {\r\n      top: -7rem;\r\n    }\r\n  }\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\r\n    font-family: 'montserrat', sans-serif;\r\n}\r\n\r\n#app_title:hover {\r\n    color: #61DBFB;\r\n}\r\n\r\n.project-title{\r\n    color: #673ab7;\r\n    font-weight: 600;\r\n}\r\n\r\n.keep-app-sticker-div {\r\n    cursor: pointer;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.keep-app-sticker-card {\r\n    min-width: 16rem;\r\n    min-height: 16rem;\r\n    height: 16rem;\r\n    overflow: hidden;\r\n    background: #F79000;\r\n}\r\n\r\n.keep-app-sticker-card-body {\r\n    background:rgb(244 242 244);\r\n    background: #FCD134;\r\n}\r\n\r\n.keep-app-sticker-card-body-title {\r\n    color: #996600;\r\n}\r\n\r\n.keep-app-checkbox{\r\n    display: inline;\r\n    margin: 5px;\r\n}\r\n\r\n.form-check-input {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.form-check-input:checked {\r\n    background-color: #a96400;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-ul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.keep-app-li {\r\n    color: #201f1e;\r\n}\r\n\r\n.keep-app-modal .modal-content {\r\n    background: #FCD134;\r\n    border-color: #a96400;\r\n}\r\n\r\n.keep-app-modal .modal-header {\r\n    border-bottom: none;\r\n}\r\n\r\n.keep-app-modal .modal-body {\r\n    padding: 0 1rem !important;\r\n}\r\n\r\n.keep-app-modal .modal-footer {\r\n    /* border-top: 1px dashed #a96400 !important; */\r\n    border-top: none;\r\n    margin-top: 1.1rem;\r\n}\r\n\r\n.keep-app-modal-title-input {\r\n    outline: none;\r\n    border: none;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 1%;\r\n    background: #FCD134;\r\n    color: #a96400;\r\n}\r\n\r\n.keep-app-modal-save-btn {\r\n    background: #a96400;\r\n}\r\n\r\n.todo-app {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    min-height: 70vh; \r\n    width: 100%; \r\n    max-width: 500px;\r\n    /* border: 1px solid mediumblue; */\r\n    border: 1px solid #00cd7c;\r\n    margin: auto;\r\n    margin-top:0.5rem;\r\n}\r\n\r\n.todo-app-header {\r\n    width: 100%;\r\n    padding: 0 0.25em;\r\n    background-color: #00cd7c;\r\n    /* background-color: mediumblue; */\r\n    color: aliceblue;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.todo-app-main {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-grow: 1;\r\n    /* justify-content: center; */\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    overflow-y: auto;\r\n}\r\n\r\n.todo-app-footer {\r\n    width: 100%;\r\n    padding: 0.25em;\r\n    /* background-color: mediumblue; */\r\n    background-color: #00cd7c;\r\n    color: aliceblue;\r\n    display: grid;\r\n    place-content: center;\r\n}\r\n\r\n.todo-app-ul {\r\n    width: 100%;\r\n    list-style: none;\r\n    padding: 0 0.25rem 0.25rem;\r\n}\r\n  \r\n.todo-app-ul li::before {\r\n    content: \"\\200B\";\r\n}\r\n\r\n.todo-app-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 0.5rem 0 0.5rem 0.5rem;\r\n    margin: 0.25rem 0;\r\n    background-color: #eee;\r\n}\r\n\r\n.todo-app-item:first-child {\r\n    margin: 0;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"] {\r\n    text-align: center;\r\n    width: 2.5rem;\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 2.5rem;\r\n    height: 48px;\r\n    min-height: 48px;\r\n    cursor: pointer;\r\n    margin-right: 0.5rem;\r\n}\r\n\r\n.todo-app-item input[type=\"checkbox\"]:focus + label {\r\n    text-decoration: underline;\r\n}\r\n\r\n.todo-app-item > label {\r\n    font-size: 0.75rem;\r\n    flex-grow: 1;\r\n}\r\n\r\n.todo-app-item svg {\r\n    width: 48px;\r\n    min-width: 48px;\r\n    height: 36px;\r\n    font-size: 1rem;\r\n    color: steelblue;\r\n    cursor: pointer;\r\n}\r\n\r\n.todo-app-item svg:focus, \r\n.todo-app-item svg:hover {\r\n    color: red;\r\n    outline: none;\r\n}\r\n\r\n.todo-app-addForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.5rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-addForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-addForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: calc(100% - 50px);\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    margin-right: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-addBtn {\r\n    height: 48px;\r\n    min-width: 48px;\r\n    border-radius: 0.25rem;\r\n    padding: 0.5rem;\r\n    font-size: 1rem;\r\n    /* background-color: aliceblue; */\r\n    background-color: #00cd7c;\r\n    /* color: mediumblue; */\r\n    color: aliceblue;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .todo-app-addBtn:focus, \r\n  .todo-app-addBtn:hover {\r\n    color: white;\r\n    /* background-color: limegreen; */\r\n    background-color: #007f4c;\r\n    outline: none;\r\n  }\r\n  \r\n  .todo-app-searchForm {\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0.25rem 0 0;\r\n    padding: 0 0.5rem 0.25rem;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .todo-app-searchForm label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .todo-app-searchForm input[type='text'] {\r\n    flex-grow: 1;\r\n    max-width: 100%;\r\n    min-height: 48px;\r\n    font-size: 1rem;\r\n    padding: 0.25rem;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn {\r\n    position: fixed;\r\n    bottom: 5%;\r\n    right: 5%; \r\n    padding: 1.8rem 2rem;\r\n    border: 3px solid #996600;\r\n    border-radius: 50%;\r\n    font-size: 1.3rem;\r\n    color:#f5b941;\r\n    background: #373737;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to top, #dd1818, #373737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n    cursor: pointer;\r\n  }\r\n\r\n  .todo-app-addNewKeepBtn:hover {\r\n    box-shadow: 0px 5px 5px #373737;\r\n  }\r\n\r\n  .todo-app-modal-item-input {\r\n    display: inline-block;\r\n    width: 90%;\r\n    outline: none;\r\n    border: none;\r\n    padding-left: 6%;\r\n    background: #FCD134;\r\n  }\r\n\r\n  .color-app {\r\n    min-height: 72vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-size: 33px;\r\n  }\r\n  \r\n  .color-app-square {\r\n    width: 400px;\r\n    height: 400px;\r\n    border: 2px solid #000;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    display: grid;\r\n    place-content: center;\r\n  }\r\n  \r\n  .color-app-square p {\r\n    text-align: center;\r\n  }\r\n  \r\n  .color-app-form {\r\n    width: 400px;\r\n  }\r\n  \r\n  .color-app-label {\r\n    position: absolute;\r\n    left: -99999px;\r\n  }\r\n  \r\n  .color-app input[type=\"text\"] {\r\n    margin-top: 0.5rem;\r\n    padding: 0.25rem;\r\n    width: 100%;\r\n    font-size: 1rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    border-radius: 0.25rem;\r\n    outline: none;\r\n  }\r\n  \r\n  .color-app button {\r\n    width: 100%;\r\n    min-height: 48px;\r\n    margin-top: 0.5rem;\r\n    font-size: 1rem;\r\n    border-radius: 0.25rem;\r\n    box-shadow: 2px 2px 5px #000;\r\n    padding: 0.25rem;\r\n  }\r\n\r\n  .crypto-app-header-extended-grey-box {\r\n    background-color: #424242;\r\n    width: 100%;\r\n    height: 10vh;\r\n  }\r\n\r\n  .crypto-app-header {\r\n    background-color: #424242;\r\n    width: 100%;\r\n    height: 15vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    padding-top: 1rem;\r\n  }\r\n\r\n  .crypto-app-header h6 {\r\n    font-weight: 600;\r\n  }\r\n\r\n  .crypto-app-header > div {\r\n    width: 12rem;\r\n    height : 4.5rem;\r\n    color: #fff;\r\n    text-align: center;\r\n  }\r\n\r\n  \r\n\r\n  .crypto-app-header-mobile-screen-collapse-btn:focus {\r\n    border:none;\r\n    outline: 0;\r\n    box-shadow: none;\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-field {\r\n    background-color: #424242;\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n\r\n  .crypto-app-header-mobile-screen-collapse-field-children {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: .8rem 2rem;\r\n    color: #fff;\r\n    border-bottom: 2px solid #3E3F3F;\r\n  }\r\n\r\n  \r\n\r\n  .crypto-app-body-container {\r\n    width: 100%;\r\n    height: 60vh;\r\n    background-color: #252525;\r\n    text-align: center;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: start;\r\n    position: relative;\r\n  }\r\n\r\n  .crypto-app-body-table {\r\n    width: 73%;\r\n    color: #fff;\r\n    position: absolute;\r\n    top: -5rem;\r\n    border-radius: 5px;\r\n    background: #363636;\r\n    padding: 0 !important;\r\n  }\r\n\r\n  .crypto-app-body-table th:nth-child(1){\r\n    border-radius: 5px 0 0 0;\r\n  }\r\n  .crypto-app-body-table th:nth-child(6){\r\n    border-radius: 0 5px 0 0;\r\n  }\r\n\r\n  .crypto-app-body-table th {\r\n    padding: 1rem;\r\n  }\r\n\r\n  .crypto-app-body-table thead{\r\n    background: #000;\r\n  }\r\n\r\n  .crypto-app-body-table thead th:nth-child(3), \r\n  .crypto-app-body-table tbody td:nth-child(3){\r\n    width: 21%;\r\n    text-align: left;\r\n  }\r\n\r\n  .crypto-app-body-table-row-logo {\r\n    width: 2.4rem;\r\n    /* margin-right: .2rem; */\r\n  }\r\n\r\n  .crypto-app-body-table-top-row {\r\n    text-align: left;\r\n    padding-top: .5rem;\r\n    font-size: 1.1rem;\r\n    font-weight: 500;\r\n  }\r\n\r\n  .crypto-app-body-table-bottom-row {\r\n    text-align: left;\r\n    padding-bottom: .5rem;\r\n    font-size: .9rem;\r\n    color: #767676;\r\n    font-weight: 800;\r\n  }\r\n\r\n  .crypto-app-body-table-row-span-element {\r\n    vertical-align : middle;\r\n  }\r\n\r\n  .crypto-app-hourly-change-rate{\r\n    color: #2BBB83;\r\n  }\r\n\r\n  @media only screen and (max-width: 768px) {\r\n    .crypto-app-header {\r\n      display: none;\r\n    }\r\n    .crypto-app-header-extended-grey-box {\r\n      display: none;\r\n    }\r\n    /* .crypto-app-body-table {\r\n      display: none;\r\n    } */\r\n    .crypto-app-body-table {\r\n      width: 100%;\r\n      top: 0rem;\r\n    }\r\n    .mobile-fild-hide {\r\n      display: none;\r\n    }\r\n  }\r\n\r\n  @media only screen and (min-width: 768px) {\r\n    .crypto-app-header-mobile-screen {\r\n      display: none;\r\n    }\r\n  }\r\n\r\n  @media only screen and (max-width: 1400px) and (min-width: 769px) {\r\n    .crypto-app-header {\r\n      height: 20vh;\r\n      padding: 1rem 10%;\r\n    }\r\n    .crypto-app-header h6 {\r\n      font-weight: 500;\r\n    }\r\n    .crypto-app-header h3 {\r\n      font-size: 1.5rem;\r\n    }\r\n    .crypto-app-header > div {\r\n      flex: 33%;\r\n    }\r\n    .crypto-app-header-extended-grey-box {\r\n      height: 18vh;\r\n    }\r\n    .crypto-app-body-table {\r\n      width: 80%;\r\n    }\r\n    .crypto-app-body-table {\r\n      top: -7rem;\r\n    }\r\n    .tablet-fild-hide{\r\n      display: none;\r\n    }\r\n  }\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

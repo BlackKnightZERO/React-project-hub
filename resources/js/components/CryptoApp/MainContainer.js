@@ -1,11 +1,21 @@
+import { useEffect } from 'react'
+import { useCrypto } from './Context/CryptoContext'
+
 import Header from './Header'
 
 const MainContainer = () => {
+
+  const { assets, fetchAssets } = useCrypto()
+
+  useEffect(() => {
+    fetchAssets()
+  },[])
+
   return (
     <>
         <Header />
           <div className='crypto-app-header-extended-grey-box'></div>
-          <section class='crypto-app-body-container'>
+          <section className='crypto-app-body-container'>
             <table className='crypto-app-body-table'>
               <thead>
                 <tr>
@@ -13,6 +23,9 @@ const MainContainer = () => {
                   <th>Name</th>
                   <th></th>
                   <th>Price</th>
+                  <th className='mobile-fild-hide'>Market Cap</th>
+                  <th className='mobile-fild-hide tablet-fild-hide'>VWAP(24Hr)</th>
+                  <th className='mobile-fild-hide tablet-fild-hide'>Supply</th>
                   <th className='mobile-fild-hide'>Volume (24Hr)</th>
                   <th>Change (24Hr)</th>
                 </tr>
@@ -31,11 +44,20 @@ const MainContainer = () => {
                     <td className='crypto-app-body-table-top-row'>
                       Bitcoin
                     </td>
-                    <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide'>
-                      DATA
+                    <td rowSpan={2} className='crypto-app-body-table-row-span-element'>
+                      Price
                     </td>
                     <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide'>
-                      DATA
+                      Market Cap
+                    </td>
+                    <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide tablet-fild-hide'>
+                      VWAP(24Hr)
+                    </td>
+                    <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide tablet-fild-hide'>
+                      Supply
+                    </td>
+                    <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide'>
+                      Volume (24Hr)
                     </td>
                     <td rowSpan={2} className='crypto-app-body-table-row-span-element crypto-app-hourly-change-rate'>
                       0.73%

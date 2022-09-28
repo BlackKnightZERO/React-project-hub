@@ -450,25 +450,25 @@ body{
 
   .crypto-app-body-table thead th:nth-child(3), 
   .crypto-app-body-table tbody td:nth-child(3){
-    width: 40%;
+    width: 21%;
     text-align: left;
   }
 
   .crypto-app-body-table-row-logo {
-    width: 2.6rem;
+    width: 2.4rem;
     /* margin-right: .2rem; */
   }
 
   .crypto-app-body-table-top-row {
     text-align: left;
-    padding-top: .65rem;
+    padding-top: .5rem;
     font-size: 1.1rem;
     font-weight: 500;
   }
 
   .crypto-app-body-table-bottom-row {
     text-align: left;
-    padding-bottom: .65rem;
+    padding-bottom: .5rem;
     font-size: .9rem;
     color: #767676;
     font-weight: 800;
@@ -527,8 +527,10 @@ body{
     .crypto-app-body-table {
       width: 80%;
     }
-    /* START HERE  */
     .crypto-app-body-table {
       top: -7rem;
+    }
+    .tablet-fild-hide{
+      display: none;
     }
   }
