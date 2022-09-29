@@ -9,9 +9,12 @@ export const useCrypto = () => {
 
 export const CryptoProvider = ({ children }) => {
 
+    const modalFullScreen = true
+
     const [ loading, setLoading ] = useState(false)
     const [ assets, setAssets ] = useState([])
-    const [ rowCount, setRowCount] = useState(20)
+    const [ rowCount, setRowCount ] = useState(20)
+    const [ showModal, setShowModal ] = useState(false)
 
     const fetchAssets = async () => {
         setLoading(true)
@@ -34,7 +37,10 @@ export const CryptoProvider = ({ children }) => {
         loading,
         assets,
         rowCount,
+        modalFullScreen,
+        showModal,
         setRowCount,
-        fetchAssets
+        fetchAssets,
+        setShowModal
     }}>{ children }</CryptoContext.Provider>
 }

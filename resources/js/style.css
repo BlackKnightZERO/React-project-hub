@@ -387,8 +387,6 @@ body{
     text-align: center;
   }
 
-  
-
   .crypto-app-header-mobile-screen-collapse-btn:focus {
     border:none;
     outline: 0;
@@ -409,8 +407,6 @@ body{
     color: #fff;
     border-bottom: 2px solid #3E3F3F;
   }
-
-  
 
   .crypto-app-body-container {
     width: 100%;
@@ -436,7 +432,8 @@ body{
   .crypto-app-body-table th:nth-child(1){
     border-radius: 5px 0 0 0;
   }
-  .crypto-app-body-table th:nth-child(6){
+
+  .crypto-app-body-table th:nth-child(9){
     border-radius: 0 5px 0 0;
   }
 
@@ -529,4 +526,13 @@ body{
     .tablet-fild-hide{
       display: none;
     }
+  }
+
+  .crypto-app-nav-container {
+    background: #000;
+    padding: .3rem 12rem;
+  }
+
+  .navbar-toggler{
+    background: #363636;
   }

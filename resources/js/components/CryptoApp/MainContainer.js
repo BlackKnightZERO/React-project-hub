@@ -3,13 +3,20 @@ import { useCrypto } from './Context/CryptoContext'
 import { currencyFormatter, formatCash } from './helper/utils'
 
 import Header from './Header'
+import CryptoModal from './CryptoModal'
 
 const MainContainer = () => {
 
-  const { assets, fetchAssets, rowCount, setRowCount } = useCrypto()
+  const { assets, 
+          fetchAssets, 
+          rowCount, 
+          setRowCount, 
+          modalFullScreen, 
+          showModal, 
+          setShowModal } = useCrypto()
 
   useEffect(() => {
-    fetchAssets()
+    // fetchAssets()
   },[])
 
   return (
@@ -34,10 +41,10 @@ const MainContainer = () => {
               <tbody>
                 {
                   assets.slice(0, rowCount).map((asset, index) => (
-                    <React.Fragment key={asset.id}>
+                    <React.Fragment key={ asset.id }>
                       <tr >
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide'>
-                            {asset.rank}
+                            { asset.rank }
                         </td>
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element'>
                             <img 
@@ -46,19 +53,19 @@ const MainContainer = () => {
                             />
                         </td>
                         <td className='crypto-app-body-table-top-row'>
-                          {asset.id}
+                          { asset.id }
                         </td>
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element'>
-                          {currencyFormatter.format(asset.priceUsd)}
+                          { currencyFormatter.format(asset.priceUsd) }
                         </td>
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide'>
-                          {'$'}{formatCash(Number(asset.marketCapUsd))}
+                          {'$'}{ formatCash(Number(asset.marketCapUsd)) }
                         </td>
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide tablet-fild-hide'>
-                            {currencyFormatter.format(asset.vwap24Hr)}
+                            { currencyFormatter.format(asset.vwap24Hr) }
                         </td>
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide tablet-fild-hide'>
-                            {formatCash(Number(asset.supply))}
+                            { formatCash(Number(asset.supply)) }
                         </td>
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element mobile-fild-hide'>
                           {'$'}{ formatCash(Number(asset.volumeUsd24Hr)) }
@@ -66,12 +73,12 @@ const MainContainer = () => {
                         <td rowSpan={2} className='crypto-app-body-table-row-span-element'
                           style={{ color : (!isNaN(asset.changePercent24Hr) && Number(asset.changePercent24Hr) > 0) ? '#2BBB83' : '#F44336' }}
                         >
-                            {`${Number(asset.changePercent24Hr).toFixed(2)}%` }
+                            { `${Number(asset.changePercent24Hr).toFixed(2)}%` }
                         </td>
                     </tr>
                     <tr>
                         <td className='crypto-app-body-table-bottom-row'>
-                            {asset.symbol}
+                            { asset.symbol }
                         </td>
                     </tr>
                   </React.Fragment>
@@ -80,6 +87,11 @@ const MainContainer = () => {
               </tbody>
             </table>
           </section>
+        <CryptoModal
+          modalFullScreen={modalFullScreen}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
     </>
   )
 }
