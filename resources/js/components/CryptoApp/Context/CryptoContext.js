@@ -11,6 +11,7 @@ export const CryptoProvider = ({ children }) => {
 
     const [ loading, setLoading ] = useState(false)
     const [ assets, setAssets ] = useState([])
+    const [ rowCount, setRowCount] = useState(20)
 
     const fetchAssets = async () => {
         setLoading(true)
@@ -32,6 +33,8 @@ export const CryptoProvider = ({ children }) => {
     return <CryptoContext.Provider value={{
         loading,
         assets,
+        rowCount,
+        setRowCount,
         fetchAssets
     }}>{ children }</CryptoContext.Provider>
 }

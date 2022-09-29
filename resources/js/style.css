@@ -414,7 +414,7 @@ body{
 
   .crypto-app-body-container {
     width: 100%;
-    height: 60vh;
+    height: 200vh;
     background-color: #252525;
     text-align: center;
     display: flex;
@@ -476,10 +476,6 @@ body{
 
   .crypto-app-body-table-row-span-element {
     vertical-align : middle;
-  }
-
-  .crypto-app-hourly-change-rate{
-    color: #2BBB83;
   }
 
   @media only screen and (max-width: 768px) {
