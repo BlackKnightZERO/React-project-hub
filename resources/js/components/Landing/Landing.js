@@ -54,6 +54,21 @@ const Landing = () => {
                                 />
                         </Stack>
 
+                        <Stack direction direction="horizontal" gap={4} className="mx-auto">
+                                <ProjectCard
+                                    title="Counter App"
+                                    description="Counter App"
+                                    addons="Coding Challenge"
+                                    url="/counter-app"
+                                />
+                                {/* <ProjectCard
+                                    title="Crypto App"
+                                    description="Crypto Currency Rates"
+                                    addons="coincap.io clone"
+                                    url="/crypto-app"
+                                /> */}
+                        </Stack>
+
                     </Stack>
                 </div>
             {/* </Stack> */}

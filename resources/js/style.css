@@ -536,3 +536,22 @@ body{
   .navbar-toggler{
     background: #363636;
   }
+
+
+
+
+
+  /* counter app  */
+
+  .lines {
+    display: grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap: 15px;
+    background: #767676;
+    width: 800px;
+    height: 400px;
+  }
+
+  .line {
+
+  }
