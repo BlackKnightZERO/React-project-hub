@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Stack, Container, Row, Col, Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Stack, Button } from 'react-bootstrap';
 
 const CounterApp = () => {
 
     const [current, setCurrent] = useState(0);
-    const [queueLines, setQueueLines] = useState([[6,7,8],[1],[],[3],[4]]);
+    const [queueLines, setQueueLines] = useState([[6,7,8],[1,3,6,8],[22],[13],[4]]);
 
     const addToQueue = (e) => {
         e.preventDefault()
 
         let lowestInQueue = 1e9;
-        let queueWithLeast;
+        let queueWithLeast = [];
 
         for(let queueLine of queueLines) {
             const totalInQueue = queueLine.reduce((sum, value) => sum + value, 0)
@@ -19,8 +19,27 @@ const CounterApp = () => {
                 queueWithLeast = queueLine
             }
         }
-        console.log(queueWithLeast)
+
+        if(current <= 0 || !queueWithLeast) return
+        setQueueLines(prevQueue => 
+            prevQueue.map(queue =>
+                queue === queueWithLeast ? [...queue, current] : queue 
+                )
+            )
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setQueueLines( prevLines =>
+                prevLines.map( queueLine => 
+                    [queueLine[0] - 1, ...queueLine.splice(1)].filter(f => f > 0) 
+                )
+            )
+        }, 1500)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
     
     return (
         <div>
@@ -33,8 +52,12 @@ const CounterApp = () => {
 
             <Stack className="col-md-4 mx-auto mt-5" direction="horizontal" gap={3}>
                 {
-                    queueLines.map((queueLine, i) => (
-                        <div className="p-3 ms-auto border border-secondary" key={i}>X</div>
+                    queueLines.map((queueLine, i1) => (
+                        <div className="p-3 ms-auto border border-secondary line" key={i1}>
+                            {
+                                queueLine.map((q, i2) => (<div key={i2}>{q}</div>))
+                            }
+                        </div>
                     ))
                 }
             </Stack>
