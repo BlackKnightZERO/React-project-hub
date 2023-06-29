@@ -61,12 +61,12 @@ const Landing = () => {
                                     addons="Coding Challenge"
                                     url="/counter-app"
                                 />
-                                {/* <ProjectCard
-                                    title="Crypto App"
-                                    description="Crypto Currency Rates"
-                                    addons="coincap.io clone"
-                                    url="/crypto-app"
-                                /> */}
+                                <ProjectCard
+                                    title="Circle Undo Redo App"
+                                    description="Circle Undo Redo App"
+                                    addons="Coding Challenge"
+                                    url="/circle-undo-redo-app"
+                                />
                         </Stack>
 
                     </Stack>

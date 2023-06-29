@@ -555,3 +555,24 @@ body{
   .line {
     min-height: 25vh !important;
   }
+
+  /* circle-undo-redo-app */
+
+  .circle-undo-redo-app {
+    height: 6vh !important;
+    background: #201f1e !important;
+    position: relative;
+  }
+
+  .circle-app-panel {
+    width: 100% !important;
+    background: #201f1e !important;
+    height: 73vh !important;
+  }
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    background: #00cd7c;
+    border-radius: 50%;
+  }

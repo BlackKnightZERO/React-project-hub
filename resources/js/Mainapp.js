@@ -10,6 +10,7 @@ import ToDoApp from './components/ToDoApp/ToDoApp'
 import ColorApp from './components/ColorApp/ColorApp'
 import CryptoAp from './components/CryptoApp/CryptoApp';
 import CounterApp from './components/CounterApp/CounterApp';
+import CircleUndoRedoApp from './components/CircleUndoRedoApp/CircleUndoRedoApp';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
@@ -26,6 +27,7 @@ const Mainapp = () => {
                 <Route exact path="/color-app" element={<ColorApp />} />
                 <Route exact path="/crypto-app" element={<CryptoAp />} />
                 <Route exact path="/counter-app" element={<CounterApp />} />
+                <Route exact path="/circle-undo-redo-app" element={<CircleUndoRedoApp />} />
             </Routes>
         </>
     )
