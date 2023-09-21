@@ -576,3 +576,13 @@ body{
     background: #00cd7c;
     border-radius: 50%;
   }
+
+  .UrlApp {
+    /* border: 1px solid black; */
+    /* margin: 1rem 10rem; */
+    display: flex;
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
+    justify-content: center;
+  }

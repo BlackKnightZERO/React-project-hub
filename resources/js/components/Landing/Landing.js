@@ -68,6 +68,20 @@ const Landing = () => {
                                     url="/circle-undo-redo-app"
                                 />
                         </Stack>
+                        <Stack direction direction="horizontal" gap={4} className="mx-auto">
+                                <ProjectCard
+                                    title="URL App"
+                                    description="URL App"
+                                    addons="Url Use State"
+                                    url="/url-app"
+                                />
+                                {/* <ProjectCard
+                                    title="Circle Undo Redo App"
+                                    description="Circle Undo Redo App"
+                                    addons="Coding Challenge"
+                                    url="/circle-undo-redo-app"
+                                /> */}
+                        </Stack>
 
                     </Stack>
                 </div>
